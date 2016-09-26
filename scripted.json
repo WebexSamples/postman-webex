@@ -1,5 +1,5 @@
 {
-	"variables": [],
+	"variables": ["spark_token"],
 	"info": {
 		"name": "Cisco Spark API v1",
 		"_postman_id": "1675d4e5-1372-c379-555b-1faba83d1bc8",
