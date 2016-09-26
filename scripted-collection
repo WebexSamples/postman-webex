@@ -1,0 +1,1640 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cisco Spark API v1",
+		"_postman_id": "1675d4e5-1372-c379-555b-1faba83d1bc8",
+		"description": "Hey there! Thanks for checking out Spark for Developers. If you've used Spark you know how easy it makes staying in sync with your team and customers.\r\n\r\nIn Spark, conversations take place in virtual meeting rooms. Some rooms live for a few hours while others become permanent fixtures of your team's workflow with titles like Daily Standup or Build Status. Spark allows conversations to flow seamlessly between messages, video calls and real-time whiteboarding sessions. No other solution brings together so many facets of collaboration into a single unified platform.\r\n\r\nAnd it's that platform part that Spark for Developers is all about. We've taken a huge step towards opening up the power behind the Spark app to anyone seeking to extend the Spark experience.\r\n\r\nhttps://developer.ciscospark.com/getting-started.html",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Memberships",
+			"description": "Memberships represent a person's relationship to a room. Use this API to list members of any room that you're in or create memberships to invite someone to a room. Memberships can also be updated to make someome a moderator or deleted to remove them from the room.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to list its memberships or invite people.\r\n\r\nhttps://developer.ciscospark.com/resource-memberships.html",
+			"item": [
+				{
+					"name": "List memberships (for all rooms)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps://developer.ciscospark.com/endpoint-memberships-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a room (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a room: failed\"] = false\n}\nelse {\n    tests[\"Create a room: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a room: cannot retreive room identifier\"] = false\n    }\n    else {\n        var roomID = jsonData.id;\n        postman.setEnvironmentVariable(\"_room\", roomID);\n        tests[\"Create a room: created with id:\" + roomID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Postman - Room to test Memberships\"\n}"
+						},
+						"description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List memberships (for a room)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships?roomId={{_room}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps://developer.ciscospark.com/endpoint-memberships-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a membership: failed\"] = false\n}\nelse {\n    tests[\"Create a membership: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a membership: cannot retreive identifier\"] = false\n    }\n    else {\n        var membershipID = jsonData.id;\n        postman.setEnvironmentVariable(\"_membership\", membershipID);\n        tests[\"Create a membership: created with id:\" + membershipID] = true\n    }\n}\n    \n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"personEmail\": \"devnet@sparkbot.io\",\r\n  \"isModerator\": \"false\"\r\n}"
+						},
+						"description": "Add someone to a room by Person ID or email address; optionally making them a moderator.\n\nhttps://developer.ciscospark.com/endpoint-memberships-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get membership details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get membership details: failed\"] = false;\n}\nelse {\n    tests[\"Get membership details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get membership details: cannot retreive identifier\"] = false;\n    }\n    else {\n        var membershipID = jsonData.id;\n        if (membershipID != postman.getEnvironmentVariable(\"_membership\")) {\n            tests[\"Get membership details: wrong id:\" + membershipID] = false;\n        }\n        else {\n            tests[\"Get membership details: correct id:\" + membershipID] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update a membership: failed\"] = false\n}\nelse {\n    tests[\"Update a membership: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isModerator\": true\n}"
+						},
+						"description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-put.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a membership: failed\"] = false\n}\nelse {\n    tests[\"Delete a membership: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-delete.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a room (cleanup)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"description": "Messages are how we communicate in a room. In Spark, each message is displayed on its own line along with a timestamp and sender information. Use this API to list, create, and delete messages.\r\n\r\nEach message can contain plain text and file attachments.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to target it with this API.\r\n\r\nhttps://developer.ciscospark.com/resource-messages.html",
+			"item": [
+				{
+					"name": "Create a room (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a room: failed\"] = false\n}\nelse {\n    tests[\"Create a room: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a room: cannot retreive identifier\"] = false\n    }\n    else {\n        var roomID = jsonData.id;\n        postman.setEnvironmentVariable(\"_room\", roomID);\n        tests[\"Create a room: created with id:\" + roomID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Postman - Room to test Messages\"\n}"
+						},
+						"description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List messages: failed\"] = false;\n}\nelse {\n    tests[\"List messages: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages?roomId={{_room}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Lists all messages in a room. If present, includes the associated media content attachment for each message.\r\n\r\nThe list sorts the messages in descending order by creation date.\r\n\r\nhttps://developer.ciscospark.com/endpoint-messages-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (plain text)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message\"\r\n}"
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (markdown)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"# Message Formatting!\\nSpark clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!\\n\\n## Styling Text\\nMessages are styled using [Markdown](https://daringfireball.net/projects/markdown/syntax) syntax allowing text to be emphasized in **bold**, *italics* on `in-line code`.\\n\\n### Fenced Code Blocks\\nSpark can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)\\n\\n```\\nsource 'https://github.com/CocoaPods/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'SparkBnB' do\\n  pod 'SparkSDK', :path => '../'\\n  pod 'Toast-Swift', '~> 1.1.0'\\nend\\n```\\n\\n### Lists\\n\\nLists are a great way to organize information or present options to your audience.\\n\\nOrderd Lists\\n1. List Item\\n2. List Item\\n3. List Item\\n\\nUnordered Lists\\n* List Item\\n* List Item\\n* List Item\\n\\n### Block Quotes\\n\\n> Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.\",\r\n  \"text\": \"This text would be displayed by Spark clients that would not support Markdown.\"\r\n}"
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nTo get more info about message formatting, check https://developer.ciscospark.com/formatting-messages.html\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (file attachment)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message\",\r\n  \"files\" : [ \"https://cdn-images-1.medium.com/max/800/1*L9U_KTqEpF-IJxGJ7kLHtw.png\" ]\r\n}"
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (plain text as form data)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "roomId",
+									"value": "{{_room}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "text",
+									"value": "This is a plain text message",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (local file attachement)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "roomId",
+									"value": "{{_room}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "text",
+									"value": "This is a message with file attachment",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "files",
+									"value": "meAsSpark.jpg",
+									"type": "file",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get message details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get message details: failed\"] = false;\n}\nelse {\n    tests[\"Get message details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get message details: cannot retreive identifier\"] = false;\n    }\n    else {\n        var messageID = jsonData.id;\n        if (messageID != postman.getEnvironmentVariable(\"_message\")) {\n            tests[\"Get message details: wrong id:\" + messageID] = false;\n        }\n        else {\n            tests[\"Get message details: correct id:\" + messageID] = true;\n        }\n    }\n}\n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages/{{_message}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message\"\r\n}"
+						},
+						"description": "Shows details for a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-messages-messageId-get.html\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a message: failed\"] = false\n}\nelse {\n    tests[\"Delete a message: success\"] = true\n}\n    \n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages/{{_message}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message\"\r\n}"
+						},
+						"description": "Deletes a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-messages-messageId-delete.html\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a room (cleanup)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "People",
+			"description": "People are registered users of the Spark application. Currently, people can only be searched with this API. Future releases of the API will allow for more complete user administration.\r\n\r\nTo learn more about managing people in a room see the Memberships API\r\n\r\nhttps://developer.ciscospark.com/resource-people.html",
+			"item": [
+				{
+					"name": "List people (whose name starts with)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List people: failed\"] = false;\n}\nelse {\n    tests[\"List people: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people?displayName=Steve",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List people in your organization.\n\nhttps://developer.ciscospark.com/endpoint-people-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List people (with exact email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List people: failed\"] = false;\n}\nelse {\n    tests[\"List people: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List people: cannot retreive result\"] = false\n    }\n    else {\n        var personID = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_person\", personID);\n        tests[\"List people: retreived with id:\" + personID] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people?email=steve.sfartz@gmail.com",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List people in your organization.\n\nhttps://developer.ciscospark.com/endpoint-people-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get person details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get person details: cannot retreive person identifier\"] = false;\n    }\n    else {\n        var personID = jsonData.id;\n        if (personID != postman.getEnvironmentVariable(\"_person\")) {\n            tests[\"Get person details: wrong id:\" + personID] = false;\n        }\n        else {\n            tests[\"Get person details: correct id:\" + personID] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people/{{_person}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Shows details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-people-personId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get person details (me)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people/me",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Show the profile for the authenticated user.\n\nhttps://developer.ciscospark.com/endpoint-people-me-get.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"description": "Rooms are virtual meeting place where people post messages and collaborate to get work done. This API is used to manage the rooms themselves. Rooms are create and deleted with this API. You can also update a room to change its title, for example.\r\n\r\nTo create a team room, specify the a teamId in POST payload. Note that once a room is added to a team, it cannot be moved. To learn more about managing teams, see the Teams API.\r\n\r\nTo manage people in a room see the Memberships API.\r\n\r\nTo post or otherwise manage room content see the Messages API.\r\n\r\nhttps://developer.ciscospark.com/resource-rooms.html",
+			"item": [
+				{
+					"name": "List rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms?max=10",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a room: failed\"] = false\n}\nelse {\n    tests[\"Create a room: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a room: cannot retreive room identifier\"] = false\n    }\n    else {\n        var roomID = jsonData.id;\n        postman.setEnvironmentVariable(\"_room\", roomID);\n        tests[\"Create a room: created with id:\" + roomID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Cisco Live - DevNet Zone\"\n}"
+						},
+						"description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get room details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get room details: failed\"] = false;\n}\nelse {\n    tests[\"Get room details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get room details: cannot retreive room identifier\"] = false;\n    }\n    else {\n        var roomId = jsonData.id;\n        if (roomId != postman.getEnvironmentVariable(\"_room\")) {\n            tests[\"Get room details: wrong id:\" + roomId] = false;\n        }\n        else {\n            tests[\"Get room details: correct id:\" + roomId] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Shows details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update a room: failed\"] = false\n}\nelse {\n    tests[\"Update a room: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Cisco Live - meet at the DevNet Zone\"\n}"
+						},
+						"description": "Updates details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-put.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Team Memberships",
+			"description": "Team Memberships represent a person's relationship to a team. Use this API to list members of any team that you're in or create memberships to invite someone to a team. Team memberships can also be updated to make someome a moderator or deleted to remove them from the team.\r\n\r\nJust like in the Spark app, you must be a member of the team in order to list its memberships or invite people.\r\n\r\nhttps://developer.ciscospark.com/resource-team-memberships.html",
+			"item": [
+				{
+					"name": "Create a team (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a team: failed\"] = false\n}\nelse {\n    tests[\"Create a team: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a team: cannot retreive team identifier\"] = false\n    }\n    else {\n        var teamID = jsonData.id;\n        postman.setEnvironmentVariable(\"_team\", teamID);\n        tests[\"Create a team: created with id:\" + teamID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tour de France\"\n}"
+						},
+						"description": "Create a new team.\n\nhttps://developer.ciscospark.com/endpoint-teams-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List team memberships",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/team/memberships?teamId={{_team}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Lists all team memberships. By default, lists memberships for teams to which the authenticated user belongs.\r\n\r\nUse query parameters to filter the response.\r\n\r\nUse teamId to list memberships for a team, by ID.\r\n\r\nUse either personId or personEmail to filter the results.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a team membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a membership: failed\"] = false\n}\nelse {\n    tests[\"Create a membership: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a membership: cannot retreive identifier\"] = false\n    }\n    else {\n        var membershipID = jsonData.id;\n        postman.setEnvironmentVariable(\"_membership\", membershipID);\n        tests[\"Create a membership: created with id:\" + membershipID] = true\n    }\n}\n    \n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/team/memberships",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teamId\" : \"{{_team}}\",\r\n  \"personEmail\": \"steve.sfartz@gmail.com\",\r\n  \"isModerator\": \"false\"\r\n}"
+						},
+						"description": "Add someone to a team by Person ID or email address; optionally making them a moderator.\n\nhttps://developer.ciscospark.com/endpoint-teammemberships-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get team membership details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get membership details: failed\"] = false;\n}\nelse {\n    tests[\"Get membership details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get membership details: cannot retreive identifier\"] = false;\n    }\n    else {\n        var membershipID = jsonData.id;\n        if (membershipID != postman.getEnvironmentVariable(\"_membership\")) {\n            tests[\"Get membership details: wrong id:\" + membershipID] = false;\n        }\n        else {\n            tests[\"Get membership details: correct id:\" + membershipID] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a team membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update a membership: failed\"] = false\n}\nelse {\n    tests[\"Update a membership: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isModerator\": true\n}"
+						},
+						"description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-put.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a team membership",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a membership: failed\"] = false\n}\nelse {\n    tests[\"Delete a membership: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-delete.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a team (cleanup)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a team: failed\"] = false\n}\nelse {\n    tests[\"Delete a team: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-delete.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams",
+			"description": "Teams are groups of people with a set of rooms that are visible to all members of that team. This API is used to manage the teams themselves. Teams are create and deleted with this API. You can also update a team to change its team, for example.\r\n\r\nTo manage people in a team see the Team Memberships API.\r\n\r\nTo manage team rooms see the Rooms API.\r\n\r\nhttps://developer.ciscospark.com/resource-teams.html",
+			"item": [
+				{
+					"name": "List teams",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List teams: failed\"] = false;\n}\nelse {\n    tests[\"List teams: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List teams.\n\nhttps://developer.ciscospark.com/endpoint-teams-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a team: failed\"] = false\n}\nelse {\n    tests[\"Create a team: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a team: cannot retreive team identifier\"] = false\n    }\n    else {\n        var teamID = jsonData.id;\n        postman.setEnvironmentVariable(\"_team\", teamID);\n        tests[\"Create a team: created with id:\" + teamID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship\"\n}"
+						},
+						"description": "Create a new team.\n\nhttps://developer.ciscospark.com/endpoint-teams-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get team details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get team details: failed\"] = false;\n}\nelse {\n    tests[\"Get team details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get team details: cannot retreive team identifier\"] = false;\n    }\n    else {\n        var teamID = jsonData.id;\n        if (teamID != postman.getEnvironmentVariable(\"_team\")) {\n            tests[\"Get team details: wrong id:\" + teamID] = false;\n        }\n        else {\n            tests[\"Get team details: correct id:\" + teamID] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Show details for a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update a team: failed\"] = false\n}\nelse {\n    tests[\"Update a team: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Update a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-put.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a team ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a team: failed\"] = false\n}\nelse {\n    tests[\"Delete a team: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Delete a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-delete.html"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WebHooks",
+			"description": "Webhooks allow your app to be notified via HTTP when a specific event occurs on Spark. For example, your app can register a webhook to be notified when a new message is posted into a specific room.\r\n\r\nEvents trigger in near real-time allowing your app and backend IT systems to stay in sync with new content and room activity.\r\n\r\nThis initial release is quite limited in that it only supports a single messages resource with a single created event. However, this API was designed to be extensible and forms the foundation for supporting a wide array of platform events in future releases. Check the Advanced Webhooks Guide and our blog regularly for announcements of additional webhook resources and event types.\r\n\r\nhttps://developer.ciscospark.com/resource-webhooks.html",
+			"item": [
+				{
+					"name": "List webhooks",
+					"request": {
+						"url": "https://api.ciscospark.com/v1/webhooks/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Lists all of your webhooks.\n\nhttps://developer.ciscospark.com/endpoint-webhooks-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a room (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a room: failed\"] = false\n}\nelse {\n    tests[\"Create a room: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a room: cannot retreive room identifier\"] = false\n    }\n    else {\n        var roomID = jsonData.id;\n        postman.setEnvironmentVariable(\"_room\", roomID);\n        tests[\"Create a room: created with id:\" + roomID] = true\n    }\n}\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Postman - Room to test WebHooks\"\n}"
+						},
+						"description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a webhook (messages/created)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a webhook: failed\"] = false\n}\nelse {\n    tests[\"Create a webhook: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a webhook: cannot retreive webhook identifier\"] = false\n    }\n    else {\n        var webhookID = jsonData.id;\n        postman.setEnvironmentVariable(\"_webhook\", webhookID);\n        tests[\"Create a webhook: created with id:\" + webhookID] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/webhooks/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"name\": \"Postman WebHook Test\",\n      \"resource\": \"messages\",\n      \"event\": \"created\",\n      \"targetUrl\": \"http://requestb.in/pq8idjpq\",\n      \"filter\": \"roomId={{_room}}\"\n    }"
+						},
+						"description": "Creates a webhook for messages/created event.\n\nNote that you'll need to change the requestb.in URI to your own to see the webhook in action.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get webhook details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get webhook details: failed\"] = false;\n}\nelse {\n    tests[\"Get webhook details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get webhook details: cannot retreive webhook identifier\"] = false;\n    }\n    else {\n        var webhookID = jsonData.id;\n        if (webhookID != postman.getEnvironmentVariable(\"_webhook\")) {\n            tests[\"Get webhook details: wrong id:\" + webhookID] = false;\n        }\n        else {\n            tests[\"Get webhook details: correct id:\" + webhookID] = true;\n        }\n    }\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Shows details for a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-webhookId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update a webhook: failed\"] = false\n}\nelse {\n    tests[\"Update a webhook: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Postman WebHook Test (renamed)\",\n    \"targetUrl\": \"http://requestb.in/pq8idjpq\"\n}"
+						},
+						"description": "Updates a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-webhookId-put.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Add a message (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "\n    \n    \n    \n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message to read from the webhook\"\r\n}"
+						},
+						"description": "adds a message in a room, to check an event is triggered\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Check requestb.in (test purpose)",
+					"request": {
+						"url": "http://requestb.in/pq8idjpq?inspect",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"SparkBot-Starter-Kit\",\n  \"resource\": \"messages\",\n  \"event\": \"created\",\n  \"targetUrl\": \"https://sparkbot.localtunnel.me/webhook\",\n  \"filter\": \"roomId=Y2lzY29zcGFyazovL3VzL1JPT00vZjIyNzgyZDAtMTY3MS0xMWU2LWIyNTctN2Q1MjY5NGQwOGI2\"\n}"
+						},
+						"description": "check an event has been posted"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a webhook",
+					"request": {
+						"url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Deletes a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-delete.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a room (cleanup)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "https://developer.ciscospark.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
