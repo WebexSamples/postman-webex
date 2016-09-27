@@ -1,11 +1,15 @@
 # Postman collections for Cisco Spark
 
-This repo regroups Postman collection for the Cisco Spark API v1, as documented on [Spark for Developers](https://developer.ciscospark.com/quick-reference.html).
+This repo's goal is to regroup community Postman collections for the Cisco Spark API v1, as documented on [Spark for Developers](https://developer.ciscospark.com/quick-reference.html).
+
+**We welcome enhancements to the collections below, as well as contributions of collections that proved to be handy for you over time. 
+Please submit a pull request. 
+Thank you!** 
 
 
-## scripted-collection
+## all-resources-scripted
 
-Introduced at Cisco Live Vegas in July 2016, the collection was made available then through [bit.ly](bit.ly/POSTMAN-SPARK-API).
+Introduced at Cisco Live Vegas in July 2016, the collection was made available through [bit.ly](bit.ly/POSTMAN-SPARK-API).
 It is now maintained in this repository.
 
 The collection illustrates the full set of Spark API resources, with direct link to the official API documentation.
@@ -18,7 +22,10 @@ Moreover, all newly created Spark resources are freed at the end of each resourc
 
 ![messages](img/scripted-collection-messages.png)
 
+After importing the collection into postman, [create a new environment and add the spark_token variable](HowToCreatePostmanEnvironments.md).
 
-## Contributing
+Select your new postman environment.
 
-To share collections enhancements or some of your  own postman collections that proved to be handy over time, you're very welcome to submit a pull request. Thank you! 
+You're good: the collection can now be run straight away.
+
+
