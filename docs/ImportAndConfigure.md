@@ -15,13 +15,13 @@ Select "Import from link" and specify the URL of the collection to import.
 
 ## Configure your execution environement
 
-Postman lets you define environment variables to easilly abstract your execution context.
+Postman lets you define [environment variables](https://www.getpostman.com/docs/environments) to easilly abstract your execution contexts.
 
 This is where we'll specify the token used to access the Cisco Spark API.
 
 > Tip: 
-> create several environments to easilly jump from one Spark account to another.
-> As for example, to switch back and forth from your personal account to a bot account.
+> create [several environments to switch](https://www.getpostman.com/docs/test_multi_environments) from one Spark account to another.
+> As for instance, to jump back and forth from your personal account to one or several of your bot accounts.
 
 To create a new environment, click on the ![](img/environment-create-icon.png) icon in the upper right corner, and select "Manage environments".
 
