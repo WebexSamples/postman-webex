@@ -14,7 +14,7 @@ When submitting a new collection, please ensure it leverages a {{spark_token}} v
 Thank you!** 
 
 
-## all-resources-scripted
+## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/all-resources-scripted.json)
 
 Introduced at Cisco Live Vegas in July 2016, this collection was originally made available through [bit.ly](bit.ly/POSTMAN-SPARK-API).
 It is now maintained in this repository.
@@ -35,7 +35,3 @@ Enough talk, let's practice:
 - for example, go to the Messages folder, and run the requests from top to bottom.
 
 ![messages](docs/img/scripted-collection-messages.png)
-
-
-
-
