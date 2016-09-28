@@ -3,6 +3,7 @@
 This repo's goal is to regroup community Postman collections for the Cisco Spark API v1, as documented on [Spark for Developers](https://developer.ciscospark.com/quick-reference.html).
 
 Get full benefits of the collections in this repo in 2 steps:
+
 1. [import and configure](docs/ImportAndConfigure.md) a collection 
 2. [generate code](docs/GenerateCode.md) for your favorite language
 
@@ -31,7 +32,7 @@ Enough talk, let's practice:
 - [import the all-resources-scripted collection](ImportAndConfigure.md), 
 - select a postman environment containing your spark token, 
 - now, you're ready to invoke the Spark API,
-- for example, go to the Rooms resource entry, and run the requests in the displayed order.
+- for example, go to the Messages folder, and run the requests from top to bottom.
 
 ![messages](docs/img/scripted-collection-messages.png)
 

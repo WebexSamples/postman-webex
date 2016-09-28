@@ -1,16 +1,21 @@
-# Import and configure your postman collection
+# Import and configure a collection
 
-## How to import a postman collection
+## How to import a collection into postman
 
-Click on the import menu entry of postman, 
+Click on the import button on the top left corner 
 
 ![import a collection](img/collection-import.png)
 
 
 Select "Import from link" and specify the URL of the collection to import.
+For example, paste the [link to the all-resources-scripted collection](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/all-resources-scripted.json).
 
 ![import a collection](img/collection-import-from-link.png)
 
+To pick any collection listed in this repo:
+- go to the collection you want to import, 
+- click raw
+- paste the link from your browser URL 
 
 
 ## Configure your execution environement
@@ -29,7 +34,7 @@ To create a new environment, click on the ![](img/environment-create-icon.png) i
 
 
 In the "Manage environments" dialog, add the "spark_token" variable, and paste your Spark personal access token (without the Bearer prefix).
-Note that you can retrieve this token from the [Spark for developers](https://developer.ciscospark.com) portal, by clicking on your avatar, or by copy pasting from the resources documentation when in test mode.
+Note that you can retrieve this token from the [Spark for developers](https://developer.ciscospark.com) portal, by clicking on your avatar in the upper right corner.
 
 ![](img/environment-configure.png)
 

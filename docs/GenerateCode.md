@@ -2,7 +2,7 @@
 
 Postman lets you [generate code](https://www.getpostman.com/docs/code_snippets) in up to 15 languages.
 
-Simply pick a request of your choice from a collection, and click on the Code link, right under the Save button.
+Simply select on a REST request in your collection, and click on the **Code** link, right under the Save button.
 
 ![](img/generate-button.png)
 
