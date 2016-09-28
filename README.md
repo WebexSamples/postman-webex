@@ -10,7 +10,7 @@ Get full benefits of the collections in this repo in 2 steps:
 Note that the postman suite lets you [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the newman command, and can also help you [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).    
 
 **We welcome pull request for enhancements of the existing collections, as well as contributions of collections that proved to be handy for you over time. 
-When submitting a new collection, please ensure it leverages a spark_token variable to ease setup among collections.  
+When submitting a new collection, please ensure it leverages a {{spark_token}} variable to ease setup among collections.  
 Thank you!** 
 
 
@@ -29,8 +29,8 @@ Worth mentionning that the collection is scripted so that you can run REST calls
 - at the end of each scenario, we've added one or several requests to free newly created Spark resources so that you'll end up in the same state as before running the set of queries.
 
 Enough talk, let's practice:
-- [import the all-resources-scripted collection](ImportAndConfigure.md), 
-- select a postman environment containing your spark token, 
+- [import the all-resources-scripted collection](docs/ImportAndConfigure.md), 
+- create or select a postman environment that contains a {{spark_token}} variable, 
 - now, you're ready to invoke the Spark API,
 - for example, go to the Messages folder, and run the requests from top to bottom.
 
