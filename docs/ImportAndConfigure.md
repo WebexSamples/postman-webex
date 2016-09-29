@@ -4,7 +4,7 @@
 
 Click on the import button on the top left corner 
 
-![import a collection](img/collection-import.png)
+![import button](img/collection-import.png)
 
 
 Select "Import from link" and specify the URL of the collection to import.
@@ -28,15 +28,16 @@ This is where we'll specify the token used to access the Cisco Spark API.
 > create [several environments to switch](https://www.getpostman.com/docs/test_multi_environments) from one Spark account to another.
 > As for instance, to jump back and forth from your personal account to one or several of your bot accounts.
 
-To create a new environment, click on the ![](img/environment-create-icon.png) icon in the upper right corner, and select "Manage environments".
+To create a new environment, click on the ![create env](img/environment-create-icon.png) icon in the upper right corner, and select "Manage environments".
 
-![](img/environment-create.png)
+![new environment](img/environment-create.png)
 
 
 In the "Manage environments" dialog, add the "spark_token" variable, and paste your Spark personal access token (without the Bearer prefix).
+
 Note that you can retrieve this token from the [Spark for developers](https://developer.ciscospark.com) portal, by clicking on your avatar in the upper right corner.
 
-![](img/environment-configure.png)
+![configure environment](img/environment-configure.png)
 
 
 

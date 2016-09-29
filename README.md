@@ -35,3 +35,10 @@ Enough talk, let's practice:
 - for example, go to the Messages folder, and run the requests from top to bottom.
 
 ![messages](docs/img/scripted-collection-messages.png)
+
+Now, what about generating some code for your favorite language ?
+
+Take the [Generate Code Guide] and get this nodejs code snippet automatically generated from the Spark API call: "Rooms > List Rooms".
+
+![generate code](docs/img/generate-nodejs-request.png)
+
