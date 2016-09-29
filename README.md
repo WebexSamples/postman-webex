@@ -38,7 +38,7 @@ Enough talk, let's practice:
 
 Now, what about generating some code for your favorite language ?
 
-Take the [Generate Code Guide] and get this nodejs code snippet automatically generated from the Spark API call: "Rooms > List Rooms".
+Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code snippet automatically generated for the Spark API Resource "List Rooms":
 
 ![generate code](docs/img/generate-nodejs-request.png)
 
