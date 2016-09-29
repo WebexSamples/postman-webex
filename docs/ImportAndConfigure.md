@@ -1,5 +1,12 @@
 # Import and configure a collection
 
+## Not a Postman user yet ?
+
+The tool comes with a free basic plan.
+
+[Download](https://www.getpostman.com/) as a Chrome or Desktop application.
+
+
 ## How to import a collection into postman
 
 Click on the import button on the top left corner 
