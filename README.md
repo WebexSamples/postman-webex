@@ -9,9 +9,8 @@ Get full benefits of the collections in this repo in 2 steps:
 
 Note that the postman suite lets you [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the newman command, and can also help you [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).    
 
-**We welcome pull request for enhancements of the existing collections, as well as contributions of collections that proved to be handy for you over time. 
-When submitting a new collection, please ensure it leverages a {{spark_token}} variable to ease setup among collections.  
-Thank you!** 
+**We welcome pull requests for enhancements of existing collections, as well as contributions of collections that proved to be handy for you. 
+When submitting a new collection, please ensure it leverages a {{spark_token}} variable to ease environments sharing among collections. Thank you!** 
 
 
 ## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/all-resources-scripted.json)
@@ -40,5 +39,5 @@ Now, what about generating some code for your favorite language ?
 
 Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code snippet automatically generated for the Spark API Resource "List Rooms":
 
-![generate code](docs/img/generate-nodejs-request.png)
+![generate code](docs/img/generate-nodejs-request_no-postman-header.png)
 
