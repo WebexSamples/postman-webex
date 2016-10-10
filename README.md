@@ -41,3 +41,12 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code s
 
 ![generate code](docs/img/generate-nodejs-request-no-postman-header.png)
 
+
+## [direct-room](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/direct-room.json)
+
+Details how to create a 1-1 room by sending a direct message to a Cisco Spark email.
+
+Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 rooms (as of Oc16 10th)
+
+![direct-room](docs/img/direct-room-collection.png)
+
