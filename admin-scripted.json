@@ -1,0 +1,1051 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cisco Spark Admin API - PUBLIC",
+		"_postman_id": "beba6b1c-a834-f8a3-951c-29678666d198",
+		"description": "Spark for Developers includes administration APIs that allow administrators to programatically perform administration actions such as provisioning a user. By automating administration, user management and provisioning can be centralized in an existing tool, rather than using the Spark Administration interface. For example, a partner selling multiple Collaboration tools to customers can use these APIs to enable Spark provisioning through a centralized portal.\n\nhttps://developer.ciscospark.com/admin-api.html\n\n\n## What's possible with Admin APIs?\n\nCurrently, administration is focused on User Provisioning. Using these APIs, an admin can:\n\n- Create a user\n- Update a user\n- View license usage of an organization\n- View available roles of an organization\n\n\n## Authentication\n\nUse of these APIs requires you to be an administrator of an organization.\n\nIf you are an administrator, you can login here to get a development auth token with necessary scopes.\n\nCreating an Integration that will act on behalf of an administrator can be done by including one or more of the following scopes when requesting an auth token via oAuth.\n\n- spark-admin:people_read\tAccess to read your user's company directory\n- spark-admin:people_write\tAccess to write to your user's company directory\n- spark-admin:organizations_read\tAccess to write to your user's company directory\n- spark-admin:roles_read\tAccess to read roles available in your user's organization\n- spark-admin:licenses_read\tAccess to read licenses available in your user's organizations\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Licenses",
+			"description": "An allowance for features and services that are provided to users on a Cisco Spark services subscription. Cisco and its partners manage the amount of licenses provided to administrators and users. This license resource can be accessed only by an admin.\n\nhttps://developer.ciscospark.com/resource-licenses.html",
+			"item": [
+				{
+					"name": "List Licenses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List licenses : failed\"] = false;\n}\nelse {\n    tests[\"List licenses: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List licenses: cannot retreive result\"] = false\n    }\n    else {\n        var licenseId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_license\", licenseId);\n        tests[\"List licenses: retreived one with id:\" + licenseId] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/licenses",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "List all licenses for a given organization. If no orgId is specified, the default is the organization of the authenticated user.\n\nhttps://developer.ciscospark.com/endpoint-licenses-get.html\n\nExample of a response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Spark Calling',\n    'totalUnits' : '42',\n    'consumedUnits' : '8'\n  } ]\n}\n```"
+					},
+					"response": [
+						{
+							"name": "Messaging",
+							"originalRequest": {
+								"url": "https://api.ciscospark.com/v1/licenses",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{spark_token}}",
+										"enabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"enabled": true,
+										"description": "The mime type of this content"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "javascript",
+							"_postman_previewtype": "html",
+							"header": [
+								{
+									"name": "Cache-Control",
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"name": "Content-Encoding",
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"name": "Content-Length",
+									"key": "Content-Length",
+									"value": "202",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"name": "Content-Type",
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "Date",
+									"key": "Date",
+									"value": "Thu, 10 Nov 2016 21:01:46 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "Server",
+									"key": "Server",
+									"value": "Redacted",
+									"description": "A name for the server"
+								},
+								{
+									"name": "Trackingid",
+									"key": "Trackingid",
+									"value": "NA_6d2e442d-95c1-490a-80f1-df69fc00b699",
+									"description": "Custom header"
+								},
+								{
+									"name": "Vary",
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"name": "X-Cf-Requestid",
+									"key": "X-Cf-Requestid",
+									"value": "a84d6361-abbc-444d-5556-aeee2efd081d",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Fri Sep 18 2026 14:34:17 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "oeu1474374857983r0.14725724747852298"
+								},
+								{
+									"expires": "Tue Sep 21 2021 17:16:39 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "7FADA00A51DA6DC2-19EB0A83469897EF"
+								},
+								{
+									"expires": "Sat Nov 26 2016 20:09:32 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "Prospect"
+								},
+								{
+									"expires": "Tue Nov 09 2021 09:41:52 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%5B%5B%27other%27%2C%271474797461486%27%5D%2C%5B%27direct%27%2C%271478680912377%27%5D%5D"
+								},
+								{
+									"expires": "Thu Nov 09 2017 10:55:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%22distinct_id%22%3A%20%226b856818bc3ccf2b0c09fa74a2eb8ab84016c085e681428df4faadf8017a504a%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpap%22%3A%20%5B%5D%7D"
+								},
+								{
+									"expires": "Fri Dec 09 2016 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061363-Repeat"
+								},
+								{
+									"expires": "Sat Nov 09 2019 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061364"
+								},
+								{
+									"expires": "Thu Dec 01 2016 00:00:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1480546800357%26vn%3D2"
+								},
+								{
+									"expires": "Tue Feb 07 2017 13:04:27 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "PC#1456324639084-656899.28_28#1486469067|check#true#1478693127|session#1478693060450-425931#1478694927"
+								},
+								{
+									"expires": "Fri Nov 09 2018 21:50:09 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "GA1.2.354628933.1456392661"
+								},
+								{
+									"expires": "Sat Nov 07 2026 21:50:09 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%226148830417%22%3A%22gc%22%2C%226176172291%22%3A%22none%22%2C%226153610436%22%3A%22referral%22%2C%226132590950%22%3A%22false%22%7D"
+								},
+								{
+									"expires": "Thu Nov 09 2017 21:50:11 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "25019306.1308965199.1458575275042.1478724609992"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "1"
+								},
+								{
+									"expires": "Sat Nov 07 2026 21:50:13 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%227495520894%22%3A%227475976205%22%2C%227548736597%22%3A%227574622917%22%2C%227717362716%22%3A%227714322794%22%7D"
+								},
+								{
+									"expires": "Sat Nov 10 2018 09:10:01 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "-1176276602%7CMCIDTS%7C17116%7CMCMID%7C69089778980261905934220490212596711080%7CMCAAMLH-1478858364%7C6%7CMCAAMB-1479370201%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1478772601s%7CNONE%7CMCAID%7C2B6C2745050120E0-400001136000C2AA"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%5B%5BB%5D%5D"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "true"
+								}
+							],
+							"responseTime": 1647,
+							"body": "{\"items\":[{\"id\":\"Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvNjVkNDdjMzUtZTc4NS00Y2UzLTljNDQtYTRjNDhlYmU0MmJhOk1TXzA3NTMwNzAxLTlkM2YtNDFmOC04Y2NkLTY4YzY1NmU2ZGMwMQ\",\"name\":\"Messaging\",\"totalUnits\":1,\"consumedUnits\":0}]}"
+						}
+					]
+				},
+				{
+					"name": "Get License Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get license details: failed\"] = false;\n}\nelse {\n    tests[\"Get license details: success\"] = true;\n}\n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/licenses/{{_license}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "Shows details for a license, by ID.\r\n\r\nSpecify the license ID in the licenseId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-licenses-licenseId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Spark Calling',\r\n  'totalUnits' : '42',\r\n  'consumedUnits' : \"8'\r\n}\r\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organizations",
+			"description": "A set of people in Cisco Spark. Organizations may manage other organizations or be managed themselves. This organizations resource can be accessed only by an admin.\n\nhttps://developer.ciscospark.com/resource-organizations.html\n\n",
+			"item": [
+				{
+					"name": "List Organizations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List organizations : failed\"] = false;\n}\nelse {\n    tests[\"List organizations: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List organizations: cannot retreive result\"] = false\n    }\n    else {\n        var orgId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_organization\", orgId);\n        tests[\"List organizations: retreived one with id:\" + orgId] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/organizations",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+						},
+						"description": "List all organizations visible by your account.\n\nhttps://developer.ciscospark.com/endpoint-organizations-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Acme, Inc.',\n    'created' : '2015-10-18T14:26:16+00:00'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organization Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get organization details: failed\"] = false;\n}\nelse {\n    tests[\"Get organization details: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/organizations/{{_organization}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"roomId\":\"Y2lzY29zcGFyazovL3VzL1JPT00vMjQ4ZTQ3OTAtZWJjZi0xMWU1LTkyMjEtMTVmMTZiMmJlZjUx\" , \n    \"name\":\"NewApp\",\n    \"redirectUrls\":[\"http://sfartz.com/hello\"],\n    \"scopes\":[\"spark:people_read\"]\n}"
+						},
+						"description": "Shows details for an organization, by ID.\r\n\r\nSpecify the org ID in the orgId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-organizations-orgId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Acme, Inc.',\r\n  'created' : '2015-10-18T14:26:16+00:00'\r\n}\r\n```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "People",
+			"description": "People are registered users of the Spark application.",
+			"item": [
+				{
+					"name": "Get Person Details (me)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n}\n\n\n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people/me",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"emails\": [\n    \"steve.sfartz@gmail.com\"\n  ],\n  \"displayName\": \"Steve Sfartz\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Sfartz\",\n  \"orgId\": \"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\"\n  \n}"
+						},
+						"description": "Show the profile for the authenticated user.\n\nhttps://developer.ciscospark.com/endpoint-people-me-get.html"
+					},
+					"response": [
+						{
+							"name": "person details (Stève)",
+							"originalRequest": {
+								"url": "https://api.ciscospark.com/v1/people/me",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{spark_token}}",
+										"enabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"enabled": true,
+										"description": "The mime type of this content"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"European Football Championship 2016\"\n}"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "javascript",
+							"_postman_previewtype": "html",
+							"header": [
+								{
+									"name": "Cache-Control",
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"name": "Content-Encoding",
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"name": "Content-Length",
+									"key": "Content-Length",
+									"value": "540",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"name": "Content-Type",
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"description": "The mime type of this content"
+								},
+								{
+									"name": "Date",
+									"key": "Date",
+									"value": "Wed, 09 Nov 2016 12:39:38 GMT",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"name": "Server",
+									"key": "Server",
+									"value": "Redacted",
+									"description": "A name for the server"
+								},
+								{
+									"name": "Trackingid",
+									"key": "Trackingid",
+									"value": "NA_e996fd8b-5abe-46f8-867b-a26732771b1e",
+									"description": "Custom header"
+								},
+								{
+									"name": "Vary",
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"name": "X-Cf-Requestid",
+									"key": "X-Cf-Requestid",
+									"value": "512dc7ed-54dd-41f3-4338-2815604cd323",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Fri Sep 18 2026 14:34:17 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "oeu1474374857983r0.14725724747852298"
+								},
+								{
+									"expires": "Tue Sep 21 2021 17:16:39 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "7FADA00A51DA6DC2-19EB0A83469897EF"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "1"
+								},
+								{
+									"expires": "Sat Nov 26 2016 20:09:32 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "Prospect"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "direct"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "rsp%3Dmatch%26cData%3D864409%253ACisco%2520Systems%2520Inc%253ATelecommunications%253AEquipment%2520%2526%2520Services%253AEnterprise%253AGreater%2520th%253AEnterprise%2520Business%253ATelecommunications%26cDataCustom%3DAdUpgrades%253ASan%2520Jose%253ACA%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%26sentAA%3DT%26sentAT%3DT"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "offer-page"
+								},
+								{
+									"expires": "Tue Nov 09 2021 09:41:52 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%5B%5B%27other%27%2C%271474797461486%27%5D%2C%5B%27direct%27%2C%271478680912377%27%5D%5D"
+								},
+								{
+									"expires": "Thu Nov 09 2017 10:55:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%22distinct_id%22%3A%20%226b856818bc3ccf2b0c09fa74a2eb8ab84016c085e681428df4faadf8017a504a%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpap%22%3A%20%5B%5D%7D"
+								},
+								{
+									"expires": "Thu Nov 10 2016 10:55:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "0"
+								},
+								{
+									"expires": "Fri Nov 09 2018 13:03:28 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "-1176276602%7CMCIDTS%7C17114%7CMCMID%7C69089778980261905934220490212596711080%7CMCAAMLH-1478858364%7C6%7CMCAAMB-1479297808%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1478700208s%7CNONE%7CMCAID%7C2B6C2745050120E0-400001136000C2AA"
+								},
+								{
+									"expires": "Fri Dec 09 2016 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061363-Repeat"
+								},
+								{
+									"expires": "Sat Nov 09 2019 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061364"
+								},
+								{
+									"expires": "Thu Dec 01 2016 00:00:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1480546800357%26vn%3D2"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "1"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%5B%5BB%5D%5D"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%3A"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C253%2C0%2C253%2C1920%2C1080%2C1%2CL"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C792%2C1714%2C792%2C1920%2C1080%2C1%2CP"
+								},
+								{
+									"expires": "Wed Nov 09 2016 14:04:26 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "\"9lky1LUlDaAk0wNMLGQZDqeHijTSbknr3ey//5I8xq16T2VW4m8APfMKvlUTPoCvC71CJU31GeI901eE/eg=\""
+								},
+								{
+									"expires": "Tue Feb 07 2017 13:04:27 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "PC#1456324639084-656899.28_28#1486469067|check#true#1478693127|session#1478693060450-425931#1478694927"
+								},
+								{
+									"expires": "Fri Nov 09 2018 13:28:19 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "GA1.2.354628933.1456392661"
+								},
+								{
+									"expires": "Thu Nov 09 2017 13:28:20 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "25019306.1308965199.1458575275042.1478693238438"
+								},
+								{
+									"expires": "Wed Nov 09 2016 13:58:20 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693238438"
+								},
+								{
+									"expires": "Sat Nov 07 2026 13:32:40 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%226148830417%22%3A%22gc%22%2C%226176172291%22%3A%22none%22%2C%226153610436%22%3A%22referral%22%2C%226132590950%22%3A%22false%22%7D"
+								},
+								{
+									"expires": "Sat Nov 07 2026 13:32:43 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%227495520894%22%3A%227475976205%22%2C%227548736597%22%3A%227574622917%22%2C%227717362716%22%3A%227714322794%22%7D"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "true"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%5B%5BB%5D%5D"
+								}
+							],
+							"responseTime": 263,
+							"body": "{\"id\":\"Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wM2ZiZTEwOS0yM2Y2LTQ1OWItODFlNS02YzYxM2JhMWNhZTE\",\"emails\":[\"steve.sfartz@gmail.com\"],\"displayName\":\"Stève Sfartz\",\"firstName\":\"Stève\",\"lastName\":\"Sfartz\",\"avatar\":\"https://c74213ddaf67eb02dabb-04de5163e3f90393a9f7bb6f7f0967f1.ssl.cf1.rackcdn.com/V1~efa32f72522b5f61176ce069d9163a43~ZOzopPn4Q3edMJrRLI-FMA==~1600\",\"orgId\":\"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\",\"roles\":[\"Y2lzY29zcGFyazovL3VzL1JPTEUvaWRfZnVsbF9hZG1pbg\"],\"licenses\":[\"Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvNjVkNDdjMzUtZTc4NS00Y2UzLTljNDQtYTRjNDhlYmU0MmJhOk1TXzA3NTMwNzAxLTlkM2YtNDFmOC04Y2NkLTY4YzY1NmU2ZGMwMQ\"],\"created\":\"2015-12-22T10:36:52.660Z\",\"timeZone\":\"Europe/Paris\"}"
+						}
+					]
+				},
+				{
+					"name": "Create a Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Create a person: failed\"] = false;\n}\nelse {\n    tests[\"Create a person: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a person: cannot retreive result\"] = false\n    }\n    else {\n        var personID = jsonData.id;\n        postman.setEnvironmentVariable(\"_person\", personID);\n        tests[\"Create a person: retreived with id:\" + personID] = true\n        \n        var orgId = jsonData.orgId;\n        postman.setEnvironmentVariable(\"_organization\", orgId);\n        tests[\"Create a person: retreived org with id:\" + orgId] = true\n    }\n    \n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"emails\": [\r\n\t\t\"test-spark-adminapi@ciscodevnet.com\"\r\n\t],\r\n\t\"firstName\": \"Cisco\",\r\n\t\"lastName\": \"DevNet\"\r\n}"
+						},
+						"description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nhttps://developer.ciscospark.com/endpoint-people-post.html\n\nExample Request:\n``` json\n{\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\n}\n\nExample Response:\n{\n  'id' : 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY',\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'created' : '2015-10-18T14:26:16+00:00',\n  'timezone' : 'America/Denver'\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "List people (with exact email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List people: failed\"] = false;\n}\nelse {\n    tests[\"List people: success\"] = true;\n}\n\n"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people?email=test-spark-adminapi@ciscodevnet.com",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List people in your organization.\n\nhttps://developer.ciscospark.com/endpoint-people-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get roles (to fetch a role id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List roles: failed\"] = false;\n}\nelse {\n    tests[\"List roles: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List roles: cannot retreive result\"] = false\n    }\n    else {\n        var roleId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_role\", roleId);\n        tests[\"List roles: retreived with id:\" + roleId] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/roles",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List all roles.\n\nhttps://developer.ciscospark.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Update person: failed\"] = false;\n}\nelse {\n    tests[\"Update person: success\"] = true;\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people/{{_person}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"orgId\":\"{{_organization}}\",\r\n\t\"emails\": [\r\n        \"test-spark-adminapi@ciscodevnet.com\"\r\n  \t],\r\n\t\"firstName\": \"Steve\",\r\n\t\"roles\": [\"{{_role}}\"]\r\n}\r\n\r\n\r\n  "
+						},
+						"description": "Update details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI. Only an admin can update a person details.\r\n\r\nhttps://developer.ciscospark.com/endpoint-people-personId-put.html\r\n\r\nExample Request:\r\n``` json\r\n{\r\n  'emails\" : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\r\n  'displayName' : 'John Andersen',\r\n  'firstName' : 'John',\r\n  'lastName' : 'Andersen',\r\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\r\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\r\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\r\n}\r\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 204) {\n    tests[\"Delete person: failed\"] = false;\n}\nelse {\n    tests[\"Delete person: success\"] = true;\n}\n    \n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/people/{{_person}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n  "
+						},
+						"description": "Remove a person from the system. Only an admin can remove a person.\n\nSpecify the person ID in the personId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-people-personId-delete.html\n\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"description": "A persona for an authenticated user, corresponding to a set of privileges within an organization. This roles resource can be accessed only by an admin.\n\nhttps://developer.ciscospark.com/resource-roles.html",
+			"item": [
+				{
+					"name": "List Roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"List roles: failed\"] = false;\n}\nelse {\n    tests[\"List roles: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List roles: cannot retreive result\"] = false\n    }\n    else {\n        var roleId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_role\", roleId);\n        tests[\"List roles: retreived with id:\" + roleId] = true\n    }\n}"
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/roles",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "List all roles.\n\nhttps://developer.ciscospark.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": "if (responseCode.code != 200) {\n    tests[\"Get role details: failed\"] = false;\n}\nelse {\n    tests[\"Get role details: success\"] = true;\n}\n    "
+							}
+						}
+					],
+					"request": {
+						"url": "https://api.ciscospark.com/v1/roles/{{_role}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{spark_token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "Shows details for a role, by ID.\n\nSpecify the role ID in the roleId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-roles-roleId-get.html\n\nExample Response:\n``` json\n{\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'displayName' : 'Full Administrator'\n}\n```\n"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

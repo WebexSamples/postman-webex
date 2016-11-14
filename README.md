@@ -1,13 +1,15 @@
 # Postman collections for Cisco Spark
 
-This repo's goal is to regroup community Postman collections for the Cisco Spark API v1, as documented on [Spark for Developers](https://developer.ciscospark.com/quick-reference.html).
+This repo gathers Postman collections for the [Cisco Spark API](https://developer.ciscospark.com/quick-reference.html):
+- [public REST API](#all-resources-scripted): Rooms, Messages, Teams, People, Webhooks... everything accessible from an API token without admin priviledges
+- [admin API](#admin-api): Organizations, People creation and updates, Roles, Licenses, these admin related features that require a token with admin priviledges
+- [direct room use case](#direct-room): Create a 1-1 room by sending a direct message
 
-Get full benefits of the collections in this repo in 2 steps:
 
+If you're new to Postman, you're only a few steps away from gettinh the full benefits of the collections:
 1. [import and configure](docs/ImportAndConfigure.md) a collection 
 2. [generate code](docs/GenerateCode.md) for your favorite language
-
-Note that the postman suite lets you [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the newman command, and can also help you [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).    
+3. [optional] note that the postman suite lets you [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the newman command, and can also help you [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).
 
 **We welcome pull requests for enhancements of existing collections, as well as contributions of collections that proved to be handy for you. 
 When submitting a new collection, please ensure it leverages a {{spark_token}} variable to ease environments sharing among collections. Thank you!** 
@@ -18,9 +20,9 @@ When submitting a new collection, please ensure it leverages a {{spark_token}} v
 Introduced at Cisco Live Vegas in July 2016, this collection was originally made available through [bit.ly](bit.ly/POSTMAN-SPARK-API).
 It is now maintained in this repository.
 
-The collection illustrates the full set of Spark API resources, with direct link to the official API documentation.
+The collection illustrates the REST API Public Resources, with direct link to the official API documentation.
 
-![all resources](docs/img/scripted-collection-all-resources.png)
+![public resources](docs/img/scripted-collection-all-resources.png)
 
 Worth mentionning that the collection is scripted so that you can run REST calls in a row for any given resource:
 - as you run REST queries from top to bottom, newly created resource identifiers are automatically retreived and injected into your postman environment as temporary variable,
@@ -42,11 +44,21 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code s
 ![generate code](docs/img/generate-nodejs-request-no-postman-header.png)
 
 
+
+## [admin-api](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/admin-scripted.json)
+
+The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.ciscospark.com/admin-api.html).
+
+Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/cisco-spark-admin-api-public/2PMC7h).
+
+![admin-api](docs/img/admin-scripted-collection.png)
+
+
+
 ## [direct-room](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/direct-room.json)
 
-Details how to create a 1-1 room by sending a direct message to a Cisco Spark email.
+Illustrates how to create a 1-1 room by sending a direct message to a Cisco Spark Account 's email address.
 
-Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 rooms (as of Oc16 10th)
+Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 rooms via the API (as of October 2016)
 
 ![direct-room](docs/img/direct-room-collection.png)
-
