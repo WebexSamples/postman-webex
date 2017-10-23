@@ -49,6 +49,8 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code s
 
 ## [admin-api](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/admin-scripted.json)
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0aa22af74405f82086d4)
+
 The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.ciscospark.com/admin-api.html).
 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/cisco-spark-admin-api-public/2PMC7h).
