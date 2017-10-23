@@ -1,7 +1,7 @@
 {
     "id": "fe983448-e2ff-d578-f4c4-8223175c32c2",
     "name": "Cisco Spark API - PUBLIC",
-    "description": "Hey there! Thanks for checking out Spark for Developers. If you've used Spark you know how easy it makes staying in sync with your team and customers.\r\n\r\nIn Spark, conversations take place in virtual meeting rooms. Some rooms live for a few hours while others become permanent fixtures of your team's workflow with titles like Daily Standup or Build Status. Spark allows conversations to flow seamlessly between messages, video calls and real-time whiteboarding sessions. No other solution brings together so many facets of collaboration into a single unified platform.\r\n\r\nAnd it's that platform part that Spark for Developers is all about. We've taken a huge step towards opening up the power behind the Spark app to anyone seeking to extend the Spark experience.\r\n\r\nhttps://developer.ciscospark.com/getting-started.html",
+    "description": "Hey there! Thanks for checking out Spark for Developers. If you've used Spark you know how easy it makes staying in sync with your team and customers.\r\n\r\nIn Spark, conversations take place in virtual meeting rooms. Some rooms live for a few hours while others become permanent fixtures of your team's workflow with titles like Daily Standup or Build Status. Spark allows conversations to flow seamlessly between messages, video calls and real-time whiteboarding sessions. No other solution brings together so many facets of collaboration into a single unified platform.\r\n\r\nAnd it's that platform part that Spark for Developers is all about. We've taken a huge step towards opening up the power behind the Spark app to anyone seeking to extend the Spark experience.\r\n\r\nhttps:\/\/developer.ciscospark.com\/getting-started.html",
     "order": [],
     "folders": [
         {
@@ -11,7 +11,7 @@
             "folder": null,
             "id": "c22ec2c6-1100-4f22-214b-cb867a5a2b41",
             "name": "Memberships",
-            "description": "Memberships represent a person's relationship to a room. Use this API to list members of any room that you're in or create memberships to invite someone to a room. Memberships can also be updated to make someome a moderator or deleted to remove them from the room.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to list its memberships or invite people.\r\n\r\nhttps://developer.ciscospark.com/resource-memberships.html",
+            "description": "Memberships represent a person's relationship to a room. Use this API to list members of any room that you're in or create memberships to invite someone to a room. Memberships can also be updated to make someome a moderator or deleted to remove them from the room.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to list its memberships or invite people.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-memberships.html",
             "order": [
                 "d1f99432-bc92-8dd6-5bd3-d5f6b3b8ffd4",
                 "0e76ba7c-b79c-a9f3-c5a6-1dee681320bd",
@@ -31,7 +31,7 @@
             "folder": null,
             "id": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "name": "Messages",
-            "description": "Messages are how we communicate in a room. In Spark, each message is displayed on its own line along with a timestamp and sender information. Use this API to list, create, and delete messages.\r\n\r\nEach message can contain plain text and file attachments.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to target it with this API.\r\n\r\nhttps://developer.ciscospark.com/resource-messages.html",
+            "description": "Messages are how we communicate in a room. In Spark, each message is displayed on its own line along with a timestamp and sender information. Use this API to list, create, and delete messages.\r\n\r\nEach message can contain plain text and file attachments.\r\n\r\nJust like in the Spark app, you must be a member of the room in order to target it with this API.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-messages.html",
             "order": [
                 "1797b0bc-0f44-41f1-1da2-d04b77cb3042",
                 "f6d6e2c7-0e2a-a340-0c0d-69079f3779b0",
@@ -59,7 +59,7 @@
             "folder": null,
             "id": "b0bda3b8-4f74-e53e-a6ab-5ddd07eac6a9",
             "name": "People",
-            "description": "People are registered users of the Spark application. Currently, people can only be searched with this API. Future releases of the API will allow for more complete user administration.\r\n\r\nTo learn more about managing people in a room see the Memberships API\r\n\r\nhttps://developer.ciscospark.com/resource-people.html",
+            "description": "People are registered users of the Spark application. Currently, people can only be searched with this API. Future releases of the API will allow for more complete user administration.\r\n\r\nTo learn more about managing people in a room see the Memberships API\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-people.html",
             "order": [
                 "b50ab3c8-47b3-42f5-059c-33732c67275f",
                 "43a86f02-6da7-d6e3-992c-a26fe8acbeac",
@@ -75,7 +75,7 @@
             "folder": null,
             "id": "270e50ef-c194-3a60-00ff-b9c0b99db32b",
             "name": "Rooms",
-            "description": "Rooms are virtual meeting place where people post messages and collaborate to get work done. This API is used to manage the rooms themselves. Rooms are create and deleted with this API. You can also update a room to change its title, for example.\r\n\r\nTo create a team room, specify the a teamId in POST payload. Note that once a room is added to a team, it cannot be moved. To learn more about managing teams, see the Teams API.\r\n\r\nTo manage people in a room see the Memberships API.\r\n\r\nTo post or otherwise manage room content see the Messages API.\r\n\r\nhttps://developer.ciscospark.com/resource-rooms.html",
+            "description": "Rooms are virtual meeting place where people post messages and collaborate to get work done. This API is used to manage the rooms themselves. Rooms are create and deleted with this API. You can also update a room to change its title, for example.\r\n\r\nTo create a team room, specify the a teamId in POST payload. Note that once a room is added to a team, it cannot be moved. To learn more about managing teams, see the Teams API.\r\n\r\nTo manage people in a room see the Memberships API.\r\n\r\nTo post or otherwise manage room content see the Messages API.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-rooms.html",
             "order": [
                 "e6afcb06-d7d0-6288-9532-c42210151d43",
                 "9d3fca17-c59a-ee24-0fe9-e9e70cc8a259",
@@ -94,7 +94,7 @@
             "folder": null,
             "id": "fca7a5be-0d35-7603-35ba-3a06267fa8d1",
             "name": "Team Memberships",
-            "description": "Team Memberships represent a person's relationship to a team. Use this API to list members of any team that you're in or create memberships to invite someone to a team. Team memberships can also be updated to make someome a moderator or deleted to remove them from the team.\r\n\r\nJust like in the Spark app, you must be a member of the team in order to list its memberships or invite people.\r\n\r\nhttps://developer.ciscospark.com/resource-team-memberships.html",
+            "description": "Team Memberships represent a person's relationship to a team. Use this API to list members of any team that you're in or create memberships to invite someone to a team. Team memberships can also be updated to make someome a moderator or deleted to remove them from the team.\r\n\r\nJust like in the Spark app, you must be a member of the team in order to list its memberships or invite people.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-team-memberships.html",
             "order": [
                 "68398d42-a68d-52ea-a622-cc5a94899b53",
                 "ea4a789e-cc8c-35f1-452b-0fbed661c4ae",
@@ -113,7 +113,7 @@
             "folder": null,
             "id": "ecabe3dd-cf86-0fe7-39be-dfd8b2e937d9",
             "name": "Teams",
-            "description": "Teams are groups of people with a set of rooms that are visible to all members of that team. This API is used to manage the teams themselves. Teams are create and deleted with this API. You can also update a team to change its team, for example.\r\n\r\nTo manage people in a team see the Team Memberships API.\r\n\r\nTo manage team rooms see the Rooms API.\r\n\r\nhttps://developer.ciscospark.com/resource-teams.html",
+            "description": "Teams are groups of people with a set of rooms that are visible to all members of that team. This API is used to manage the teams themselves. Teams are create and deleted with this API. You can also update a team to change its team, for example.\r\n\r\nTo manage people in a team see the Team Memberships API.\r\n\r\nTo manage team rooms see the Rooms API.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-teams.html",
             "order": [
                 "41622e2b-f603-5876-dfd3-917aedfa1223",
                 "ae5f5759-e2c4-f117-25de-a4a6f6ebe03a",
@@ -135,7 +135,7 @@
             "folder": null,
             "id": "e186555a-a3a2-bb43-59bf-ef566503d8df",
             "name": "WebHooks",
-            "description": "Webhooks allow your app to be notified via HTTP when a specific event occurs on Spark. For example, your app can register a webhook to be notified when a new message is posted into a specific room.\r\n\r\nEvents trigger in near real-time allowing your app and backend IT systems to stay in sync with new content and room activity.\r\n\r\nThis initial release is quite limited in that it only supports a single messages resource with a single created event. However, this API was designed to be extensible and forms the foundation for supporting a wide array of platform events in future releases. Check the Advanced Webhooks Guide and our blog regularly for announcements of additional webhook resources and event types.\r\n\r\nhttps://developer.ciscospark.com/resource-webhooks.html",
+            "description": "Webhooks allow your app to be notified via HTTP when a specific event occurs on Spark. For example, your app can register a webhook to be notified when a new message is posted into a specific room.\r\n\r\nEvents trigger in near real-time allowing your app and backend IT systems to stay in sync with new content and room activity.\r\n\r\nThis initial release is quite limited in that it only supports a single messages resource with a single created event. However, this API was designed to be extensible and forms the foundation for supporting a wide array of platform events in future releases. Check the Advanced Webhooks Guide and our blog regularly for announcements of additional webhook resources and event types.\r\n\r\nhttps:\/\/developer.ciscospark.com\/resource-webhooks.html",
             "order": [
                 "27dc4edd-07a7-2b23-b18e-6a1bcf818c30",
                 "0e40dde2-6b2c-c644-2530-f14e04e7e327",
@@ -170,11 +170,11 @@
     "requests": [
         {
             "id": "0e40dde2-6b2c-c644-2530-f14e04e7e327",
-            "headers": "Content-Type: application/json\nAuthorization: Bearer {{spark_token}}\n",
+            "headers": "Content-Type: application\/json\nAuthorization: Bearer {{spark_token}}\n",
             "headerData": [
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 },
@@ -185,7 +185,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/webhooks/",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/",
             "folder": "e186555a-a3a2-bb43-59bf-ef566503d8df",
             "queryParams": [],
             "preRequestScript": null,
@@ -199,14 +199,14 @@
             "helperAttributes": [],
             "time": 1505376236637,
             "name": "Create a webhook (all events, all rooms)",
-            "description": "Creates a webhook for messages/created event.\n\nNote that you'll need to change the requestb.in URI to your own to see the webhook in action.\n",
+            "description": "Creates a webhook for messages\/created event.\n\nNote that you'll need to change the requestb.in URI to your own to see the webhook in action.\n",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
-            "rawModeData": "{\n      \"name\": \"Postman WebHook - all events - no filter\",\n      \"resource\": \"all\",\n      \"event\": \"all\",\n      \"targetUrl\": \"http://requestb.in/pq8idjpq\"\n    }"
+            "rawModeData": "{\n      \"name\": \"Postman WebHook - all events - no filter\",\n      \"resource\": \"all\",\n      \"event\": \"all\",\n      \"targetUrl\": \"http:\/\/requestb.in\/pq8idjpq\"\n    }"
         },
         {
             "id": "0e76ba7c-b79c-a9f3-c5a6-1dee681320bd",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -216,12 +216,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "folder": "c22ec2c6-1100-4f22-214b-cb867a5a2b41",
             "queryParams": [],
             "preRequestScript": null,
@@ -235,7 +235,7 @@
             "helperAttributes": [],
             "time": 1505373939803,
             "name": "Create a room (for test run purpose)",
-            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html",
+            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n    \"title\": \"Postman - Testing Memberships\"\n}"
@@ -248,11 +248,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-get.html",
+            "description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-membershipId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships\/{{_membership}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get membership details: failed\"] = false;\n}\nelse {\n    tests[\"Get membership details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get membership details: cannot retreive identifier\"] = false;\n    }\n    else {\n        var membershipID = jsonData.id;\n        if (membershipID != postman.getEnvironmentVariable(\"_membership\")) {\n            tests[\"Get membership details: wrong id:\" + membershipID] = false;\n        }\n        else {\n            tests[\"Get membership details: correct id:\" + membershipID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -265,7 +265,7 @@
         },
         {
             "id": "1797b0bc-0f44-41f1-1da2-d04b77cb3042",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -275,12 +275,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -294,7 +294,7 @@
             "helperAttributes": [],
             "time": 1505373932928,
             "name": "Create a room (for test run purpose)",
-            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html",
+            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n    \"title\": \"Postman - Testing Messages\"\n}"
@@ -310,7 +310,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages/{{_message}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages\/{{_message}}",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -323,7 +323,7 @@
             "helperAttributes": [],
             "time": 1502957635592,
             "name": "Delete a message",
-            "description": "Deletes a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-messages-messageId-delete.html\n",
+            "description": "Deletes a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-messageId-delete.html\n",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
@@ -331,7 +331,7 @@
         },
         {
             "id": "1d992df6-2e38-b935-7ea2-fc96dd01c7ab",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -341,12 +341,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -360,14 +360,14 @@
             "helperAttributes": [],
             "time": 1505210725596,
             "name": "Create a message (7439 characters limit)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n  \"roomId\": \"{{_room}}\",\n  \"markdown\": \"ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n}"
         },
         {
             "id": "24af2ba6-9b4d-98d4-c2d5-68bf40b26e1a",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -377,12 +377,13 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
+            "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -393,13 +394,12 @@
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n    \n",
             "currentHelper": "normal",
             "helperAttributes": [],
-            "time": 1503653353258,
+            "time": 1507199859019,
             "name": "Create a message (markdown)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nTo get more info about message formatting, check https://developer.ciscospark.com/formatting-messages.html\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html\n",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nTo get more info about message formatting, check https:\/\/developer.ciscospark.com\/formatting-messages.html\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html\n",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
-            "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
-            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"# Message Formatting!\\nSpark clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!\\n\\n## Styling Text\\nMessages are styled using [Markdown](https://daringfireball.net/projects/markdown/syntax) syntax allowing text to be emphasized in **bold**, *italics* on `in-line code`.\\n\\n### Fenced Code Blocks\\nSpark can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)\\n\\n```\\nsource 'https://github.com/CocoaPods/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'SparkBnB' do\\n  pod 'SparkSDK', :path => '../'\\n  pod 'Toast-Swift', '~> 1.1.0'\\nend\\n```\\n\\n### Lists\\n\\nLists are a great way to organize information or present options to your audience.\\n\\nOrderd Lists\\n1. List Item\\n2. List Item\\n3. List Item\\n\\nUnordered Lists\\n* List Item\\n* List Item\\n* List Item\\n\\n### Block Quotes\\n\\n> Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.\\n\\n\",\r\n  \"text\": \"This text would be displayed by Spark clients that would not support Markdown.\"\r\n}"
+            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"# Message Formatting!\\nSpark clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!\\n\\n## Styling Text\\nMessages are styled using [Markdown](https:\/\/daringfireball.net\/projects\/markdown\/syntax) syntax allowing text to be emphasized in **bold**, *italics* on `in-line code`.\\n\\n### Fenced Code Blocks\\nSpark can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)\\n\\n```\\nsource 'https:\/\/github.com\/CocoaPods\/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'SparkBnB' do\\n  pod 'SparkSDK', :path => '..\/'\\n  pod 'Toast-Swift', '~> 1.1.0'\\nend\\n```\\n\\n### Lists\\n\\nLists are a great way to organize information or present options to your audience.\\n\\n###Ordered Lists\\n1. List Item\\n2. List Item\\n3. List Item\\n\\n###Unordered Lists\\n* List Item\\n* List Item\\n* List Item\\n\\n### Block Quotes\\n\\n> Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.\\n\\n\",\r\n  \"text\": \"This text would be displayed by Spark clients that would not support Markdown.\"\r\n}"
         },
         {
             "id": "2785814d-2bca-40cc-e0b7-2d35feafbcb3",
@@ -412,7 +412,7 @@
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/people/me",
+            "url": "https:\/\/api.ciscospark.com\/v1\/people\/me",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -425,7 +425,7 @@
             "helperAttributes": "{}",
             "time": 1498749265972,
             "name": "Get person details (me)",
-            "description": "Show the profile for the authenticated user.\n\nhttps://developer.ciscospark.com/endpoint-people-me-get.html",
+            "description": "Show the profile for the authenticated user.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-people-me-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "isFromCollection": true,
@@ -445,7 +445,7 @@
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/webhooks/",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -458,7 +458,7 @@
             "helperAttributes": "{}",
             "time": 1497979576630,
             "name": "List webhooks",
-            "description": "Lists all of your webhooks.\n\nhttps://developer.ciscospark.com/endpoint-webhooks-get.html",
+            "description": "Lists all of your webhooks.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "isFromCollection": true,
@@ -468,7 +468,7 @@
         },
         {
             "id": "29444c88-2ccd-d32f-311d-ed4ac330c976",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -478,12 +478,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -496,7 +496,7 @@
             "helperAttributes": [],
             "time": 1499843276590,
             "name": "Update a Team room",
-            "description": "Updates details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-put.html",
+            "description": "Updates details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-put.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "ecabe3dd-cf86-0fe7-39be-dfd8b2e937d9",
@@ -510,11 +510,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "https://developer.ciscospark.com/endpoint-rooms-roomId-delete.html",
+            "description": "https:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}",
             "currentHelper": "normal",
@@ -533,11 +533,11 @@
             "data": null,
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "List teams.\n\nhttps://developer.ciscospark.com/endpoint-teams-get.html",
+            "description": "List teams.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"List teams: failed\"] = false;\n}\nelse {\n    tests[\"List teams: success\"] = true;\n}",
             "currentHelper": "normal",
@@ -556,11 +556,11 @@
             "data": null,
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "List people in your organization.\n\nhttps://developer.ciscospark.com/endpoint-people-get.html",
+            "description": "List people in your organization.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-people-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/people?email=toEnglish@sparkbot.io",
+            "url": "https:\/\/api.ciscospark.com\/v1\/people?email=toEnglish@sparkbot.io",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"List people: failed\"] = false;\n}\nelse {\n    tests[\"List people: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List people: cannot retreive result\"] = false\n    }\n    else {\n        var personID = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_person\", personID);\n        tests[\"List people: retreived with id:\" + personID] = true\n    }\n}",
             "currentHelper": "normal",
@@ -573,7 +573,7 @@
         },
         {
             "id": "462dec44-92af-46e3-3982-aec238b524bb",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -583,12 +583,13 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
+            "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -599,13 +600,12 @@
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n",
             "currentHelper": "normal",
             "helperAttributes": [],
-            "time": 1503309683935,
+            "time": 1507199730576,
             "name": "Create a message (plain text)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
-            "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
-            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"hi from Postman\"\r\n}"
+            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"hi from Postman\"\r\n}"
         },
         {
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
@@ -615,11 +615,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html",
+            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}",
             "currentHelper": "normal",
@@ -638,11 +638,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Shows details for a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-webhookId-get.html",
+            "description": "Shows details for a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-webhookId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/{{_webhook}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get webhook details: failed\"] = false;\n}\nelse {\n    tests[\"Get webhook details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get webhook details: cannot retreive webhook identifier\"] = false;\n    }\n    else {\n        var webhookID = jsonData.id;\n        if (webhookID != postman.getEnvironmentVariable(\"_webhook\")) {\n            tests[\"Get webhook details: wrong id:\" + webhookID] = false;\n        }\n        else {\n            tests[\"Get webhook details: correct id:\" + webhookID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -659,13 +659,13 @@
             "name": "Update a webhook",
             "dataMode": "raw",
             "data": [],
-            "rawModeData": "{\n    \"name\": \"Postman WebHook Test (renamed)\",\n    \"targetUrl\": \"http://requestb.in/pq8idjpq\"\n}",
+            "rawModeData": "{\n    \"name\": \"Postman WebHook Test (renamed)\",\n    \"targetUrl\": \"http:\/\/requestb.in\/pq8idjpq\"\n}",
             "descriptionFormat": null,
-            "description": "Updates a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-webhookId-put.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Updates a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-webhookId-put.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "PUT",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/{{_webhook}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Update a webhook: failed\"] = false\n}\nelse {\n    tests[\"Update a webhook: success\"] = true\n}",
             "currentHelper": "normal",
@@ -678,7 +678,7 @@
         },
         {
             "id": "524f85a8-8ae3-5016-b50b-3dd8d7592716",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/x-www-form-urlencoded\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/x-www-form-urlencoded\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -688,12 +688,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/x-www-form-urlencoded",
+                    "value": "application\/x-www-form-urlencoded",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -722,7 +722,7 @@
             "helperAttributes": [],
             "time": 1505382147946,
             "name": "Create a message (plain text as form-urlencoded)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": []
         },
@@ -734,11 +734,11 @@
             "data": null,
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps://developer.ciscospark.com/endpoint-memberships-get.html",
+            "description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/memberships?roomId={{_room}}&max=100",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships?roomId={{_room}}&max=100",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}",
             "currentHelper": "normal",
@@ -760,7 +760,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms?teamId={{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms?teamId={{_team}}",
             "queryParams": [
                 {
                     "key": "teamId",
@@ -781,7 +781,7 @@
             "helperAttributes": [],
             "time": 1499843123120,
             "name": "List Team rooms",
-            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-get.html",
+            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "ecabe3dd-cf86-0fe7-39be-dfd8b2e937d9"
@@ -794,11 +794,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html",
+            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}",
             "currentHelper": "normal",
@@ -811,7 +811,7 @@
         },
         {
             "id": "5b4b2dc7-df1c-f499-f672-53547f1425cc",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -821,12 +821,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "folder": "e186555a-a3a2-bb43-59bf-ef566503d8df",
             "queryParams": [],
             "preRequestScript": null,
@@ -840,7 +840,7 @@
             "helperAttributes": [],
             "time": 1505373908024,
             "name": "Create a room (for test run purpose)",
-            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html",
+            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n    \"title\": \"Postman - Testing Webhooks\"\n}"
@@ -853,11 +853,11 @@
             "data": [],
             "rawModeData": "{\n  \"isModerator\": true\n}",
             "descriptionFormat": null,
-            "description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-put.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teammemberships-membershipId-put.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "PUT",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/team\/memberships\/{{_membership}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Update a membership: failed\"] = false\n}\nelse {\n    tests[\"Update a membership: success\"] = true\n}",
             "currentHelper": "normal",
@@ -874,13 +874,13 @@
             "name": "Check requestb.in (test purpose)",
             "dataMode": "raw",
             "data": [],
-            "rawModeData": "{\n  \"name\": \"SparkBot-Starter-Kit\",\n  \"resource\": \"messages\",\n  \"event\": \"created\",\n  \"targetUrl\": \"https://sparkbot.localtunnel.me/webhook\",\n  \"filter\": \"roomId=Y2lzY29zcGFyazovL3VzL1JPT00vZjIyNzgyZDAtMTY3MS0xMWU2LWIyNTctN2Q1MjY5NGQwOGI2\"\n}",
+            "rawModeData": "{\n  \"name\": \"SparkBot-Starter-Kit\",\n  \"resource\": \"messages\",\n  \"event\": \"created\",\n  \"targetUrl\": \"https:\/\/sparkbot.localtunnel.me\/webhook\",\n  \"filter\": \"roomId=Y2lzY29zcGFyazovL3VzL1JPT00vZjIyNzgyZDAtMTY3MS0xMWU2LWIyNTctN2Q1MjY5NGQwOGI2\"\n}",
             "descriptionFormat": null,
             "description": "check an event has been posted",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "http://requestb.in/pq8idjpq?inspect",
+            "url": "http:\/\/requestb.in\/pq8idjpq?inspect",
             "preRequestScript": null,
             "tests": null,
             "currentHelper": "normal",
@@ -897,13 +897,13 @@
             "name": "Check requestb.in (test purpose)",
             "dataMode": "raw",
             "data": [],
-            "rawModeData": "{\n  \"name\": \"SparkBot-Starter-Kit\",\n  \"resource\": \"messages\",\n  \"event\": \"created\",\n  \"targetUrl\": \"https://sparkbot.localtunnel.me/webhook\",\n  \"filter\": \"roomId=Y2lzY29zcGFyazovL3VzL1JPT00vZjIyNzgyZDAtMTY3MS0xMWU2LWIyNTctN2Q1MjY5NGQwOGI2\"\n}",
+            "rawModeData": "{\n  \"name\": \"SparkBot-Starter-Kit\",\n  \"resource\": \"messages\",\n  \"event\": \"created\",\n  \"targetUrl\": \"https:\/\/sparkbot.localtunnel.me\/webhook\",\n  \"filter\": \"roomId=Y2lzY29zcGFyazovL3VzL1JPT00vZjIyNzgyZDAtMTY3MS0xMWU2LWIyNTctN2Q1MjY5NGQwOGI2\"\n}",
             "descriptionFormat": null,
             "description": "check an event has been posted",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "http://requestb.in/pq8idjpq?inspect",
+            "url": "http:\/\/requestb.in\/pq8idjpq?inspect",
             "preRequestScript": null,
             "tests": null,
             "currentHelper": "normal",
@@ -918,7 +918,7 @@
         },
         {
             "id": "6149bc39-d4f5-5ce0-b111-f79052ca93be",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -928,12 +928,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "enabled": true,
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -946,14 +946,14 @@
             "helperAttributes": "{}",
             "time": 1498692007284,
             "name": "Create a message (file attachment)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "isFromCollection": true,
             "collectionRequestId": "6149bc39-d4f5-5ce0-b111-f79052ca93be",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "timestamp": null,
-            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"Learn Cisco Spark API with DevNet\",\r\n  \"files\" : [ \"https://cdn-images-1.medium.com/max/1000/1*_Iz0gkpIJ8KxxR5Jk0XJjQ.png\" ]\r\n}"
+            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"Learn Cisco Spark API with DevNet\",\r\n  \"files\" : [ \"https:\/\/cdn-images-1.medium.com\/max\/1000\/1*_Iz0gkpIJ8KxxR5Jk0XJjQ.png\" ]\r\n}"
         },
         {
             "folder": "ecabe3dd-cf86-0fe7-39be-dfd8b2e937d9",
@@ -963,11 +963,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Show details for a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-get.html",
+            "description": "Show details for a team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-teamId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams\/{{_team}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get team details: failed\"] = false;\n}\nelse {\n    tests[\"Get team details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get team details: cannot retreive team identifier\"] = false;\n    }\n    else {\n        var teamID = jsonData.id;\n        if (teamID != postman.getEnvironmentVariable(\"_team\")) {\n            tests[\"Get team details: wrong id:\" + teamID] = false;\n        }\n        else {\n            tests[\"Get team details: correct id:\" + teamID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -989,7 +989,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "folder": "c22ec2c6-1100-4f22-214b-cb867a5a2b41",
             "queryParams": [],
             "preRequestScript": null,
@@ -1003,14 +1003,14 @@
             "helperAttributes": [],
             "time": 1505382229621,
             "name": "Delete a room (cleanup)",
-            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html",
+            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-delete.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": ""
         },
         {
             "id": "67aa9853-5b0e-0bb2-850e-6463d96a54dc",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1020,12 +1020,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "folder": "270e50ef-c194-3a60-00ff-b9c0b99db32b",
             "queryParams": [],
             "preRequestScript": null,
@@ -1039,7 +1039,7 @@
             "helperAttributes": [],
             "time": 1505381828484,
             "name": "Create a room",
-            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html",
+            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n    \"title\": \"Postman - Testing Rooms\"\n}"
@@ -1052,11 +1052,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"Tour de France\"\n}",
             "descriptionFormat": null,
-            "description": "Create a new team.\n\nhttps://developer.ciscospark.com/endpoint-teams-post.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Create a new team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-post.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a team: failed\"] = false\n}\nelse {\n    tests[\"Create a team: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a team: cannot retreive team identifier\"] = false\n    }\n    else {\n        var teamID = jsonData.id;\n        postman.setEnvironmentVariable(\"_team\", teamID);\n        tests[\"Create a team: created with id:\" + teamID] = true\n    }\n}\n    \n    \n    \n",
             "currentHelper": "normal",
@@ -1078,7 +1078,7 @@
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/{{_webhook}}",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -1091,7 +1091,7 @@
             "helperAttributes": "{}",
             "time": 1497979595704,
             "name": "Delete a webhook",
-            "description": "Deletes a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-delete.html",
+            "description": "Deletes a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-delete.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "isFromCollection": true,
@@ -1101,7 +1101,7 @@
         },
         {
             "id": "6a227825-5155-7c99-302f-331213969c21",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1111,12 +1111,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -1129,7 +1129,7 @@
             "helperAttributes": [],
             "time": 1503440434020,
             "name": "Create a message (with mention)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
@@ -1137,7 +1137,7 @@
         },
         {
             "id": "6da7dd9f-029b-ab64-b2c5-23bc3d76e3bc",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1147,12 +1147,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -1166,10 +1166,10 @@
             "helperAttributes": [],
             "time": 1505211635939,
             "name": "Create a message (2479 asian characters)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
-            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語\"\r\n}"
+            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"\u6f22\u5b57\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u6f22\u5b57\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u6f22\u5b57\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u6f22\u5b57\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\u3092\u6f22\u5b57\u3067\u9001\u308a\u307e\u3059\u3053\u3093\u306b\u3061\u306f\u65e5\u672c\u8a9e\"\r\n}"
         },
         {
             "folder": "e186555a-a3a2-bb43-59bf-ef566503d8df",
@@ -1179,11 +1179,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Shows details for a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-webhookId-get.html",
+            "description": "Shows details for a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-webhookId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/{{_webhook}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get webhook details: failed\"] = false;\n}\nelse {\n    tests[\"Get webhook details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get webhook details: cannot retreive webhook identifier\"] = false;\n    }\n    else {\n        var webhookID = jsonData.id;\n        if (webhookID != postman.getEnvironmentVariable(\"_webhook\")) {\n            tests[\"Get webhook details: wrong id:\" + webhookID] = false;\n        }\n        else {\n            tests[\"Get webhook details: correct id:\" + webhookID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -1204,11 +1204,11 @@
             "data": [],
             "rawModeData": "{\n  \"isModerator\": true\n}",
             "descriptionFormat": null,
-            "description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-put.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Updates properties for a membership by ID.\n\nSpecify the membership ID in the membershipId URI parameter.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-membershipId-put.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "PUT",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships\/{{_membership}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Update a membership: failed\"] = false\n}\nelse {\n    tests[\"Update a membership: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1227,11 +1227,11 @@
             "data": [],
             "rawModeData": "{\r\n  \"teamId\" : \"{{_team}}\",\r\n  \"personEmail\": \"steve.sfartz@gmail.com\",\r\n  \"isModerator\": \"false\"\r\n}",
             "descriptionFormat": null,
-            "description": "Add someone to a team by Person ID or email address; optionally making them a moderator.\n\nhttps://developer.ciscospark.com/endpoint-teammemberships-post.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Add someone to a team by Person ID or email address; optionally making them a moderator.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teammemberships-post.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/team/memberships",
+            "url": "https:\/\/api.ciscospark.com\/v1\/team\/memberships",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a membership: failed\"] = false\n}\nelse {\n    tests[\"Create a membership: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a membership: cannot retreive identifier\"] = false\n    }\n    else {\n        var membershipID = jsonData.id;\n        postman.setEnvironmentVariable(\"_membership\", membershipID);\n        tests[\"Create a membership: created with id:\" + membershipID] = true\n    }\n}\n    \n    \n    \n    \n",
             "currentHelper": "normal",
@@ -1244,7 +1244,7 @@
         },
         {
             "id": "7e89bf4b-b172-dd89-2a97-e1d019268bd9",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1254,12 +1254,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "folder": "ecabe3dd-cf86-0fe7-39be-dfd8b2e937d9",
             "queryParams": [],
             "preRequestScript": null,
@@ -1273,7 +1273,7 @@
             "helperAttributes": [],
             "time": 1505373915847,
             "name": "Create a Team room",
-            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps://developer.ciscospark.com/endpoint-rooms-post.html",
+            "description": "Creates a room. The authenticated user is automatically added as a member of the room. See the Memberships API to learn how to add more people to the room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\n    \"title\": \"Postman - Testing Teams\",\n    \"teamId\": \"{{_team}}\"\n}"
@@ -1286,11 +1286,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Delete a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-delete.html",
+            "description": "Delete a team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-teamId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams\/{{_team}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a team: failed\"] = false\n}\nelse {\n    tests[\"Delete a team: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1309,11 +1309,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Shows details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-people-personId-get.html",
+            "description": "Shows details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-people-personId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/people/{{_person}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/people\/{{_person}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get person details: cannot retreive person identifier\"] = false;\n    }\n    else {\n        var personID = jsonData.id;\n        if (personID != postman.getEnvironmentVariable(\"_person\")) {\n            tests[\"Get person details: wrong id:\" + personID] = false;\n        }\n        else {\n            tests[\"Get person details: correct id:\" + personID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -1333,10 +1333,10 @@
             "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message to read from the webhook\"\r\n}",
             "descriptionFormat": null,
             "description": "adds a message in a room, to check an event is triggered\n",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "preRequestScript": null,
             "tests": "\n    \n    \n    \n",
             "currentHelper": "normal",
@@ -1358,7 +1358,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -1385,7 +1385,7 @@
             "helperAttributes": [],
             "time": 1505382168595,
             "name": "Create a message (plain text as form-data)",
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": []
         },
@@ -1416,11 +1416,11 @@
             ],
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html",
+            "description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n",
             "currentHelper": "normal",
@@ -1450,7 +1450,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms?type=direct&sortBy=lastactivity&max=10",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms?type=direct&sortBy=lastactivity&max=10",
             "queryParams": [
                 {
                     "key": "type",
@@ -1485,7 +1485,7 @@
             "helperAttributes": [],
             "time": 1503660479571,
             "name": "List rooms (direct)",
-            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-get.html",
+            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "270e50ef-c194-3a60-00ff-b9c0b99db32b"
@@ -1498,11 +1498,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Update a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-put.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Update a team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-teamId-put.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "PUT",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams\/{{_team}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Update a team: failed\"] = false\n}\nelse {\n    tests[\"Update a team: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1521,11 +1521,11 @@
             "data": [],
             "rawModeData": "{\n    \"title\": \"Cisco Live - meet at the DevNet Zone\"\n}",
             "descriptionFormat": null,
-            "description": "Updates details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-put.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Updates details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-put.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "PUT",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Update a room: failed\"] = false\n}\nelse {\n    tests[\"Update a room: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1544,11 +1544,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship\"\n}",
             "descriptionFormat": null,
-            "description": "Create a new team.\n\nhttps://developer.ciscospark.com/endpoint-teams-post.html",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "description": "Create a new team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-post.html",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a team: failed\"] = false\n}\nelse {\n    tests[\"Create a team: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a team: cannot retreive team identifier\"] = false\n    }\n    else {\n        var teamID = jsonData.id;\n        postman.setEnvironmentVariable(\"_team\", teamID);\n        tests[\"Create a team: created with id:\" + teamID] = true\n    }\n}\n    \n    \n    \n",
             "currentHelper": "normal",
@@ -1570,7 +1570,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/people?displayName=Ste",
+            "url": "https:\/\/api.ciscospark.com\/v1\/people?displayName=Ste",
             "queryParams": [
                 {
                     "key": "displayName",
@@ -1591,7 +1591,7 @@
             "helperAttributes": [],
             "time": 1500372230696,
             "name": "List people (whose name starts with)",
-            "description": "List people in your organization.\n\nhttps://developer.ciscospark.com/endpoint-people-get.html",
+            "description": "List people in your organization.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-people-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "b0bda3b8-4f74-e53e-a6ab-5ddd07eac6a9"
@@ -1604,11 +1604,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Delete a team.\n\nhttps://developer.ciscospark.com/endpoint-teams-teamId-delete.html",
+            "description": "Delete a team.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-teams-teamId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/teams/{{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/teams\/{{_team}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a team: failed\"] = false\n}\nelse {\n    tests[\"Delete a team: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1630,7 +1630,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships\/{{_membership}}",
             "folder": "c22ec2c6-1100-4f22-214b-cb867a5a2b41",
             "queryParams": [],
             "preRequestScript": null,
@@ -1644,7 +1644,7 @@
             "helperAttributes": [],
             "time": 1505382225626,
             "name": "Delete membership",
-            "description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-memberships-membershipId-delete.html",
+            "description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-membershipId-delete.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": ""
@@ -1660,7 +1660,7 @@
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/{{_webhook}}",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -1673,7 +1673,7 @@
             "helperAttributes": [],
             "time": 1497979595704,
             "name": "Delete a webhook",
-            "description": "Deletes a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-webhooks-delete.html",
+            "description": "Deletes a webhook, by ID.\r\n\r\nSpecify the webhook ID in the webhookId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-webhooks-delete.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "isFromCollection": true,
@@ -1683,7 +1683,7 @@
         },
         {
             "id": "c9dc110d-d44b-42ec-fbcc-5e48f302ef1e",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1693,12 +1693,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/memberships",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships",
             "folder": "c22ec2c6-1100-4f22-214b-cb867a5a2b41",
             "queryParams": [],
             "preRequestScript": null,
@@ -1712,7 +1712,7 @@
             "helperAttributes": [],
             "time": 1505376647396,
             "name": "Create a membership",
-            "description": "Add someone to a room by Person ID or email address; optionally making them a moderator.\n\nhttps://developer.ciscospark.com/endpoint-memberships-post.html",
+            "description": "Add someone to a room by Person ID or email address; optionally making them a moderator.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-post.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"personEmail\": \"CiscoDevNet@sparkbot.io\",\r\n  \"isModerator\": \"false\"\r\n}"
@@ -1725,11 +1725,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-delete.html",
+            "description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a room: failed\"] = false\n}\nelse {\n    tests[\"Delete a room: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1750,11 +1750,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-get.html",
+            "description": "Get details for a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-teammemberships-membershipId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/team\/memberships\/{{_membership}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get membership details: failed\"] = false;\n}\nelse {\n    tests[\"Get membership details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get membership details: cannot retreive identifier\"] = false;\n    }\n    else {\n        var membershipID = jsonData.id;\n        if (membershipID != postman.getEnvironmentVariable(\"_membership\")) {\n            tests[\"Get membership details: wrong id:\" + membershipID] = false;\n        }\n        else {\n            tests[\"Get membership details: correct id:\" + membershipID] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -1768,16 +1768,16 @@
         {
             "folder": "e186555a-a3a2-bb43-59bf-ef566503d8df",
             "id": "d13a66fb-8b30-1dae-4414-fe7eb0887420",
-            "name": "Create a webhook (messages/created)",
+            "name": "Create a webhook (messages\/created)",
             "dataMode": "raw",
             "data": [],
-            "rawModeData": "{\n      \"name\": \"Postman WebHook Test\",\n      \"resource\": \"messages\",\n      \"event\": \"created\",\n      \"targetUrl\": \"http://requestb.in/pq8idjpq\",\n      \"filter\": \"roomId={{_room}}\"\n    }",
+            "rawModeData": "{\n      \"name\": \"Postman WebHook Test\",\n      \"resource\": \"messages\",\n      \"event\": \"created\",\n      \"targetUrl\": \"http:\/\/requestb.in\/pq8idjpq\",\n      \"filter\": \"roomId={{_room}}\"\n    }",
             "descriptionFormat": null,
-            "description": "Creates a webhook for messages/created event.\n\nNote that you'll need to change the requestb.in URI to your own to see the webhook in action.\n",
-            "headers": "Content-Type: application/json\nAuthorization: Bearer {{spark_token}}\n",
+            "description": "Creates a webhook for messages\/created event.\n\nNote that you'll need to change the requestb.in URI to your own to see the webhook in action.\n",
+            "headers": "Content-Type: application\/json\nAuthorization: Bearer {{spark_token}}\n",
             "method": "POST",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/webhooks/",
+            "url": "https:\/\/api.ciscospark.com\/v1\/webhooks\/",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a webhook: failed\"] = false\n}\nelse {\n    tests[\"Create a webhook: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a webhook: cannot retreive webhook identifier\"] = false\n    }\n    else {\n        var webhookID = jsonData.id;\n        postman.setEnvironmentVariable(\"_webhook\", webhookID);\n        tests[\"Create a webhook: created with id:\" + webhookID] = true\n    }\n}",
             "currentHelper": "normal",
@@ -1796,11 +1796,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Shows details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-get.html",
+            "description": "Shows details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get room details: failed\"] = false;\n}\nelse {\n    tests[\"Get room details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get room details: cannot retreive room identifier\"] = false;\n    }\n    else {\n        var roomId = jsonData.id;\n        if (roomId != postman.getEnvironmentVariable(\"_room\")) {\n            tests[\"Get room details: wrong id:\" + roomId] = false;\n        }\n        else {\n            tests[\"Get room details: correct id:\" + roomId] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -1819,11 +1819,11 @@
             "data": null,
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps://developer.ciscospark.com/endpoint-memberships-get.html",
+            "description": "Lists all room memberships. By default, lists memberships for rooms to which the authenticated user belongs.\n\nUse query parameters to filter the response.\n\nUse roomId to list memberships for a room, by ID.\n\nUse either personId or personEmail to filter the results.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-memberships-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/memberships",
+            "url": "https:\/\/api.ciscospark.com\/v1\/memberships",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}",
             "currentHelper": "normal",
@@ -1842,11 +1842,11 @@
             "data": [],
             "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
             "descriptionFormat": null,
-            "description": "Shows details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-roomId-get.html",
+            "description": "Shows details for a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-roomId-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms\/{{_room}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"Get room details: failed\"] = false;\n}\nelse {\n    tests[\"Get room details: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Get room details: cannot retreive room identifier\"] = false;\n    }\n    else {\n        var roomId = jsonData.id;\n        if (roomId != postman.getEnvironmentVariable(\"_room\")) {\n            tests[\"Get room details: wrong id:\" + roomId] = false;\n        }\n        else {\n            tests[\"Get room details: correct id:\" + roomId] = true;\n        }\n    }\n}\n    \n    ",
             "currentHelper": "normal",
@@ -1867,11 +1867,11 @@
             "data": [],
             "rawModeData": "",
             "descriptionFormat": null,
-            "description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-membershipId-delete.html",
+            "description": "Deletes a membership by ID.\r\n\r\nSpecify the membership ID in the membershipId URI parameter.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-teammemberships-membershipId-delete.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "DELETE",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/team\/memberships\/{{_membership}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 204) {\n    tests[\"Delete a membership: failed\"] = false\n}\nelse {\n    tests[\"Delete a membership: success\"] = true\n}",
             "currentHelper": "normal",
@@ -1884,7 +1884,7 @@
         },
         {
             "id": "e0d208fb-7a43-128f-3819-82eee5af2f7a",
-            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application/json\n",
+            "headers": "Authorization: Bearer {{spark_token}}\nContent-Type: application\/json\n",
             "headerData": [
                 {
                     "key": "Authorization",
@@ -1894,12 +1894,12 @@
                 },
                 {
                     "key": "Content-Type",
-                    "value": "application/json",
+                    "value": "application\/json",
                     "description": "",
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages",
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",
             "queryParams": [],
             "preRequestScript": null,
@@ -1911,12 +1911,12 @@
             "tests": "if (responseCode.code != 200) {\n    tests[\"Create a message: failed\"] = false\n}\nelse {\n    tests[\"Create a message: created\"] = true\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a message: cannot retreive identifier\"] = false\n    }\n    else {\n        var messageID = jsonData.id;\n        postman.setEnvironmentVariable(\"_message\", messageID);\n        tests[\"Create a message: created with id:\" + messageID] = true\n    }\n}\n    \n    \n    \n    \n",
             "currentHelper": "normal",
             "helperAttributes": [],
-            "time": 1505377452061,
+            "time": 1507200165846,
             "name": "Create a message (html)",
-            "description": "HTML is not officially supported by the API, but will work in some cases\n\nTo get more info about message formatting, check https://developer.ciscospark.com/formatting-messages.html\n\nhttps://developer.ciscospark.com/endpoint-messages-post.html\n",
+            "description": "HTML is not officially supported by the API, but will work in some cases\n\nTo get more info about message formatting, check https:\/\/developer.ciscospark.com\/formatting-messages.html\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-post.html\n",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
-            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"html\" : \"<p>Well as you know, HTML is not officially supported! Let's try it though ;-)</p><h1>Message Formatting!</h1><p>Spark clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!</p><h2>Styling Text</h2><p>Messages are styled using <a href=\\\"https://daringfireball.net/projects/markdown/syntax\\\" rel=\\\"nofollow\\\">Markdown</a> syntax allowing text to be emphasized in <strong>bold</strong>, <em>italics</em> on <code>in-line code</code>.</p><h3>Fenced Code Blocks</h3><p>Spark can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)</p><pre><code>source 'https://github.com/CocoaPods/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'SparkBnB' do\\n  pod 'SparkSDK', :path =&gt; '../'\\n  pod 'Toast-Swift', '~&gt; 1.1.0'\\nend</code></pre><h3>Lists</h3><p>Lists are a great way to organize information or present options to your audience.</p><p>Orderd Lists</p><ol><li>List Item</li><li>List Item</li><li>List Item</li></ol><p>Unordered Lists</p><ul><li>List Item</li><li>List Item</li><li>List Item</li></ul><h3>Block Quotes</h3><blockquote><p>Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.</p></blockquote><p><h3>Horizontal Lines</h3>well, as others, it's not officially supported, but pretty handy ;-)<hr></p>\",\r\n  \"text\": \"This text would be displayed by Spark clients that would not support Markdown.\"\r\n}"
+            "rawModeData": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"html\" : \"<p>Well as you know, HTML is not officially supported! Let's try it though ;-)<\/p><h1>Message Formatting!<\/h1><p>Spark clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!<\/p><h2>Styling Text<\/h2><p>Messages are styled using <a href=\\\"https:\/\/daringfireball.net\/projects\/markdown\/syntax\\\" rel=\\\"nofollow\\\">Markdown<\/a> syntax allowing text to be emphasized in <strong>bold<\/strong>, <em>italics<\/em> on <code>in-line code<\/code>.<\/p><h3>Fenced Code Blocks<\/h3><p>Spark can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)<\/p><pre><code>source 'https:\/\/github.com\/CocoaPods\/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'SparkBnB' do\\n  pod 'SparkSDK', :path =&gt; '..\/'\\n  pod 'Toast-Swift', '~&gt; 1.1.0'\\nend<\/code><\/pre><h3>Lists<\/h3><p>Lists are a great way to organize information or present options to your audience.<\/p><p>Orderd Lists<\/p><ol><li>List Item<\/li><li>List Item<\/li><li>List Item<\/li><\/ol><p>Unordered Lists<\/p><ul><li>List Item<\/li><li>List Item<\/li><li>List Item<\/li><\/ul><h3>Block Quotes<\/h3><blockquote><p>Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.<\/p><\/blockquote><p><h3>Horizontal Lines<\/h3>well, as others, it's not officially supported, but pretty handy ;-)<hr><\/p>\",\r\n  \"text\": \"This text would be displayed by Spark clients that would not support Markdown.\"\r\n}"
         },
         {
             "id": "e6afcb06-d7d0-6288-9532-c42210151d43",
@@ -1929,7 +1929,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/rooms",
+            "url": "https:\/\/api.ciscospark.com\/v1\/rooms",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -1942,7 +1942,7 @@
             "helperAttributes": [],
             "time": 1503397835080,
             "name": "List rooms",
-            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps://developer.ciscospark.com/endpoint-rooms-get.html",
+            "description": "List rooms.\r\n\r\nBy default, lists rooms to which the authenticated user belongs.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-rooms-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "270e50ef-c194-3a60-00ff-b9c0b99db32b"
@@ -1955,11 +1955,11 @@
             "data": null,
             "rawModeData": null,
             "descriptionFormat": null,
-            "description": "Lists all team memberships. By default, lists memberships for teams to which the authenticated user belongs.\r\n\r\nUse query parameters to filter the response.\r\n\r\nUse teamId to list memberships for a team, by ID.\r\n\r\nUse either personId or personEmail to filter the results.\r\n\r\nhttps://developer.ciscospark.com/endpoint-teammemberships-get.html",
+            "description": "Lists all team memberships. By default, lists memberships for teams to which the authenticated user belongs.\r\n\r\nUse query parameters to filter the response.\r\n\r\nUse teamId to list memberships for a team, by ID.\r\n\r\nUse either personId or personEmail to filter the results.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-teammemberships-get.html",
             "headers": "Authorization: Bearer {{spark_token}}\n",
             "method": "GET",
             "pathVariables": [],
-            "url": "https://api.ciscospark.com/v1/team/memberships?teamId={{_team}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/team\/memberships?teamId={{_team}}",
             "preRequestScript": null,
             "tests": "if (responseCode.code != 200) {\n    tests[\"List rooms: failed\"] = false;\n}\nelse {\n    tests[\"List rooms: success\"] = true;\n}",
             "currentHelper": "normal",
@@ -1981,7 +1981,7 @@
                     "enabled": true
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages?roomId={{_room}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages?roomId={{_room}}",
             "queryParams": [
                 {
                     "key": "roomId",
@@ -2002,7 +2002,7 @@
             "helperAttributes": [],
             "time": 1503309629049,
             "name": "List messages",
-            "description": "Lists all messages in a room. If present, includes the associated media content attachment for each message.\r\n\r\nThe list sorts the messages in descending order by creation date.\r\n\r\nhttps://developer.ciscospark.com/endpoint-messages-get.html",
+            "description": "Lists all messages in a room. If present, includes the associated media content attachment for each message.\r\n\r\nThe list sorts the messages in descending order by creation date.\r\n\r\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-get.html",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7"
@@ -2018,7 +2018,7 @@
                     "description": ""
                 }
             ],
-            "url": "https://api.ciscospark.com/v1/messages/{{_message}}",
+            "url": "https:\/\/api.ciscospark.com\/v1\/messages\/{{_message}}",
             "queryParams": [],
             "preRequestScript": null,
             "pathVariables": [],
@@ -2031,7 +2031,7 @@
             "helperAttributes": "{}",
             "time": 1497979538325,
             "name": "Get message details",
-            "description": "Shows details for a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps://developer.ciscospark.com/endpoint-messages-messageId-get.html\n",
+            "description": "Shows details for a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps:\/\/developer.ciscospark.com\/endpoint-messages-messageId-get.html\n",
             "collectionId": "fe983448-e2ff-d578-f4c4-8223175c32c2",
             "responses": [],
             "folder": "b7b1a0a1-a988-2da2-0da0-1b3f742242e7",

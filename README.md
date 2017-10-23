@@ -17,10 +17,12 @@ When submitting a new collection, please ensure it leverages a {{spark_token}} v
 
 ## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/all-resources-scripted.json)
 
-Introduced at Cisco Live Vegas in July 2016, this collection was originally made available through [bit.ly](bit.ly/POSTMAN-SPARK-API).
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
+
+Introduced at Cisco Live Vegas in July 2016, this collection was originally made available through [bit.ly](https://bit.ly/POSTMAN-SPARK-API).
 It is now maintained in this repository.
 
-The collection illustrates the REST API Public Resources, with direct link to the official API documentation.
+The collection illustrates the REST API Public Resources, with direct links to the official Cisco Spark API documentation.
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
