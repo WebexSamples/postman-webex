@@ -1,8 +1,8 @@
 # Postman collections for Cisco Spark
 
 This repo gathers Postman collections for the [Cisco Spark API](https://developer.ciscospark.com/quick-reference.html):
-- [public REST API](#all-resources-scripted): Rooms, Messages, Teams, People, Webhooks... everything accessible from an API token without admin priviledges
-- [admin API](#admin-api): Organizations, People creation and updates, Roles, Licenses, these admin related features that require a token with admin priviledges
+- [public REST API](#all-resources-scripted): Rooms, Messages, Teams, People, Webhooks... everything accessible from standard Cisco Spark access token (does NOT require admin priviledges).
+- [admin API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin priviledges
 - [direct room use case](#direct-room): Create a 1-1 room by sending a direct message
 
 
@@ -57,6 +57,9 @@ Note that the collection is also rendered in HTML for [quick browsing via Postma
 
 ![admin-api](docs/img/admin-scripted-collection.png)
 
+The People folder is populated with pre-request and post-request scripts in order to ease the creation of Spark random accounts.
+
+![admin-api](docs/img/admin-scripted-collection-people.png) 
 
 
 ## [direct-room](https://raw.githubusercontent.com/CiscoDevNet/postman-ciscospark/master/direct-room.json)
