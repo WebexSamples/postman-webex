@@ -3,7 +3,7 @@
 This repo gathers Postman collections for the [Webex Teams REST APIs](https://developer.webex.com/quick-reference.html):
 - [REST API](#all-resources-scripted): Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin priviledges
 - [admin REST API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin priviledges
-- [direct room use case](#direct-room): Create a 1-1 room by sending a direct message
+- [use case: 1-1 space](#direct-room): Create a 1-1 space by sending a direct message
 
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
@@ -41,7 +41,7 @@ Enough talk, let's practice:
 
 Now, what about generating some code for your favorite language ?
 
-Take the [Generate Code Guide](docs/GenerateCode.md) and have this nodejs code snippet automatically generated for the API Resource "List Rooms":
+Take the [Generate Code Guide](docs/GenerateCode.md) and have this Node.js code snippet automatically generated for the API Resource "List spaces":
 
 ![generate code](docs/img/generate-nodejs-request-no-postman-header.png)
 
@@ -62,10 +62,10 @@ The People folder is populated with pre-request and post-request scripts in orde
 ![admin-api](docs/img/admin-scripted-collection-people.png) 
 
 
-## [direct-room](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/direct-room.json)
+## [direct-space](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/direct-space.json)
 
-Illustrates how to create a 1-1 room by sending a direct message to a Webex user account's email address.
+Illustrates how to create a 1-1 space by sending a direct message to a Webex user account's email address.
 
-Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 rooms via the API (as of October 2016)
+Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 spaces via the API (as of October 2016)
 
-![direct-room](docs/img/direct-room-collection.png)
+![direct-space](docs/img/direct-space-collection.png)
