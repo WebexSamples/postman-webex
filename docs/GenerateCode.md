@@ -1,4 +1,4 @@
-# Code generation with postman 
+# Code generation with Postman
 
 Postman lets you [generate code](https://www.getpostman.com/docs/code_snippets) in up to 15 languages.
 
