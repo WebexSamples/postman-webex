@@ -40,7 +40,7 @@ To create a new environment, click on the ![create env](img/environment-create-i
 ![new environment](img/environment-create.png)
 
 
-In the "Manage environments" dialog, add the "spark_token" variable, and paste your personal access token, or a Bot access token - **without the Bearer prefix**.
+In the "Manage environments" dialog, add the `{{access_token}}` variable, and paste your personal access token, or a Bot access token - **without the Bearer prefix**.
 
 Note that you can retrieve your personal access token from the [Webex for Developers Getting Started](https://developer.webex.com/getting-started.html#authentication) page.
 

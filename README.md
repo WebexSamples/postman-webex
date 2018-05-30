@@ -1,9 +1,11 @@
-# Postman collections for Webex
+# Postman collections for Webex Teams
 
-This repo gathers Postman collections for the [Webex Teams REST APIs](https://developer.webex.com/quick-reference.html):
-- [REST API](#all-resources-scripted): Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin priviledges
+This repo gathers collections for the **[Webex Teams](https://developer.webex.com/quick-reference.html)**.
+_Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
+
+- **[REST API](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin priviledges
 - [admin REST API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin priviledges
-- [use case: 1-1 space](#direct-room): Create a 1-1 space by sending a direct message
+- [1-1 space](#direct-space): Create a 1-1 space by sending a direct message
 
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
@@ -13,17 +15,14 @@ If you're new to Postman, you're only a few steps away from getting the full ben
 4. [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).
 
 **We welcome pull requests for enhancements of existing collections, as well as contributions of collections that proved to be handy for you. 
-When submitting a new collection, please ensure it leverages a {{spark_token}} variable to ease environments sharing among collections. Thank you!** 
+When submitting a new collection, please ensure it leverages a {{access_token}} variable to ease environments sharing among collections. Thank you!** 
 
 
 ## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
 
-Introduced at Cisco Live Vegas in July 2016, this collection was originally made available through [bit.ly](https://bit.ly/POSTMAN-SPARK-API).
-It is now maintained in this repository.
-
-The collection illustrates the REST API public resources, with direct links to the official Webex Teams API documentation.
+The collection implements the public resources for the Webex Teams REST API , with direct links to the official API documentation.
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
@@ -34,10 +33,10 @@ Worth mentionning that the collection is scripted so that you can run REST calls
 
 Enough talk, let's practice:
 - [import the all-resources-scripted collection](docs/ImportAndConfigure.md), 
-- create or select a postman environment that contains a {{spark_token}} variable, 
+- create or select a postman environment that contains a {{access_token}} variable, 
 - now, you're ready to invoke the API: for example, go to the Messages folder, and run the requests from top to bottom.
 
-![messages](docs/img/scripted-collection-messages.png)
+![messages](docs/img/scripted-collection-memberships.png)
 
 Now, what about generating some code for your favorite language ?
 
@@ -45,6 +44,7 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this Node.js code 
 
 ![generate code](docs/img/generate-nodejs-request-no-postman-header.png)
 
+Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/71CYsEp).
 
 
 ## [admin-api](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/admin-scripted.json)
@@ -53,7 +53,7 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this Node.js code 
 
 The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.webex.com/admin-api.html).
 
-Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/cisco-spark-admin-api-public/2PMC7h).
+Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/2PMC7h).
 
 ![admin-api](docs/img/admin-scripted-collection.png)
 
