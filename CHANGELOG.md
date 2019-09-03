@@ -1,5 +1,9 @@
 # Changes
 
+**2019-09-03**
+   - removed the 'direct-space' collection (not enough value compared to the maintenance cost)
+
+
 **2018-05-30**
    - updated to {{spark_token} to {{access_token}
    - republished JSON for updated collections

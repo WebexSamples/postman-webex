@@ -61,11 +61,3 @@ The People folder is populated with pre-request and post-request scripts in orde
 
 ![admin-api](docs/img/admin-scripted-collection-people.png) 
 
-
-## [direct-space](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/direct-space.json)
-
-Illustrates how to create a 1-1 space by sending a direct message to a Webex user account's email address.
-
-Also illustrates the fact that it is not possible to DELETE nor LEAVE 1-1 spaces via the API (as of October 2016)
-
-![direct-space](docs/img/direct-space-collection.png)
