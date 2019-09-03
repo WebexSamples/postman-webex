@@ -4,7 +4,7 @@ This repo gathers collections for the **[Webex Teams](https://developer.webex.co
 _Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
 
 - **[Webex Teams API v1](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks, AttachmentActions... all Webex Teams resources accessible from an access token, with no admin priviledges
-- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only with an access token with admin priviledges
+- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices and Places. These admin related features are accessible only with an access token with admin priviledges
 
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:

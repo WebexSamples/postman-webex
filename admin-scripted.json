@@ -1,1760 +1,2631 @@
 {
-    "id": "beba6b1c-a834-f8a3-951c-29678666d198",
-    "name": "Webex Teams Admin API",
-    "description": "The Webex Teams API includes administration APIs that allow administrators to programatically perform administration actions such as provisioning a user. By automating administration, user management and provisioning can be centralized in an existing tool, rather than using the Webex Teams Control Hub. For example, a partner selling multiple Collaboration tools to customers can use these APIs to enable Webex Teams provisioning through a centralized portal.\n\nhttps:\/\/developer.webex.com\/admin-api.html\n\n\n## What's possible with Admin APIs?\n\nCurrently, administration is focused on User Provisioning. Using these APIs, an admin can:\n\n- Create a user\n- Update a user\n- View license usage of an organization\n- View available roles of an organization\n- Manage Hybrid Services licenses and users\n\n\n## Authentication\n\nUse of these APIs requires you to be an administrator of an organization.\n\nIf you are an administrator, you can login here to get a development auth token with necessary scopes.\n\nCreating an Integration that will act on behalf of an administrator can be done by including one or more of the following scopes when requesting an auth token via oAuth.\n\n- spark-admin:people_read  Access to read your user's company directory\n- spark-admin:people_write  Access to write to your user's company directory\n- spark-admin:organizations_read  Access to write to your user's company directory\n- spark-admin:roles_read  Access to read roles available in your user's organization\n- spark-admin:licenses_read  Access to read licenses available in your user's organizations\n",
-    "auth": null,
-    "events": [
-        {
-            "listen": "prerequest",
-            "script": {
-                "id": "0d3602d6-7436-47d8-a84d-3c1e9f0164c6",
-                "type": "text\/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        },
-        {
-            "listen": "test",
-            "script": {
-                "id": "4e2d13ee-6ff9-46d7-bc35-97b06d2d31cf",
-                "type": "text\/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        }
-    ],
-    "variables": null,
-    "order": [],
-    "folders_order": [
-        "35701845-4082-6e65-c017-3d53910f68a7",
-        "83590afe-95a9-68e6-de56-53c730353399",
-        "81f485d5-ab62-a897-f96c-0b62588dc778",
-        "db8d7818-9aad-8d6b-c07f-67fb81738b0c",
-        "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc"
-    ],
-    "folders": [
-        {
-            "id": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "name": "Events",
-            "description": "Events are generated when actions take place within Cisco Spark, such as when someone creates or deletes a message. Use the Events API to retrieve events related to your account. Compliance Officers may retrieve events for all users within an organization. See the Compliance Guide for more information.\nhttps:\/\/developer.ciscospark.com\/docs\/api\/guides\/compliance.html\n\nThe resource endpoints such as \/rooms, \/messages, \/memberships, etc. represent the current state of data in Spark. The \/events resource represents the log of state changes which led to the current state of these resources; it details when a resource changed and who made the change.\n\nFor example, when a user posts a message in a room, this will result in a new message, available via the \/messages resource. It will also result in a new event, available on the \/events resource. If the user then deletes their message, this will result in the message no longer being returned on the \/messages resource but it will result in a new event for the message deletion on the \/events resource.\n\nEvents are available for the following resources when they are created, updated, or deleted:\n- messages\n- memberships\n\nhttps:\/\/developer.ciscospark.com\/resource-events.html",
-            "auth": null,
-            "events": null,
-            "collection": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folder": null,
-            "order": [
-                "8b6f952c-df94-6890-1f72-eb5304320d32",
-                "ef2d5da0-9e68-3cce-ea37-10758a6b315f",
-                "90be273b-e03d-703e-4194-fdc14edb7cde",
-                "6af0771f-accd-cd4c-d6f0-5ff5dece1623",
-                "815bc924-be24-c73a-7acf-c189c56dffb1"
-            ],
-            "folders_order": [],
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folderId": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc"
-        },
-        {
-            "id": "81f485d5-ab62-a897-f96c-0b62588dc778",
-            "name": "Licenses",
-            "description": "An allowance for features and services that are provided to users on a Webex Teams services subscription. Cisco and its partners manage the amount of licenses provided to administrators and users. This license resource can be accessed only by an admin.\n\nTo learn about how to allocate Hybrid Services licenses, see the Managing Hybrid Services guide.\n\nhttps:\/\/developer.webex.com\/resource-licenses.html",
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "id": "22b12f22-89d8-42d9-9dc3-e937edb67908",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "ba43e23c-74ce-40a5-9fd8-f8e1246d56dc",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "collection": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folder": null,
-            "order": [
-                "804e8715-36b4-e52b-8f14-23312f1c9dd9",
-                "45e619a6-84b8-0a3d-d8bc-9542dbaee068"
-            ],
-            "folders_order": [],
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folderId": "81f485d5-ab62-a897-f96c-0b62588dc778"
-        },
-        {
-            "id": "83590afe-95a9-68e6-de56-53c730353399",
-            "name": "Organizations",
-            "description": "A set of people in Webex Teams. Organizations may manage other organizations or be managed themselves. This organizations resource can be accessed only by an admin.\n\nhttps:\/\/developer.webex.com\/resource-organizations.html\n\n",
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "id": "75b5851d-579d-4562-a2a7-4ed4a9420a85",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "eab9171a-374c-4260-a774-532a75dc2eb8",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "collection": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folder": null,
-            "order": [
-                "8a44d5a8-ee10-eab7-2655-7c80cea68a7b",
-                "d8027acf-e393-f5d4-c6c6-65b6efcc1628"
-            ],
-            "folders_order": [],
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folderId": "83590afe-95a9-68e6-de56-53c730353399"
-        },
-        {
-            "id": "35701845-4082-6e65-c017-3d53910f68a7",
-            "name": "People",
-            "description": "People are registered users of Webex Teams. Searching and viewing People requires an auth token with a scope of spark:people_read. Viewing the list of all People in your Organization requires an administrator auth token with spark-admin:people_read scope. Adding, updating, and removing People requires an administrator auth token with the spark-admin:people_write scope.\r\n\r\nTo learn more about managing people in a room see the Memberships API. For information about how to allocate Hybrid Services licenses to people, see the Managing Hybrid Services guide.\r\n\r\nhttps:\/\/developer.webex.com\/resource-people.html",
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "id": "c1e0d80e-1c21-4b2b-90fd-2da78b0539cc",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "9873f57e-4a14-4d6c-97e9-b1c333c793cd",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "collection": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folder": null,
-            "order": [
-                "549fa1ab-875e-cfd6-e108-609cdeba32ab",
-                "c3d6ff1e-be4c-e29e-6630-658f9a25baef",
-                "0a7a590b-68e2-0afa-f91c-722e3fc8408b",
-                "b16b78de-df0a-5d5b-5b56-387984581282",
-                "50551fd2-659d-8c5d-15f4-79a25cc2692c",
-                "cefbbd82-629d-18e7-2bcf-d2c7b463ee3f",
-                "ff88a8ea-7772-e534-952c-9488ec0e31a3",
-                "646ed833-d121-aaea-c278-f8af65799156"
-            ],
-            "folders_order": [],
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folderId": "35701845-4082-6e65-c017-3d53910f68a7"
-        },
-        {
-            "id": "db8d7818-9aad-8d6b-c07f-67fb81738b0c",
-            "name": "Roles",
-            "description": "A persona for an authenticated user, corresponding to a set of privileges within an organization. This roles resource can be accessed only by an admin.\n\nhttps:\/\/developer.webex.com\/resource-roles.html",
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "id": "b9076309-ce8a-4aba-a089-26b2dd7f8818",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "66f81f7f-393b-4b26-af9f-1d4eb20e0e6b",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "collection": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folder": null,
-            "order": [
-                "3efc3ed5-cecf-dec0-4374-37de19d8a306",
-                "4d6def22-cb7b-e7ed-c876-9efc94d11e7b"
-            ],
-            "folders_order": [],
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "folderId": "db8d7818-9aad-8d6b-c07f-67fb81738b0c"
-        }
-    ],
-    "requests": [
-        {
-            "id": "0a7a590b-68e2-0afa-f91c-722e3fc8408b",
-            "name": "Get Person Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people\/{{_person}}",
-            "description": "Shows details for a person, by ID.\nSpecify the person ID in the personId parameter in the URI.\n\nhttps:\/\/developer.webex.com\/endpoint-people-personId-get.html",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get person details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get person details: success\"] = true;",
-                            "}",
-                            "",
-                            "",
-                            "    "
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n}\n\n\n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n  \"emails\": [\n    \"steve.sfartz@gmail.com\"\n  ],\n  \"displayName\": \"Steve Sfartz\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Sfartz\",\n  \"orgId\": \"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\"\n  \n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "3efc3ed5-cecf-dec0-4374-37de19d8a306",
-            "name": "List Roles",
-            "url": "https:\/\/api.ciscospark.com\/v1\/roles",
-            "description": "List all roles.\n\nhttps:\/\/developer.webex.com\/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List roles: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List roles: success\"] = true;",
-                            "    ",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.items === undefined) {",
-                            "        tests[\"List roles: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var roleId = jsonData.items[0].id;",
-                            "        postman.setEnvironmentVariable(\"_role\", roleId);",
-                            "        tests[\"List roles: retreived with id:\" + roleId] = true",
-                            "    }",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "db8d7818-9aad-8d6b-c07f-67fb81738b0c",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List roles: failed\"] = false;\n}\nelse {\n    tests[\"List roles: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List roles: cannot retreive result\"] = false\n    }\n    else {\n        var roleId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_role\", roleId);\n        tests[\"List roles: retreived with id:\" + roleId] = true\n    }\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "45e619a6-84b8-0a3d-d8bc-9542dbaee068",
-            "name": "Get License Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/licenses\/{{_license}}",
-            "description": "Shows details for a license, by ID.\r\n\r\nSpecify the license ID in the licenseId parameter in the URI.\r\n\r\nhttps:\/\/developer.webex.com\/endpoint-licenses-licenseId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Spark Calling',\r\n  'totalUnits' : '42',\r\n  'consumedUnits' : \"8'\r\n}\r\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get license details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get license details: success\"] = true;",
-                            "}",
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "folder": "81f485d5-ab62-a897-f96c-0b62588dc778",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get license details: failed\"] = false;\n}\nelse {\n    tests[\"Get license details: success\"] = true;\n}\n",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "4d6def22-cb7b-e7ed-c876-9efc94d11e7b",
-            "name": "Get Role Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/roles\/{{_role}}",
-            "description": "Shows details for a role, by ID.\n\nSpecify the role ID in the roleId parameter in the URI.\n\nhttps:\/\/developer.webex.com\/endpoint-roles-roleId-get.html\n\nExample Response:\n``` json\n{\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'displayName' : 'Full Administrator'\n}\n```",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get role details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get role details: success\"] = true;",
-                            "}",
-                            "    "
-                        ]
-                    }
-                }
-            ],
-            "folder": "db8d7818-9aad-8d6b-c07f-67fb81738b0c",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get role details: failed\"] = false;\n}\nelse {\n    tests[\"Get role details: success\"] = true;\n}\n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "50551fd2-659d-8c5d-15f4-79a25cc2692c",
-            "name": "Get roles (to fetch a role id)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/roles",
-            "description": "List all roles.\n\nhttps:\/\/developer.webex.com\/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List roles: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List roles: success\"] = true;",
-                            "    ",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.items === undefined) {",
-                            "        tests[\"List roles: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var roleId = jsonData.items[0].id;",
-                            "        postman.setEnvironmentVariable(\"_role\", roleId);",
-                            "        tests[\"List roles: retreived with id:\" + roleId] = true",
-                            "    }",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List roles: failed\"] = false;\n}\nelse {\n    tests[\"List roles: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List roles: cannot retreive result\"] = false\n    }\n    else {\n        var roleId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_role\", roleId);\n        tests[\"List roles: retreived with id:\" + roleId] = true\n    }\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "549fa1ab-875e-cfd6-e108-609cdeba32ab",
-            "name": "Get Person Details (me)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people\/me",
-            "description": "Show the profile for the authenticated user.\n\nhttps:\/\/developer.webex.com\/endpoint-people-me-get.html",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "Content-Type",
-                    "value": "application\/json",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "74bc245f-0686-4669-ac38-4bad3a1dc927",
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get person details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get person details: success\"] = true;",
-                            "    ",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.id === undefined) {",
-                            "        tests[\"Create a person: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var email = jsonData.emails[0];",
-                            "        var parsed = email.match(\/\\@(.*)$\/);",
-                            "        var domain = parsed[1];",
-                            "        postman.setEnvironmentVariable(\"_domain\", domain);",
-                            "        tests[\"Create a person: retreived domain: \" + domain] = true",
-                            "    }",
-                            "}",
-                            "",
-                            "",
-                            "    "
-                        ]
-                    }
-                },
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "id": "263d0744-ec80-4b24-a3ad-2e2bc62bca25",
-                        "type": "text\/javascript",
-                        "exec": [
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a person: cannot retreive result\"] = false\n    }\n    else {\n        var email = jsonData.emails[0];\n        var parsed = email.match(\/\\@(.*)$\/);\n        var domain = parsed[1];\n        postman.setEnvironmentVariable(\"_domain\", domain);\n        tests[\"Create a person: retreived domain: \" + domain] = true\n    }\n}\n\n\n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n  \"emails\": [\n    \"steve.sfartz@gmail.com\"\n  ],\n  \"displayName\": \"Steve Sfartz\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Sfartz\",\n  \"orgId\": \"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\"\n  \n}",
-            "headers": "Authorization: Bearer {{access_token}}\nContent-Type: application\/json\n",
-            "pathVariables": []
-        },
-        {
-            "id": "646ed833-d121-aaea-c278-f8af65799156",
-            "name": "Delete a Person",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people\/{{_person}}",
-            "description": "Remove a person from the system. Only an admin can remove a person.\n\nSpecify the person ID in the personId parameter in the URI.\n\nhttps:\/\/developer.webex.com\/endpoint-people-personId-delete.html",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "DELETE",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 204) {",
-                            "    tests[\"Delete person: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Delete person: success\"] = true;",
-                            "}",
-                            "    ",
-                            "    "
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 204) {\n    tests[\"Delete person: failed\"] = false;\n}\nelse {\n    tests[\"Delete person: success\"] = true;\n}\n    \n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "\r\n\r\n  ",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "6af0771f-accd-cd4c-d6f0-5ff5dece1623",
-            "name": "List Events (new messages last hour)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/events?resource=messages&type=created&from={{_one_hour_ago}}&to={{_now}}",
-            "description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps:\/\/developer.webex.com\/endpoint-events-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [
-                {
-                    "key": "resource",
-                    "value": "messages",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "type",
-                    "value": "created",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "from",
-                    "value": "{{_one_hour_ago}}",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "to",
-                    "value": "{{_now}}",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "var now = new Date(Date.now());",
-                            "postman.setEnvironmentVariable(\"_now\", now.toISOString());",
-                            "",
-                            "var one_hour_ago = now;",
-                            "one_hour_ago.setHours(one_hour_ago.getHours()-1);",
-                            "postman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List events (new messages last hour): failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List events (new messages last hour): success\"] = true;",
-                            "",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.items.length === 0) {",
-                            "        tests[\"List events (new messages last hour): no new messages\"] = true",
-                            "    }",
-                            "    else {",
-                            "        var pickedEvent = jsonData.items[0];",
-                            "        postman.setEnvironmentVariable(\"_event\", pickedEvent.id);",
-                            "        tests[\"List events (new messages last hour): stored event:\" + pickedEvent.id] = true",
-                            "    }",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "preRequestScript": "var now = new Date(Date.now());\npostman.setEnvironmentVariable(\"_now\", now.toISOString());\n\nvar one_hour_ago = now;\none_hour_ago.setHours(one_hour_ago.getHours()-1);\npostman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());\n\n\n\n\n\n",
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List events (new messages last hour): failed\"] = false;\n}\nelse {\n    tests[\"List events (new messages last hour): success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items.length === 0) {\n        tests[\"List events (new messages last hour): no new messages\"] = true\n    }\n    else {\n        var pickedEvent = jsonData.items[0];\n        postman.setEnvironmentVariable(\"_event\", pickedEvent.id);\n        tests[\"List events (new messages last hour): stored event:\" + pickedEvent.id] = true\n    }\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "804e8715-36b4-e52b-8f14-23312f1c9dd9",
-            "name": "List Licenses",
-            "url": "https:\/\/api.ciscospark.com\/v1\/licenses",
-            "description": "List all licenses for a given organization. If no orgId is specified, the default is the organization of the authenticated user.\n\nhttps:\/\/developer.webex.com\/endpoint-licenses-get.html\n\nExample of a response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Spark Calling',\n    'totalUnits' : '42',\n    'consumedUnits' : '8'\n  } ]\n}\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List licenses : failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List licenses: success\"] = true;",
-                            "    ",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.items === undefined) {",
-                            "        tests[\"List licenses: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var licenseId = jsonData.items[0].id;",
-                            "        postman.setEnvironmentVariable(\"_license\", licenseId);",
-                            "        tests[\"List licenses: retreived one with id:\" + licenseId] = true",
-                            "    }",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "81f485d5-ab62-a897-f96c-0b62588dc778",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List licenses : failed\"] = false;\n}\nelse {\n    tests[\"List licenses: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List licenses: cannot retreive result\"] = false\n    }\n    else {\n        var licenseId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_license\", licenseId);\n        tests[\"List licenses: retreived one with id:\" + licenseId] = true\n    }\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "815bc924-be24-c73a-7acf-c189c56dffb1",
-            "name": "Get Events Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/events\/{{_event}}",
-            "description": "Shows details for an event, by event ID.\r\nSpecify the event ID in the eventId parameter in the URI.\r\n\r\nhttps:\/\/developer.webex.com\/endpoint-events-eventId-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get event details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get event details: success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get event details: failed\"] = false;\n}\nelse {\n    tests[\"Get event details: success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "8a44d5a8-ee10-eab7-2655-7c80cea68a7b",
-            "name": "List Organizations",
-            "url": "https:\/\/api.ciscospark.com\/v1\/organizations",
-            "description": "List all organizations visible by your account.\n\nhttps:\/\/developer.webex.com\/endpoint-organizations-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Acme, Inc.',\n    'created' : '2015-10-18T14:26:16+00:00'\n  } ]\n}\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List organizations : failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List organizations: success\"] = true;",
-                            "    ",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.items === undefined) {",
-                            "        tests[\"List organizations: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var orgId = jsonData.items[0].id;",
-                            "        postman.setEnvironmentVariable(\"_organization\", orgId);",
-                            "        tests[\"List organizations: retreived one with id:\" + orgId] = true",
-                            "    }",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "83590afe-95a9-68e6-de56-53c730353399",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List organizations : failed\"] = false;\n}\nelse {\n    tests[\"List organizations: success\"] = true;\n    \n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.items === undefined) {\n        tests[\"List organizations: cannot retreive result\"] = false\n    }\n    else {\n        var orgId = jsonData.items[0].id;\n        postman.setEnvironmentVariable(\"_organization\", orgId);\n        tests[\"List organizations: retreived one with id:\" + orgId] = true\n    }\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n    \"name\": \"European Football Championship 2016\"\n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "8b6f952c-df94-6890-1f72-eb5304320d32",
-            "name": "List Events",
-            "url": "https:\/\/api.ciscospark.com\/v1\/events?max=10",
-            "description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps:\/\/developer.webex.com\/endpoint-events-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [
-                {
-                    "key": "max",
-                    "value": "10",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List events: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List events: success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List events: failed\"] = false;\n}\nelse {\n    tests[\"List events: success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "90be273b-e03d-703e-4194-fdc14edb7cde",
-            "name": "List Events (last hour)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/events?from={{_one_hour_ago}}&to={{_now}}",
-            "description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps:\/\/developer.webex.com\/endpoint-events-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [
-                {
-                    "key": "from",
-                    "value": "{{_one_hour_ago}}",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "to",
-                    "value": "{{_now}}",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "var now = new Date(Date.now());",
-                            "postman.setEnvironmentVariable(\"_now\", now.toISOString());",
-                            "",
-                            "var one_hour_ago = now;",
-                            "one_hour_ago.setHours(one_hour_ago.getHours()-1);",
-                            "postman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List events (last hour): failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List events (last hour): success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "preRequestScript": "var now = new Date(Date.now());\npostman.setEnvironmentVariable(\"_now\", now.toISOString());\n\nvar one_hour_ago = now;\none_hour_ago.setHours(one_hour_ago.getHours()-1);\npostman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());\n\n\n\n\n\n",
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List events (last hour): failed\"] = false;\n}\nelse {\n    tests[\"List events (last hour): success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "b16b78de-df0a-5d5b-5b56-387984581282",
-            "name": "List people (with exact email)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people?email={{_email}}",
-            "description": "List people in your organization.\n\nhttps:\/\/developer.webex.com\/endpoint-people-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [
-                {
-                    "key": "email",
-                    "value": "{{_email}}",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "id": "70aaa3a3-77f3-4630-887e-4a04fa43d55f",
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List people (exact email): failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List people (exact email): success\"] = true;",
-                            "}",
-                            "",
-                            ""
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List people (exact email): failed\"] = false;\n}\nelse {\n    tests[\"List people (exact email): success\"] = true;\n}\n\n",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "c3d6ff1e-be4c-e29e-6630-658f9a25baef",
-            "name": "Create a Person (random)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people",
-            "description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nhttps:\/\/developer.webex.com\/endpoint-people-post.html\n\nExample Request:\n``` json\n{\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https:\/\/1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com\/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\n}\n\nExample Response:\n{\n  'id' : 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY',\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https:\/\/1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com\/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'created' : '2015-10-18T14:26:16+00:00',\n  'timezone' : 'America\/Denver'\n}\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "Content-Type",
-                    "value": "application\/json",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "POST",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "prerequest",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "var random = Math.round(Math.random()*1000);",
-                            "",
-                            "postman.setEnvironmentVariable(\"_random\", random);"
-                        ]
-                    }
-                },
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Create a person: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Create a person: success\"] = true;",
-                            "",
-                            "    var jsonData = JSON.parse(responseBody);",
-                            "    if (jsonData.id === undefined) {",
-                            "        tests[\"Create a person: cannot retreive result\"] = false",
-                            "    }",
-                            "    else {",
-                            "        var personID = jsonData.id;",
-                            "        postman.setEnvironmentVariable(\"_person\", personID);",
-                            "        tests[\"Create a person: retreived with id:\" + personID] = true",
-                            "        ",
-                            "        var orgId = jsonData.orgId;",
-                            "        postman.setEnvironmentVariable(\"_organization\", orgId);",
-                            "        tests[\"Create a person: retreived org with id:\" + orgId] = true",
-                            "        ",
-                            "        var email = jsonData.emails[0];",
-                            "        postman.setEnvironmentVariable(\"_email\", email);",
-                            "        tests[\"Create a person: retreived email:\" + email] = true",
-                            "    }",
-                            "    ",
-                            "}",
-                            "    ",
-                            "    "
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": "var random = Math.round(Math.random()*1000);\n\npostman.setEnvironmentVariable(\"_random\", random);",
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Create a person: failed\"] = false;\n}\nelse {\n    tests[\"Create a person: success\"] = true;\n\n    var jsonData = JSON.parse(responseBody);\n    if (jsonData.id === undefined) {\n        tests[\"Create a person: cannot retreive result\"] = false\n    }\n    else {\n        var personID = jsonData.id;\n        postman.setEnvironmentVariable(\"_person\", personID);\n        tests[\"Create a person: retreived with id:\" + personID] = true\n        \n        var orgId = jsonData.orgId;\n        postman.setEnvironmentVariable(\"_organization\", orgId);\n        tests[\"Create a person: retreived org with id:\" + orgId] = true\n        \n        var email = jsonData.emails[0];\n        postman.setEnvironmentVariable(\"_email\", email);\n        tests[\"Create a person: retreived email:\" + email] = true\n    }\n    \n}\n    \n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\r\n  \"emails\": [\r\n    \"{{_random}}@{{_domain}}\"\r\n  ],\r\n  \"firstName\": \"User\",\r\n  \"lastName\": \"FromPostman\"\r\n}",
-            "headers": "Authorization: Bearer {{access_token}}\nContent-Type: application\/json\n",
-            "pathVariables": []
-        },
-        {
-            "id": "cefbbd82-629d-18e7-2bcf-d2c7b463ee3f",
-            "name": "Update a Person",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people\/{{_person}}",
-            "description": "Update details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI. Only an admin can update a person details.\r\n\r\nhttps:\/\/developer.webex.com\/endpoint-people-personId-put.html\r\n\r\nExample Request:\r\n``` json\r\n{\r\n  'emails\" : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\r\n  'displayName' : 'John Andersen',\r\n  'firstName' : 'John',\r\n  'lastName' : 'Andersen',\r\n  'avatar' : 'https:\/\/1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com\/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\r\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\r\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\r\n}\r\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "Content-Type",
-                    "value": "application\/json",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "PUT",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Update person: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Update person: success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Update person: failed\"] = false;\n}\nelse {\n    tests[\"Update person: success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\r\n  \"orgId\":\"{{_organization}}\",\r\n  \"emails\": [\r\n        \"{{_email}}\"\r\n    ],\r\n  \"displayName\": \"User updated\",\r\n  \"roles\": [\"{{_role}}\"]\r\n}\r\n\r\n\r\n  ",
-            "headers": "Authorization: Bearer {{access_token}}\nContent-Type: application\/json\n",
-            "pathVariables": []
-        },
-        {
-            "id": "d8027acf-e393-f5d4-c6c6-65b6efcc1628",
-            "name": "Get Organization Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/organizations\/{{_organization}}",
-            "description": "Shows details for an organization, by ID.\r\n\r\nSpecify the org ID in the orgId parameter in the URI.\r\n\r\nhttps:\/\/developer.webex.com\/endpoint-organizations-orgId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Acme, Inc.',\r\n  'created' : '2015-10-18T14:26:16+00:00'\r\n}\r\n```",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get organization details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get organization details: success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "83590afe-95a9-68e6-de56-53c730353399",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get organization details: failed\"] = false;\n}\nelse {\n    tests[\"Get organization details: success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{ \n    \"roomId\":\"Y2lzY29zcGFyazovL3VzL1JPT00vMjQ4ZTQ3OTAtZWJjZi0xMWU1LTkyMjEtMTVmMTZiMmJlZjUx\" , \n    \"name\":\"NewApp\",\n    \"redirectUrls\":[\"http:\/\/sfartz.com\/hello\"],\n    \"scopes\":[\"spark:people_read\"]\n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "ef2d5da0-9e68-3cce-ea37-10758a6b315f",
-            "name": "List Events (new messages)",
-            "url": "https:\/\/api.ciscospark.com\/v1\/events?resource=messages&type=created",
-            "description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps:\/\/developer.webex.com\/endpoint-events-get.html",
-            "data": [],
-            "dataMode": "params",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [
-                {
-                    "key": "resource",
-                    "value": "messages",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                },
-                {
-                    "key": "type",
-                    "value": "created",
-                    "equals": true,
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"List events (new messages): failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"List events (new messages): success\"] = true;",
-                            "}"
-                        ]
-                    }
-                }
-            ],
-            "folder": "7c73fd0f-34bc-0715-6ce7-74679b4cfbbc",
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"List events (new messages): failed\"] = false;\n}\nelse {\n    tests[\"List events (new messages): success\"] = true;\n}",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        },
-        {
-            "id": "ff88a8ea-7772-e534-952c-9488ec0e31a3",
-            "name": "Get Person Details",
-            "url": "https:\/\/api.ciscospark.com\/v1\/people\/{{_person}}",
-            "description": "Shows details for a person, by ID.\nSpecify the person ID in the personId parameter in the URI.\n\nhttps:\/\/developer.webex.com\/endpoint-people-personId-get.html",
-            "data": [],
-            "dataMode": "raw",
-            "headerData": [
-                {
-                    "key": "Authorization",
-                    "value": "Bearer {{access_token}}",
-                    "description": "",
-                    "enabled": true
-                }
-            ],
-            "method": "GET",
-            "pathVariableData": [],
-            "queryParams": [],
-            "auth": null,
-            "events": [
-                {
-                    "listen": "test",
-                    "script": {
-                        "type": "text\/javascript",
-                        "exec": [
-                            "if (responseCode.code != 200) {",
-                            "    tests[\"Get person details: failed\"] = false;",
-                            "}",
-                            "else {",
-                            "    tests[\"Get person details: success\"] = true;",
-                            "}",
-                            "",
-                            "",
-                            "    "
-                        ]
-                    }
-                }
-            ],
-            "folder": "35701845-4082-6e65-c017-3d53910f68a7",
-            "responses": [
-                {
-                    "id": "a14ae8ce-e8a1-0a7f-eacb-e6ba932de48b",
-                    "name": "person details (St\u00e8ve)",
-                    "status": "",
-                    "mime": "",
-                    "language": "javascript",
-                    "text": "{\"id\":\"Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wM2ZiZTEwOS0yM2Y2LTQ1OWItODFlNS02YzYxM2JhMWNhZTE\",\"emails\":[\"steve.sfartz@gmail.com\"],\"displayName\":\"St\u00e8ve Sfartz\",\"firstName\":\"St\u00e8ve\",\"lastName\":\"Sfartz\",\"avatar\":\"https:\/\/c74213ddaf67eb02dabb-04de5163e3f90393a9f7bb6f7f0967f1.ssl.cf1.rackcdn.com\/V1~efa32f72522b5f61176ce069d9163a43~ZOzopPn4Q3edMJrRLI-FMA==~1600\",\"orgId\":\"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\",\"roles\":[\"Y2lzY29zcGFyazovL3VzL1JPTEUvaWRfZnVsbF9hZG1pbg\"],\"licenses\":[\"Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvNjVkNDdjMzUtZTc4NS00Y2UzLTljNDQtYTRjNDhlYmU0MmJhOk1TXzA3NTMwNzAxLTlkM2YtNDFmOC04Y2NkLTY4YzY1NmU2ZGMwMQ\"],\"created\":\"2015-12-22T10:36:52.660Z\",\"timeZone\":\"Europe\/Paris\"}",
-                    "responseCode": {
-                        "code": 200,
-                        "name": "OK"
-                    },
-                    "requestObject": {
-                        "url": "https:\/\/api.ciscospark.com\/v1\/people\/me",
-                        "headers": [
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{spark_token}}",
-                                "enabled": true
-                            },
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json",
-                                "enabled": true,
-                                "description": "The mime type of this content"
-                            }
-                        ],
-                        "data": "{\n    \"name\": \"European Football Championship 2016\"\n}",
-                        "method": "GET",
-                        "dataMode": "raw"
-                    },
-                    "headers": [
-                        {
-                            "name": "Cache-Control",
-                            "key": "Cache-Control",
-                            "value": "no-cache",
-                            "description": ""
-                        },
-                        {
-                            "name": "Content-Encoding",
-                            "key": "Content-Encoding",
-                            "value": "gzip",
-                            "description": ""
-                        },
-                        {
-                            "name": "Content-Length",
-                            "key": "Content-Length",
-                            "value": "540",
-                            "description": ""
-                        },
-                        {
-                            "name": "Content-Type",
-                            "key": "Content-Type",
-                            "value": "application\/json;charset=UTF-8",
-                            "description": ""
-                        },
-                        {
-                            "name": "Date",
-                            "key": "Date",
-                            "value": "Wed, 09 Nov 2016 12:39:38 GMT",
-                            "description": ""
-                        },
-                        {
-                            "name": "Server",
-                            "key": "Server",
-                            "value": "Redacted",
-                            "description": ""
-                        },
-                        {
-                            "name": "Trackingid",
-                            "key": "Trackingid",
-                            "value": "NA_e996fd8b-5abe-46f8-867b-a26732771b1e",
-                            "description": ""
-                        },
-                        {
-                            "name": "Vary",
-                            "key": "Vary",
-                            "value": "Accept-Encoding",
-                            "description": ""
-                        },
-                        {
-                            "name": "X-Cf-Requestid",
-                            "key": "X-Cf-Requestid",
-                            "value": "512dc7ed-54dd-41f3-4338-2815604cd323",
-                            "description": ""
-                        }
-                    ],
-                    "cookies": [
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1789734857,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "optimizelyEndUserId",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "oeu1474374857983r0.14725724747852298"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1632237399,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_fid",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "7FADA00A51DA6DC2-19EB0A83469897EF"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "AMCVS_5C0A123F5245AEEA0A490D45%40AdobeOrg",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "1"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1480187372,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "user_segment",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "Prospect"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "offerFlag",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "direct"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_dmdbase",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "rsp%3Dmatch%26cData%3D864409%253ACisco%2520Systems%2520Inc%253ATelecommunications%253AEquipment%2520%2526%2520Services%253AEnterprise%253AGreater%2520th%253AEnterprise%2520Business%253ATelecommunications%26cDataCustom%3DAdUpgrades%253ASan%2520Jose%253ACA%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%26sentAA%3DT%26sentAT%3DT"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "TrialFlag",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "offer-page"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1636447312,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "spark_lst3",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "%5B%5B%27other%27%2C%271474797461486%27%5D%2C%5B%27direct%27%2C%271478680912377%27%5D%5D"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1510221300,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "mp_87246332384760c6f27c021cf964be46_mixpanel",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "%7B%22distinct_id%22%3A%20%226b856818bc3ccf2b0c09fa74a2eb8ab84016c085e681428df4faadf8017a504a%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpap%22%3A%20%5B%5D%7D"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1478771700,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "mp_mixpanel__c",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "0"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1541765008,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "AMCV_5C0A123F5245AEEA0A490D45%40AdobeOrg",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "-1176276602%7CMCIDTS%7C17114%7CMCMID%7C69089778980261905934220490212596711080%7CMCAAMLH-1478858364%7C6%7CMCAAMB-1479297808%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1478700208s%7CNONE%7CMCAID%7C2B6C2745050120E0-400001136000C2AA"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1481285061,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_nr",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "1478693061363-Repeat"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1573301061,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_lv",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "1478693061364"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1480546800,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_vnum",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "1480546800357%26vn%3D2"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "siteEntry",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "1"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "SC_LINKS",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "%5B%5BB%5D%5D"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "v76",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "%3A"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_ppvl",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C253%2C0%2C253%2C1920%2C1080%2C1%2CL"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_ppv",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C792%2C1714%2C792%2C1920%2C1080%2C1%2CP"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1478696666.278,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "webexToken",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "\"9lky1LUlDaAk0wNMLGQZDqeHijTSbknr3ey\/\/5I8xq16T2VW4m8APfMKvlUTPoCvC71CJU31GeI901eE\/eg=\""
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1486469067,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "mbox",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "PC#1456324639084-656899.28_28#1486469067|check#true#1478693127|session#1478693060450-425931#1478694927"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1541766499,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "_ga",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "GA1.2.354628933.1456392661"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1510230500,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "_actmu",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "25019306.1308965199.1458575275042.1478693238438"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1478696300,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "_actms",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "1478693238438"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1794054760,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "optimizelySegments",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "%7B%226148830417%22%3A%22gc%22%2C%226176172291%22%3A%22none%22%2C%226153610436%22%3A%22referral%22%2C%226132590950%22%3A%22false%22%7D"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "expirationDate": 1794054763,
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "optimizelyBuckets",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": false,
-                            "storeId": "0",
-                            "value": "%7B%227495520894%22%3A%227475976205%22%2C%227548736597%22%3A%227574622917%22%2C%227717362716%22%3A%227714322794%22%7D"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_cc",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "true"
-                        },
-                        {
-                            "domain": ".ciscospark.com",
-                            "hostOnly": false,
-                            "httpOnly": false,
-                            "name": "s_sq",
-                            "path": "\/",
-                            "sameSite": "no_restriction",
-                            "secure": false,
-                            "session": true,
-                            "storeId": "0",
-                            "value": "%5B%5BB%5D%5D"
-                        }
-                    ],
-                    "request": "ff88a8ea-7772-e534-952c-9488ec0e31a3",
-                    "collection": "beba6b1c-a834-f8a3-951c-29678666d198"
-                }
-            ],
-            "preRequestScript": null,
-            "tests": "if (responseCode.code != 200) {\n    tests[\"Get person details: failed\"] = false;\n}\nelse {\n    tests[\"Get person details: success\"] = true;\n}\n\n\n    ",
-            "currentHelper": null,
-            "helperAttributes": null,
-            "collectionId": "beba6b1c-a834-f8a3-951c-29678666d198",
-            "rawModeData": "{\n  \"emails\": [\n    \"steve.sfartz@gmail.com\"\n  ],\n  \"displayName\": \"Steve Sfartz\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Sfartz\",\n  \"orgId\": \"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\"\n  \n}",
-            "headers": "Authorization: Bearer {{access_token}}\n",
-            "pathVariables": []
-        }
-    ]
+	"info": {
+		"_postman_id": "beba6b1c-a834-f8a3-951c-29678666d198",
+		"name": "Webex Teams Admin API",
+		"description": "The Webex Teams API includes administration APIs that allow administrators to programatically perform administration actions such as provisioning a user. By automating administration, user management and provisioning can be centralized in an existing tool, rather than using the Webex Teams Control Hub. For example, a partner selling multiple Collaboration tools to customers can use these APIs to enable Webex Teams provisioning through a centralized portal.\n\nhttps://developer.webex.com/admin-api.html\n\n\n## What's possible with Admin APIs?\n\nCurrently, administration is focused on User Provisioning. Using these APIs, an admin can:\n\n- Create a user\n- Update a user\n- View license usage of an organization\n- View available roles of an organization\n- Manage Hybrid Services licenses and users\n\n\n## Authentication\n\nUse of these APIs requires you to be an administrator of an organization.\n\nIf you are an administrator, you can login here to get a development auth token with necessary scopes.\n\nCreating an Integration that will act on behalf of an administrator can be done by including one or more of the following scopes when requesting an auth token via oAuth.\n\n- spark-admin:people_read  Access to read your user's company directory\n- spark-admin:people_write  Access to write to your user's company directory\n- spark-admin:organizations_read  Access to write to your user's company directory\n- spark-admin:roles_read  Access to read roles available in your user's organization\n- spark-admin:licenses_read  Access to read licenses available in your user's organizations\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Devices",
+			"item": [
+				{
+					"name": "List Devices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List devices : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List devices: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List devices: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var deviceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
+									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/devices",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"devices"
+							]
+						},
+						"description": "Lists all active Webex devices associated with the authenticated user, such as devices activated in personal mode, or devices to which the user is actively paired or using. Administrators can list all devices within an organization.\n\nhttps://developer.webex.com/docs/api/v1/devices/list-devices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get device details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get device details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/devices/{{_device}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"devices",
+								"{{_device}}"
+							]
+						},
+						"description": "Shows details for a device, by ID.\r\nSpecify the device ID in the deviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices/get-device-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Device",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete device: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Delete device: success\"] = true;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/devices/{{_device}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"devices",
+								"{{_device}}"
+							]
+						},
+						"description": "Deletes a device, by ID.\r\nSpecify the device ID in the deviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices/delete-a-device"
+					},
+					"response": []
+				}
+			],
+			"description": "Devices represent cloud-registered Webex RoomOS devices, as well as actively-connected Webex soft clients on mobile or desktop. Devices may be associated with Places.\r\n\r\nSearching and viewing details for your devices requires an auth token with the spark:devices_read scope. Updating or deleting your devices requires an auth token with the spark:devices_write scope. Viewing the list of all devices in an organization requires an administrator auth token with the spark-admin:devices_read scope. Adding, updating, or deleting all devices in an organization requires an administrator auth token with the spark-admin:devices_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "88297cc6-7660-4dd4-b6c1-c24df125a102",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6f19bcb6-6a75-4f6c-a8fe-2cfc52a7a319",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "List Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List events: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List events: success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/events?max=10",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							],
+							"query": [
+								{
+									"key": "max",
+									"value": "10"
+								}
+							]
+						},
+						"description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps://developer.webex.com/endpoint-events-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List Events (new messages)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List events (new messages): failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List events (new messages): success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/events?resource=messages&type=created",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							],
+							"query": [
+								{
+									"key": "resource",
+									"value": "messages"
+								},
+								{
+									"key": "type",
+									"value": "created"
+								}
+							]
+						},
+						"description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps://developer.webex.com/endpoint-events-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List Events (last hour)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var now = new Date(Date.now());",
+									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
+									"",
+									"var one_hour_ago = now;",
+									"one_hour_ago.setHours(one_hour_ago.getHours()-1);",
+									"postman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List events (last hour): failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List events (last hour): success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/events?from={{_one_hour_ago}}&to={{_now}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "{{_one_hour_ago}}"
+								},
+								{
+									"key": "to",
+									"value": "{{_now}}"
+								}
+							]
+						},
+						"description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps://developer.webex.com/endpoint-events-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List Events (new messages last hour)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var now = new Date(Date.now());",
+									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
+									"",
+									"var one_hour_ago = now;",
+									"one_hour_ago.setHours(one_hour_ago.getHours()-1);",
+									"postman.setEnvironmentVariable(\"_one_hour_ago\", one_hour_ago.toISOString());",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List events (new messages last hour): failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List events (new messages last hour): success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items.length === 0) {",
+									"        tests[\"List events (new messages last hour): no new messages\"] = true",
+									"    }",
+									"    else {",
+									"        var pickedEvent = jsonData.items[0];",
+									"        postman.setEnvironmentVariable(\"_event\", pickedEvent.id);",
+									"        tests[\"List events (new messages last hour): stored event:\" + pickedEvent.id] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/events?resource=messages&type=created&from={{_one_hour_ago}}&to={{_now}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							],
+							"query": [
+								{
+									"key": "resource",
+									"value": "messages"
+								},
+								{
+									"key": "type",
+									"value": "created"
+								},
+								{
+									"key": "from",
+									"value": "{{_one_hour_ago}}"
+								},
+								{
+									"key": "to",
+									"value": "{{_now}}"
+								}
+							]
+						},
+						"description": "List events in your organization. Several query parameters are available to filter the response.\nLong result sets will be split into pages.\n\nhttps://developer.webex.com/endpoint-events-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get event details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get event details: success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/events/{{_event}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events",
+								"{{_event}}"
+							]
+						},
+						"description": "Shows details for an event, by event ID.\r\nSpecify the event ID in the eventId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-events-eventId-get.html"
+					},
+					"response": []
+				}
+			],
+			"description": "Events are generated when actions take place within Cisco Spark, such as when someone creates or deletes a message. Use the Events API to retrieve events related to your account. Compliance Officers may retrieve events for all users within an organization. See the Compliance Guide for more information.\nhttps://developer.ciscospark.com/docs/api/guides/compliance.html\n\nThe resource endpoints such as /rooms, /messages, /memberships, etc. represent the current state of data in Spark. The /events resource represents the log of state changes which led to the current state of these resources; it details when a resource changed and who made the change.\n\nFor example, when a user posts a message in a room, this will result in a new message, available via the /messages resource. It will also result in a new event, available on the /events resource. If the user then deletes their message, this will result in the message no longer being returned on the /messages resource but it will result in a new event for the message deletion on the /events resource.\n\nEvents are available for the following resources when they are created, updated, or deleted:\n- messages\n- memberships\n\nhttps://developer.ciscospark.com/resource-events.html"
+		},
+		{
+			"name": "Licenses",
+			"item": [
+				{
+					"name": "List Licenses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List licenses : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List licenses: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List licenses: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var licenseId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_license\", licenseId);",
+									"        tests[\"List licenses: retreived one with id:\" + licenseId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/licenses",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"licenses"
+							]
+						},
+						"description": "List all licenses for a given organization. If no orgId is specified, the default is the organization of the authenticated user.\n\nhttps://developer.webex.com/endpoint-licenses-get.html\n\nExample of a response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Spark Calling',\n    'totalUnits' : '42',\n    'consumedUnits' : '8'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get License Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get license details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get license details: success\"] = true;",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/licenses/{{_license}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"licenses",
+								"{{_license}}"
+							]
+						},
+						"description": "Shows details for a license, by ID.\r\n\r\nSpecify the license ID in the licenseId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-licenses-licenseId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Spark Calling',\r\n  'totalUnits' : '42',\r\n  'consumedUnits' : \"8'\r\n}\r\n```"
+					},
+					"response": []
+				}
+			],
+			"description": "An allowance for features and services that are provided to users on a Webex Teams services subscription. Cisco and its partners manage the amount of licenses provided to administrators and users. This license resource can be accessed only by an admin.\n\nTo learn about how to allocate Hybrid Services licenses, see the Managing Hybrid Services guide.\n\nhttps://developer.webex.com/resource-licenses.html",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "22b12f22-89d8-42d9-9dc3-e937edb67908",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba43e23c-74ce-40a5-9fd8-f8e1246d56dc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Organizations",
+			"item": [
+				{
+					"name": "List Organizations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List organizations : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List organizations: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List organizations: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var orgId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"List organizations: retreived one with id:\" + orgId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/organizations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"organizations"
+							]
+						},
+						"description": "List all organizations visible by your account.\n\nhttps://developer.webex.com/endpoint-organizations-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Acme, Inc.',\n    'created' : '2015-10-18T14:26:16+00:00'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Organization Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get organization details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get organization details: success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/organizations/{{_organization}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"organizations",
+								"{{_organization}}"
+							]
+						},
+						"description": "Shows details for an organization, by ID.\r\n\r\nSpecify the org ID in the orgId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-organizations-orgId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Acme, Inc.',\r\n  'created' : '2015-10-18T14:26:16+00:00'\r\n}\r\n```"
+					},
+					"response": []
+				}
+			],
+			"description": "A set of people in Webex Teams. Organizations may manage other organizations or be managed themselves. This organizations resource can be accessed only by an admin.\n\nhttps://developer.webex.com/resource-organizations.html\n\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "75b5851d-579d-4562-a2a7-4ed4a9420a85",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "eab9171a-374c-4260-a774-532a75dc2eb8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "People",
+			"item": [
+				{
+					"name": "Get Person Details (me)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74bc245f-0686-4669-ac38-4bad3a1dc927",
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a person: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var email = jsonData.emails[0];",
+									"        var parsed = email.match(/\\@(.*)$/);",
+									"        var domain = parsed[1];",
+									"        postman.setEnvironmentVariable(\"_domain\", domain);",
+									"        tests[\"Create a person: retreived domain: \" + domain] = true",
+									"    }",
+									"}",
+									"",
+									"",
+									"    "
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "263d0744-ec80-4b24-a3ad-2e2bc62bca25",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"me"
+							]
+						},
+						"description": "Show the profile for the authenticated user.\n\nhttps://developer.webex.com/endpoint-people-me-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List People",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get person details: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        ",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Get person details: retreived org with id:\" + orgId] = true",
+									"        ",
+									"        var email = jsonData.emails[0];",
+									"        postman.setEnvironmentVariable(\"_email\", email);",
+									"        tests[\"Get person details: retreived email:\" + email] = true",
+									"    }",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Person (random)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var random = Math.round(Math.random()*1000);",
+									"",
+									"postman.setEnvironmentVariable(\"_random\", random);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a person: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create a person: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a person: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var personID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_person\", personID);",
+									"        tests[\"Create a person: retreived with id:\" + personID] = true",
+									"        ",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Create a person: retreived org with id:\" + orgId] = true",
+									"        ",
+									"        var email = jsonData.emails[0];",
+									"        postman.setEnvironmentVariable(\"_email\", email);",
+									"        tests[\"Create a person: retreived email:\" + email] = true",
+									"    }",
+									"    ",
+									"}",
+									"    ",
+									"    "
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"emails\": [\r\n    \"{{_random}}@{{_domain}}\"\r\n  ],\r\n  \"firstName\": \"User\",\r\n  \"lastName\": \"FromPostman\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people"
+							]
+						},
+						"description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nhttps://developer.webex.com/endpoint-people-post.html\n\nExample Request:\n``` json\n{\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\n}\n\nExample Response:\n{\n  'id' : 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY',\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'created' : '2015-10-18T14:26:16+00:00',\n  'timezone' : 'America/Denver'\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Person Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get person details: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        ",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Get person details: retreived org with id:\" + orgId] = true",
+									"        ",
+									"        var email = jsonData.emails[0];",
+									"        postman.setEnvironmentVariable(\"_email\", email);",
+									"        tests[\"Get person details: retreived email:\" + email] = true",
+									"    }",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Shows details for a person, by ID.\nSpecify the person ID in the personId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-people-personId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "List people (with exact email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70aaa3a3-77f3-4630-887e-4a04fa43d55f",
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List people (exact email): failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List people (exact email): success\"] = true;",
+									"}",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people?email={{_email}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{_email}}"
+								}
+							]
+						},
+						"description": "List people in your organization.\n\nhttps://developer.webex.com/endpoint-people-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Get roles (to fetch a role id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/roles",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						},
+						"description": "List all roles.\n\nhttps://developer.webex.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Update person: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Update person: success\"] = true;",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orgId\":\"{{_organization}}\",\r\n  \"emails\": [\r\n        \"{{_email}}\"\r\n    ],\r\n  \"displayName\": \"User updated\",\r\n  \"roles\": [\"{{_role}}\"]\r\n}\r\n\r\n\r\n  "
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Update details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI. Only an admin can update a person details.\r\n\r\nhttps://developer.webex.com/endpoint-people-personId-put.html\r\n\r\nExample Request:\r\n``` json\r\n{\r\n  'emails\" : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\r\n  'displayName' : 'John Andersen',\r\n  'firstName' : 'John',\r\n  'lastName' : 'Andersen',\r\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\r\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\r\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\r\n}\r\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Person Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Shows details for a person, by ID.\nSpecify the person ID in the personId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-people-personId-get.html"
+					},
+					"response": [
+						{
+							"name": "person details (Stève)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{spark_token}}",
+										"enabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"enabled": true,
+										"description": "The mime type of this content"
+									}
+								],
+								"url": {
+									"raw": "https://api.ciscospark.com/v1/people/me",
+									"protocol": "https",
+									"host": [
+										"api",
+										"ciscospark",
+										"com"
+									],
+									"path": [
+										"v1",
+										"people",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "javascript",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": ""
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": ""
+								},
+								{
+									"key": "Content-Length",
+									"value": "540",
+									"name": "Content-Length",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Nov 2016 12:39:38 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "Server",
+									"value": "Redacted",
+									"name": "Server",
+									"description": ""
+								},
+								{
+									"key": "Trackingid",
+									"value": "NA_e996fd8b-5abe-46f8-867b-a26732771b1e",
+									"name": "Trackingid",
+									"description": ""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": ""
+								},
+								{
+									"key": "X-Cf-Requestid",
+									"value": "512dc7ed-54dd-41f3-4338-2815604cd323",
+									"name": "X-Cf-Requestid",
+									"description": ""
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Fri Sep 18 2026 14:34:17 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "oeu1474374857983r0.14725724747852298",
+									"key": "optimizelyEndUserId"
+								},
+								{
+									"expires": "Tue Sep 21 2021 17:16:39 GMT+0200 (Romance Daylight Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "7FADA00A51DA6DC2-19EB0A83469897EF",
+									"key": "s_fid"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "1",
+									"key": "AMCVS_5C0A123F5245AEEA0A490D45%40AdobeOrg"
+								},
+								{
+									"expires": "Sat Nov 26 2016 20:09:32 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "Prospect",
+									"key": "user_segment"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "direct",
+									"key": "offerFlag"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "rsp%3Dmatch%26cData%3D864409%253ACisco%2520Systems%2520Inc%253ATelecommunications%253AEquipment%2520%2526%2520Services%253AEnterprise%253AGreater%2520th%253AEnterprise%2520Business%253ATelecommunications%26cDataCustom%3DAdUpgrades%253ASan%2520Jose%253ACA%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%253A%255Bn%2Fa%255D%26sentAA%3DT%26sentAT%3DT",
+									"key": "s_dmdbase"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "offer-page",
+									"key": "TrialFlag"
+								},
+								{
+									"expires": "Tue Nov 09 2021 09:41:52 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%5B%5B%27other%27%2C%271474797461486%27%5D%2C%5B%27direct%27%2C%271478680912377%27%5D%5D",
+									"key": "spark_lst3"
+								},
+								{
+									"expires": "Thu Nov 09 2017 10:55:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%22distinct_id%22%3A%20%226b856818bc3ccf2b0c09fa74a2eb8ab84016c085e681428df4faadf8017a504a%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpap%22%3A%20%5B%5D%7D",
+									"key": "mp_87246332384760c6f27c021cf964be46_mixpanel"
+								},
+								{
+									"expires": "Thu Nov 10 2016 10:55:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "0",
+									"key": "mp_mixpanel__c"
+								},
+								{
+									"expires": "Fri Nov 09 2018 13:03:28 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "-1176276602%7CMCIDTS%7C17114%7CMCMID%7C69089778980261905934220490212596711080%7CMCAAMLH-1478858364%7C6%7CMCAAMB-1479297808%7CNRX38WO0n5BH8Th-nqAG_A%7CMCOPTOUT-1478700208s%7CNONE%7CMCAID%7C2B6C2745050120E0-400001136000C2AA",
+									"key": "AMCV_5C0A123F5245AEEA0A490D45%40AdobeOrg"
+								},
+								{
+									"expires": "Fri Dec 09 2016 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061363-Repeat",
+									"key": "s_nr"
+								},
+								{
+									"expires": "Sat Nov 09 2019 13:04:21 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693061364",
+									"key": "s_lv"
+								},
+								{
+									"expires": "Thu Dec 01 2016 00:00:00 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1480546800357%26vn%3D2",
+									"key": "s_vnum"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "1",
+									"key": "siteEntry"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%5B%5BB%5D%5D",
+									"key": "SC_LINKS"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%3A",
+									"key": "v76"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C253%2C0%2C253%2C1920%2C1080%2C1%2CL",
+									"key": "s_ppvl"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "wx%253Aus%253Aen_US%253ADisplayAccountOrderListPage%2C100%2C100%2C792%2C1714%2C792%2C1920%2C1080%2C1%2CP",
+									"key": "s_ppv"
+								},
+								{
+									"expires": "Wed Nov 09 2016 14:04:26 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "\"9lky1LUlDaAk0wNMLGQZDqeHijTSbknr3ey//5I8xq16T2VW4m8APfMKvlUTPoCvC71CJU31GeI901eE/eg=\"",
+									"key": "webexToken"
+								},
+								{
+									"expires": "Tue Feb 07 2017 13:04:27 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "PC#1456324639084-656899.28_28#1486469067|check#true#1478693127|session#1478693060450-425931#1478694927",
+									"key": "mbox"
+								},
+								{
+									"expires": "Fri Nov 09 2018 13:28:19 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "GA1.2.354628933.1456392661",
+									"key": "_ga"
+								},
+								{
+									"expires": "Thu Nov 09 2017 13:28:20 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "25019306.1308965199.1458575275042.1478693238438",
+									"key": "_actmu"
+								},
+								{
+									"expires": "Wed Nov 09 2016 13:58:20 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "1478693238438",
+									"key": "_actms"
+								},
+								{
+									"expires": "Sat Nov 07 2026 13:32:40 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%226148830417%22%3A%22gc%22%2C%226176172291%22%3A%22none%22%2C%226153610436%22%3A%22referral%22%2C%226132590950%22%3A%22false%22%7D",
+									"key": "optimizelySegments"
+								},
+								{
+									"expires": "Sat Nov 07 2026 13:32:43 GMT+0100 (Romance Standard Time)",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": false,
+									"value": "%7B%227495520894%22%3A%227475976205%22%2C%227548736597%22%3A%227574622917%22%2C%227717362716%22%3A%227714322794%22%7D",
+									"key": "optimizelyBuckets"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "true",
+									"key": "s_cc"
+								},
+								{
+									"expires": "Invalid Date",
+									"hostOnly": false,
+									"httpOnly": false,
+									"domain": ".ciscospark.com",
+									"path": "/",
+									"secure": false,
+									"session": true,
+									"value": "%5B%5BB%5D%5D",
+									"key": "s_sq"
+								}
+							],
+							"body": "{\"id\":\"Y2lzY29zcGFyazovL3VzL1BFT1BMRS8wM2ZiZTEwOS0yM2Y2LTQ1OWItODFlNS02YzYxM2JhMWNhZTE\",\"emails\":[\"steve.sfartz@gmail.com\"],\"displayName\":\"Stève Sfartz\",\"firstName\":\"Stève\",\"lastName\":\"Sfartz\",\"avatar\":\"https://c74213ddaf67eb02dabb-04de5163e3f90393a9f7bb6f7f0967f1.ssl.cf1.rackcdn.com/V1~efa32f72522b5f61176ce069d9163a43~ZOzopPn4Q3edMJrRLI-FMA==~1600\",\"orgId\":\"Y2lzY29zcGFyazovL3VzL09SR0FOSVpBVElPTi82NWQ0N2MzNS1lNzg1LTRjZTMtOWM0NC1hNGM0OGViZTQyYmE\",\"roles\":[\"Y2lzY29zcGFyazovL3VzL1JPTEUvaWRfZnVsbF9hZG1pbg\"],\"licenses\":[\"Y2lzY29zcGFyazovL3VzL0xJQ0VOU0UvNjVkNDdjMzUtZTc4NS00Y2UzLTljNDQtYTRjNDhlYmU0MmJhOk1TXzA3NTMwNzAxLTlkM2YtNDFmOC04Y2NkLTY4YzY1NmU2ZGMwMQ\"],\"created\":\"2015-12-22T10:36:52.660Z\",\"timeZone\":\"Europe/Paris\"}"
+						}
+					]
+				},
+				{
+					"name": "Delete a Person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22817ba7-fd97-4e57-b266-7967133398e7",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete person: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Delete person: success\"] = true;",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Remove a person from the system. Only an admin can remove a person.\n\nSpecify the person ID in the personId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-people-personId-delete.html"
+					},
+					"response": []
+				}
+			],
+			"description": "People are registered users of Webex Teams. Searching and viewing People requires an auth token with a scope of spark:people_read. Viewing the list of all People in your Organization requires an administrator auth token with spark-admin:people_read scope. Adding, updating, and removing People requires an administrator auth token with the spark-admin:people_write scope.\r\n\r\nTo learn more about managing people in a room see the Memberships API. For information about how to allocate Hybrid Services licenses to people, see the Managing Hybrid Services guide.\r\n\r\nhttps://developer.webex.com/resource-people.html",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c1e0d80e-1c21-4b2b-90fd-2da78b0539cc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9873f57e-4a14-4d6c-97e9-b1c333c793cd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "List Roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/roles",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						},
+						"description": "List all roles.\n\nhttps://developer.webex.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get role details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get role details: success\"] = true;",
+									"}",
+									"    "
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/roles/{{_role}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{{_role}}"
+							]
+						},
+						"description": "Shows details for a role, by ID.\n\nSpecify the role ID in the roleId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-roles-roleId-get.html\n\nExample Response:\n``` json\n{\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'displayName' : 'Full Administrator'\n}\n```"
+					},
+					"response": []
+				}
+			],
+			"description": "A persona for an authenticated user, corresponding to a set of privileges within an organization. This roles resource can be accessed only by an admin.\n\nhttps://developer.webex.com/resource-roles.html",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9076309-ce8a-4aba-a089-26b2dd7f8818",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "66f81f7f-393b-4b26-af9f-1d4eb20e0e6b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Place Services",
+			"item": [
+				{
+					"name": "List Place Services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List place services: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List place services: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List place services: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var placeServiceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_service\", placeServiceId);",
+									"        tests[\"List place services: retreived one service with id:\" + placeServiceId] = true",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/place/services",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"place",
+								"services"
+							]
+						},
+						"description": "List place services.\r\nUse query parameters to filter the response.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/list-place-services"
+					},
+					"response": []
+				},
+				{
+					"name": "Get my Person Details (automation)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74bc245f-0686-4669-ac38-4bad3a1dc927",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get person details: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Automation - get organization: retreived with id:\" + orgId] = true",
+									"        ",
+									"        var email = jsonData.emails[0];",
+									"        var parsed = email.match(/\\@(.*)$/);",
+									"        var domain = parsed[1];",
+									"        postman.setEnvironmentVariable(\"_domain\", domain);",
+									"        tests[\"Automation - get organization: retreived domain: \" + domain] = true",
+									"    }",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "263d0744-ec80-4b24-a3ad-2e2bc62bca25",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"me"
+							]
+						},
+						"description": "Fetch orgId and email to automate future requests"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Place Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a place service: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create a place service: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a place service: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var serviceId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_service\", serviceId);",
+									"        tests[\"Create a place service: created with id:\" + serviceId] = true",
+									"    }",
+									"    ",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "894bd491-6424-45ec-8b41-be2bf31c3f4b",
+								"exec": [
+									"var random = Math.round(Math.random()*1000);",
+									"",
+									"postman.setEnvironmentVariable(\"_random\", random);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\t\"type\" : \"Cisco Spark Calling\",\r\n\t\"orgId\" : \"{{_organization}}\",\r\n\t\"email\" : \"{{_random}}@{{_domain}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/place/services",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"place",
+								"services"
+							]
+						},
+						"description": "Create a place service.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/create-a-place-service"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Place Service Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get place service details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get place service details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"place",
+								"services",
+								"{{_service}}"
+							]
+						},
+						"description": "Shows details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/get-place-service-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Place Service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a place service: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create a place service: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a place service: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var serviceId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_service\", serviceId);",
+									"        tests[\"Create a place service: created with id:\" + serviceId] = true",
+									"    }",
+									"    ",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "894bd491-6424-45ec-8b41-be2bf31c3f4b",
+								"exec": [
+									"var random = Math.round(Math.random()*1000);",
+									"",
+									"postman.setEnvironmentVariable(\"_random\", random);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\t\"placeId\" : \"{{_place}}\",\r\n\t\"type\" : \"Cisco Spark Calling\",\r\n\t\"licenseId\" : \"{{_license}}\",\r\n\t\"orgId\" : \"{{_org}}\", \r\n\t\"email\" : \"{{_random}}@{{_domain}}\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"place",
+								"services",
+								"{{_service}}"
+							]
+						},
+						"description": "Updates details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/update-a-place-service"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Place Service Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete place service: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Delete place service: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"place",
+								"services",
+								"{{_service}}"
+							]
+						},
+						"description": "Shows details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/get-place-service-details"
+					},
+					"response": []
+				}
+			],
+			"description": "Place services represent capabilities and features that are enabled for Places.\r\n\r\nViewing details for place services for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting place services for your places requires an auth token with the spark:places_write scope. Viewing the list of all place services in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all place services in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services"
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "List Places",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List places : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List places: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List places: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var placeId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_place\", placeId);",
+									"        tests[\"List places: retreived one place with id:\" + placeId] = true",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/places",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places"
+							]
+						},
+						"description": "List places.\nUse query parameters to filter the response.\n\nhttps://developer.webex.com/docs/api/v1/places/list-places"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a place: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create a place: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a place: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var placeId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_place\", placeId);",
+									"        tests[\"Create a place: created with id:\" + placeId] = true",
+									"    }",
+									"    ",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\t\"displayName\" : \"office\",\r\n\t\"type\" : \"room_device\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/places",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places"
+							]
+						},
+						"description": "Create a place.\n\nhttps://developer.webex.com/docs/api/v1/places/create-a-place"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Place Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get place details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get place details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places",
+								"{{_place}}"
+							]
+						},
+						"description": "Shows details for a place, by ID.\r\nSpecify the place ID in the placeId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places/get-place-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Update place: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Update place: success\"] = true;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\t\"displayName\" : \"home\",\r\n\t\"type\" : \"room_device\"\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places",
+								"{{_place}}"
+							]
+						},
+						"description": "Updates details for a place, by ID.\r\nSpecify the place ID in the placeId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places/update-a-place"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Device Activation Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create an activation code: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create an activation code: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.code === undefined) {",
+									"        tests[\"Create an activation code: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var code = jsonData.code;",
+									"        postman.setEnvironmentVariable(\"_code\", code);",
+									"        tests[\"Create an activation code: \" + code] = true",
+									"    }",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"placeId\" : \"{{_place}}\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/devices/activationCode",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"devices",
+								"activationCode"
+							]
+						},
+						"description": "Generate an activation code for a device in a specific place by placeId. Currently, activation codes may only be generated for shared places--personal mode is not supported.\n\nhttps://developer.webex.com/docs/api/v1/devices/create-a-device-activation-code"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete place: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Delete place: success\"] = true;",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places",
+								"{{_place}}"
+							]
+						},
+						"description": "Deletes a place, by ID. Will also delete all devices associated with the place.\r\nSpecify the place ID in the placeId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places/delete-a-place"
+					},
+					"response": []
+				}
+			],
+			"description": "Places represent where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with places.\r\n\r\nViewing details for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting your places requires an auth token with the spark:places_write scope. Viewing the list of all places in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all places in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4334833c-35d2-4f03-80f3-39e3bd406a1a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d74c7738-c88f-48ba-ba4a-ded1565a8bf4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0d3602d6-7436-47d8-a84d-3c1e9f0164c6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4e2d13ee-6ff9-46d7-bc35-97b06d2d31cf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
 }
