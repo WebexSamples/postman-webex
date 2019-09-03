@@ -3,9 +3,8 @@
 This repo gathers collections for the **[Webex Teams](https://developer.webex.com/quick-reference.html)**.
 _Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
 
-- **[REST API](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin priviledges
-- [admin REST API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin priviledges
-- [1-1 space](#direct-space): Create a 1-1 space by sending a direct message
+- **[Webex Teams API v1](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks, AttachmentActions... all Webex Teams resources accessible from an access token, with no admin priviledges
+- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only with an access token with admin priviledges
 
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
@@ -22,7 +21,7 @@ When submitting a new collection, please ensure it leverages a {{access_token}} 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
 
-The collection implements the public resources for the Webex Teams REST API , with direct links to the official API documentation.
+The collection implements the public(*) resources for the Webex Teams REST API , with direct links to the official API documentation. _(*) use a simple user account, no need admin priviledges_
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
@@ -36,7 +35,7 @@ Enough talk, let's practice:
 - create or select a postman environment that contains a {{access_token}} variable, 
 - now, you're ready to invoke the API: for example, go to the Messages folder, and run the requests from top to bottom.
 
-![messages](docs/img/scripted-collection-memberships.png)
+![memberships](docs/img/scripted-collection-memberships.png)
 
 Now, what about generating some code for your favorite language ?
 
