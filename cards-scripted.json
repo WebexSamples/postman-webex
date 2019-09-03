@@ -1,0 +1,2470 @@
+{
+	"info": {
+		"_postman_id": "d60f3402-4225-4410-8f6f-df0294f0c31a",
+		"name": "Webex Teams Cards",
+		"description": "# Give new levels of interactivity to Webex Teams users with cards\r\n\r\nCards let you add interactivity to Webex Teams messages. Users can interact with your app in rich new ways without ever leaving the Webex Teams client.\r\n\r\nBots and Integrations can add cards to Webex Teams spaces by including a card attachment when posting a message. Card attachments use Microsoft's Adaptive Cards specification to define the content of the card. The Webex Teams clients render cards with the same look and feel across every platform, letting you focus on the content and the interaction without worrying about the presentation.\r\n\r\n## Cards and Action\r\n\r\nCards are created by including an adaptive card attachment when posting a new message. Cards can be interactive, soliciting an action from the user, such as submitting a response to a poll; or they may be purely informational, such as displaying current weather conditions.\r\n\r\nTo make cards interactive, include actions. Actions are buttons that users can use to open a URL, show another card, or submit data from an input form within the card. Cards may include up to five actions. If you include an input form, data submitted by a user is encrypted and stored within the Webex platform. You can use webhooks to receive notifications for new form submissions. Just like other API resources that contain encrypted data, the webhook's body will not include the form submission. After you receive the webhook, you will need to retrieve the form data via the Attachment Actions API endpoint. See Handling Requests from Webex Teams in the Webhooks Guide for more information about how to use webhooks with encrypted data.\r\n\r\nhttps://developer.webex.com/docs/api/guides/cards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AttachmentActions (user)",
+			"item": [
+				{
+					"name": "Create a room (for test run purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7e1037b-b2f8-42d0-832b-2f639ac82cec",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a room: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a room: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var roomID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_room\", roomID);",
+									"        tests[\"Create a room: created with id:\" + roomID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Testing Cards\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms"
+							]
+						},
+						"description": "Creates a temp space that will be used to add a user, post a card, have the user submit actions and retrieve the submitted data via a webhook"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a message (with card attached)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Please enter your name:\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"id\": \"name\",\n                        \"title\": \"New Input.Toggle\",\n                        \"placeholder\": \"name\"\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.Submit\",\n                        \"title\": \"Submit\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.webex.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Create an attachmentAction (submit)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76c60d74-7c18-4802-8274-d31c30424f19",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create an attachmentAction: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create an attachmentAction: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create an attachmentAction: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var actionId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_action\", actionId);",
+									"        tests[\"Create an attachmentAction: created with id:\" + actionId] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"submit\",\r\n  \"messageId\": \"{{_message}}\",\r\n  \"inputs\": {\r\n    \"name\": \"John Doe\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/attachment/actions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"attachment",
+								"actions"
+							]
+						},
+						"description": "Create a new attachment action.\n\nhttps://developer.webex.com/docs/api/v1/attachment-actions/create-an-attachment-action"
+					},
+					"response": []
+				},
+				{
+					"name": "Get attachmentAction details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76c60d74-7c18-4802-8274-d31c30424f19",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/attachment/actions/{{_action}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"attachment",
+								"actions",
+								"{{_action}}"
+							]
+						},
+						"description": "Shows details for a attachment action, by ID.\r\n\r\nSpecify the attachment action ID in the id URI parameter.\r\n\r\nhttps://developer.webex.com/docs/api/v1/attachment-actions/get-attachment-action-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Delete a message: success\"] = true",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages/{{_message}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"{{_message}}"
+							]
+						},
+						"description": "Deletes a message, by message ID.\n\nSpecify the message ID in the messageId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-messages-messageId-delete.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47711faa-4839-4007-b9d6-68b16fdacd3c",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Delete a room: success\"] = true",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"{{_room}}"
+							]
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			],
+			"description": "Users create attachment actions by interacting with message attachments such as clicking on a submit button in a card.\n\nhttps://developer.webex.com/docs/api/v1/attachment-actions",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98329e3e-0093-404d-82c2-60d6547a7b55",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d14c21d-6c0c-4862-a526-0bd266470418",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "AttachmentActions (bot)",
+			"item": [
+				{
+					"name": "[bot] Get person details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "522373cb-8b1c-4492-8e81-be79e9d82157",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get bot details: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Get bot details: ok\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.type === undefined) {",
+									"        tests[\"Get bot details: cannot retreive type\"] = false",
+									"    }",
+									"    else {",
+									"        if (jsonData.type !== 'bot') {",
+									"            tests[\"Get bot details: not a bot! please check your 'bot_token' env variable\"] = false",
+									"        }",
+									"        else {",
+									"                    tests[\"Get bot details: all good, bot token detected\"] = true;",
+									"        }",
+									"    }",
+									"",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a space (for test purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7e1037b-b2f8-42d0-832b-2f639ac82cec",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a room: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a room: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var roomID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_room\", roomID);",
+									"        tests[\"Create a room: created with id:\" + roomID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Testing Cards\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms"
+							]
+						},
+						"description": "Creates a temp space that will be used to add a user, post a card, have the user submit actions and retrieve the submitted data via a webhook"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a webhook (attachmentActions)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28fcba06-c516-4b09-912c-611b385633c8",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a webhook: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a webhook: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a webhook: cannot retreive webhook identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var webhookId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_webhook\", webhookId);",
+									"        tests[\"Create a webhook: created with id:\" + webhookId] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"name\": \"AttachmentActions Test from Postman\",\n      \"resource\": \"attachmentActions\",\n      \"event\": \"created\",\n      \"filter\": \"roomId={{_room}}\",\n      \"targetUrl\": \"https://en87plexda2ac.x.pipedream.net/\",\n      \"secret\": \"not THAT secret\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/webhooks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] List webhooks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/webhooks",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"webhooks"
+							]
+						},
+						"description": "Lists all of your webhooks.\n\nhttps://developer.webex.com/endpoint-webhooks-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "[user] Get person details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "522373cb-8b1c-4492-8e81-be79e9d82157",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get my details: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Get my details: ok\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get my details: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        // set _user env variable",
+									"        var userId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_user\", userId);",
+									"        tests[\"Get my details: fetched id:\" + userId] = true;",
+									"        ",
+									"        // set _uuid env variable",
+									"        var decoded = Buffer.from(userId, 'base64');",
+									"        var uuid = decoded.toString().substring(23);",
+									"        postman.setEnvironmentVariable(\"_uuid\", uuid);",
+									"        tests[\"Get my details: fetched uuid:\" + uuid] = true;",
+									"",
+									"    }",
+									"",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a membership (add user)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85684a2e-c68c-4e06-b205-be3a85140a4e",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a membership: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a membership: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a membership: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var membershipID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_membership\", membershipID);",
+									"        tests[\"Create a membership: created with id:\" + membershipID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"personId\": \"{{_user}}\",\r\n  \"isModerator\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/memberships",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"memberships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a message (with card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Stève at Post/Con](https://www.getpostman.com/post-con-2019/)\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"Medium\",\n                        \"weight\": \"Bolder\",\n                        \"text\": \"API Emulators as an emerging Best Practice\"\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"style\": \"Person\",\n                                        \"url\": \"https://www.getpostman.com/img/pages/post-con-2019/_post-con-speakers/steve-sfartz.jpg\",\n                                        \"size\": \"Small\"\n                                    }\n                                ],\n                                \"width\": \"auto\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"weight\": \"Bolder\",\n                                        \"text\": \"Stève Sfartz\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"API Architect at Cisco\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true\n                                    }\n                                ],\n                                \"width\": \"stretch\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Modern applications are highly distributed. We face challenges related to the use of internal and external APIs and how to build APIs with agility in the face of software that can evolve and change at any time. The API industry proposes two common strategies to circumvent these challenges: API Mocking and Service Virtualization. At Cisco, we came up with the idea of API emulators has a third strategy.\\nIn this talk, I'll explain the motivation behind API emulators in the perspective of DevOps, CI/CD, Software Development, and serverless/microservices architectures.\",\n                        \"wrap\": true\n                    },\n                    {\n                        \"type\": \"FactSet\",\n                        \"facts\": [\n                            {\n                                \"title\": \"Track:\",\n                                \"value\": \"Design and Architecture\"\n                            },\n                            {\n                                \"title\": \"When:\",\n                                \"value\": \"Thursday, 11:45AM\"\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Take survey\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"What are you familiar with?\"\n                                },\n                                {\n                                    \"type\": \"Input.ChoiceSet\",\n                                    \"id\": \"survey\",\n                                    \"isMultiSelect\": true,\n                                    \"value\": \"1\",\n                                    \"choices\": [\n                                        {\n                                            \"title\": \"API Mocks\",\n                                            \"value\": \"1\"\n                                        },\n                                        {\n                                            \"title\": \"API Emulators\",\n                                            \"value\": \"2\"\n                                        },\n                                        {\n                                            \"title\": \"Service Virtualization\",\n                                            \"value\": \"3\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"placeholder\": \"enter comment\",\n                                    \"style\": \"text\",\n                                    \"maxLength\": 0,\n                                    \"id\": \"comment\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"send\",\n                                    \"data\": {\n                                        \"id\": \"POST/CON 2019\"\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Jobs at Cisco\",\n                        \"url\": \"https://jobs.cisco.com/jobs/SearchJobs/DevNet?3_109_3=%5B%22169482%22%5D&3_143_3=%5B%2212229389%22%5D\"\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Join DevNet\",\n                        \"url\": \"https://developer.cisco.com/appdev/\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "https://adaptivecards.io/samples/"
+					},
+					"response": []
+				},
+				{
+					"name": "[user] Get message (read card)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Stève at Post/Con](https://www.getpostman.com/post-con-2019/)\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"Medium\",\n                        \"weight\": \"Bolder\",\n                        \"text\": \"API Emulators as an emerging Best Practice\"\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"style\": \"Person\",\n                                        \"url\": \"https://www.getpostman.com/img/pages/post-con-2019/_post-con-speakers/steve-sfartz.jpg\",\n                                        \"size\": \"Small\"\n                                    }\n                                ],\n                                \"width\": \"auto\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"weight\": \"Bolder\",\n                                        \"text\": \"Stève Sfartz\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"API Architect at Cisco DevNet\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true\n                                    }\n                                ],\n                                \"width\": \"stretch\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Modern applications are highly distributed. We face challenges related to the use of internal and external APIs and how to build APIs with agility in the face of software that can evolve and change at any time. The API industry proposes two common strategies to circumvent these challenges: API Mocking and Service Virtualization. At Cisco, we came up with the idea of API emulators has a third strategy.\\nIn this talk, I'll explain the motivation behind API emulators in the perspective of DevOps, CI/CD, Software Development, and serverless/microservices architectures.\",\n                        \"wrap\": true\n                    },\n                    {\n                        \"type\": \"FactSet\",\n                        \"facts\": [\n                            {\n                                \"title\": \"Track:\",\n                                \"value\": \"Design and Architecture\"\n                            },\n                            {\n                                \"title\": \"When:\",\n                                \"value\": \"Thursday, 11:45AM\"\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Take survey\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"What are you familiar with?\"\n                                },\n                                {\n                                    \"type\": \"Input.ChoiceSet\",\n                                    \"id\": \"MultiSelectVal\",\n                                    \"isMultiSelect\": true,\n                                    \"value\": \"1\",\n                                    \"choices\": [\n                                        {\n                                            \"title\": \"API Mocks\",\n                                            \"value\": \"1\"\n                                        },\n                                        {\n                                            \"title\": \"API Emulators\",\n                                            \"value\": \"2\"\n                                        },\n                                        {\n                                            \"title\": \"Service Virtualization\",\n                                            \"value\": \"3\"\n                                        }\n                                    ]\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"send\",\n                                    \"data\": {\n                                        \"id\": \"1234567890\"\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Check jobs\",\n                        \"url\": \"https://jobs.cisco.com/jobs/SearchJobs/DevNet?3_109_3=%5B%22169482%22%5D&3_143_3=%5B%2212229389%22%5D\"\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Join DevNet\",\n                        \"url\": \"https://developer.cisco.com/appdev/\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages/{{_message}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages",
+								"{{_message}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[user] Create an attachmentAction (submit)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76c60d74-7c18-4802-8274-d31c30424f19",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create an attachmentAction: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create an attachmentAction: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create an attachmentAction: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var actionId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_action\", actionId);",
+									"        tests[\"Create an attachmentAction: created with id:\" + actionId] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"submit\",\r\n  \"messageId\": \"{{_message}}\",\r\n  \"inputs\": {\r\n        \"id\": \"POST/CON 2019\",\r\n        \"survey\": \"1,3\",\r\n        \"comment\": \"joining to learn more about emulators\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/attachment/actions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"attachment",
+								"actions"
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.webex.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Get attachmentAction details (read inputs)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76c60d74-7c18-4802-8274-d31c30424f19",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get attachmentActions details: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Get attachmentActions details: ok\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"attachmentActions: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var inputs = jsonData.inputs;",
+									"        postman.setEnvironmentVariable(\"_inputs_id\", inputs.id);",
+									"        postman.setEnvironmentVariable(\"_inputs_survey\", inputs.comment);",
+									"        tests[\"Get attachmentActions details: parsed survey \" + inputs.id] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/attachment/actions/{{_action}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"attachment",
+								"actions",
+								"{{_action}}"
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.webex.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a message (respond to user)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"**Thanks for your feedback to '{{_inputs_id}}' survey**\\n\\n> **comments:**<br/> _{{_inputs_survey}}_\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "https://adaptivecards.io/samples/"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Delete webhook",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47711faa-4839-4007-b9d6-68b16fdacd3c",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Delete a room: success\"] = true",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"webhooks",
+								"{{_webhook}}"
+							]
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Delete space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47711faa-4839-4007-b9d6-68b16fdacd3c",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Delete a room: success\"] = true",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"{{_room}}"
+							]
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			],
+			"description": "Users create attachment actions by interacting with message attachments such as clicking on a submit button in a card.\n\nhttps://developer.webex.com/docs/api/v1/attachment-actions",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f62c3711-cf9b-4e46-b088-5ebfe608dc8a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4b78107-1d80-4795-a525-3b3168a92e4b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Messages (cards examples)",
+			"item": [
+				{
+					"name": "[bot] Create a room (for test purpose)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7e1037b-b2f8-42d0-832b-2f639ac82cec",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a room: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a room: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var roomID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_room\", roomID);",
+									"        tests[\"Create a room: created with id:\" + roomID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Testing Cards\"\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms"
+							]
+						},
+						"description": "Creates a temp space that will be used to add a user, post a card, have the user submit actions and retrieve the submitted data via a webhook"
+					},
+					"response": []
+				},
+				{
+					"name": "[user] Read userId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "522373cb-8b1c-4492-8e81-be79e9d82157",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get my details: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Get my details: ok\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get my details: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        // set _user env variable",
+									"        var userId = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_user\", userId);",
+									"        tests[\"Get my details: fetched id:\" + userId] = true;",
+									"        ",
+									"        // set _uuid env variable",
+									"        var decoded = Buffer.from(userId, 'base64');",
+									"        var uuid = decoded.toString().substring(23);",
+									"        postman.setEnvironmentVariable(\"_uuid\", uuid);",
+									"        tests[\"Get my details: fetched uuid:\" + uuid] = true;",
+									"",
+									"    }",
+									"",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/people/me",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"people",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create membership (add user)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85684a2e-c68c-4e06-b205-be3a85140a4e",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a membership: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a membership: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a membership: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var membershipID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_membership\", membershipID);",
+									"        tests[\"Create a membership: created with id:\" + membershipID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"personId\": \"{{_user}}\",\r\n  \"isModerator\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/memberships",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"memberships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - with minheight",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"minHeight\": \"100px\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"wrap\": true,\n                        \"text\": \"This card has a minHeight of 100px\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Container",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"This is some text\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"http://adaptivecards.io/content/cats/1.png\"\n                            }\n                        ]\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Container with selectAction (fails)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.1\",\n                \"body\": [\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"This is some text\"\n                            }\n                        ],\n                        \"selectAction\": {\n                            \"type\": \"Action.OpenUrl\",\n                            \"title\": \"cool link\",\n                            \"url\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n                        }\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Container with selectAction (fails)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"This is some text\"\n                            }\n                        ],\n                        \"selectAction\": {\n                            \"type\": \"Action.OpenUrl\",\n                            \"title\": \"cool link\",\n                            \"url\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n                        }\n                    },\n                    {\n                        \"type\": \"Container\",\n                        \"style\": \"emphasis\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"Emphasis container\"\n                            }\n                        ],\n                        \"selectAction\": {\n                            \"type\": \"Action.OpenUrl\",\n                            \"title\": \"cool link 2\",\n                            \"url\": \"https://msn.com\"\n                        }\n                    },\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"Default container again, using ShowCard\",\n                                \"wrap\": true\n                            }\n                        ],\n                        \"selectAction\": {\n                            \"type\": \"Action.Submit\",\n                            \"title\": \"Submit action\",\n                            \"data\": \"Submitted!\"\n                        }\n                    },\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"Submit action\"\n                            }\n                        ],\n                        \"selectAction\": {\n                            \"type\": \"Action.Submit\",\n                            \"title\": \"Submit action\",\n                            \"data\": {\n                                \"info\": \"My submit action data\"\n                            }\n                        }\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Simple Form",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Please enter your name:\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"id\": \"name\",\n                        \"title\": \"New Input.Toggle\",\n                        \"placeholder\": \"name\"\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.Submit\",\n                        \"title\": \"Submit\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "Posts a plain text or markdown message, and optionally, a media content attachment, to a room.\n\nhttps://developer.webex.com/endpoint-messages-post.html"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Richer Form",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 2,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Tell us about yourself\",\n                                        \"weight\": \"Bolder\",\n                                        \"size\": \"Medium\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"We just need a few more details to get you booked for the trip of a lifetime!\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Don't worry, we'll never share or sell your information.\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true,\n                                        \"size\": \"Small\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Your name\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"Input.Text\",\n                                        \"id\": \"myName\",\n                                        \"placeholder\": \"Last, First\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Your email\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"Input.Text\",\n                                        \"id\": \"myEmail\",\n                                        \"placeholder\": \"youremail@example.com\",\n                                        \"style\": \"Email\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Phone Number\"\n                                    },\n                                    {\n                                        \"type\": \"Input.Text\",\n                                        \"id\": \"myTel\",\n                                        \"placeholder\": \"xxx.xxx.xxxx\",\n                                        \"style\": \"Tel\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"url\": \"https://upload.wikimedia.org/wikipedia/commons/b/b2/Diver_Silhouette%2C_Great_Barrier_Reef.jpg\",\n                                        \"size\": \"auto\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.Submit\",\n                        \"title\": \"Submit\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Advanced Form (inputs)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"medium\",\n                        \"weight\": \"bolder\",\n                        \"text\": \"Input.Text elements\",\n                        \"horizontalAlignment\": \"center\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"placeholder\": \"Name\",\n                        \"style\": \"text\",\n                        \"maxLength\": 0,\n                        \"id\": \"SimpleVal\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"placeholder\": \"Homepage\",\n                        \"style\": \"url\",\n                        \"maxLength\": 0,\n                        \"id\": \"UrlVal\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"placeholder\": \"Email\",\n                        \"style\": \"email\",\n                        \"maxLength\": 0,\n                        \"id\": \"EmailVal\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"placeholder\": \"Phone\",\n                        \"style\": \"tel\",\n                        \"maxLength\": 0,\n                        \"id\": \"TelVal\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"placeholder\": \"Comments\",\n                        \"style\": \"text\",\n                        \"isMultiline\": true,\n                        \"maxLength\": 0,\n                        \"id\": \"MultiLineVal\"\n                    },\n                    {\n                        \"type\": \"Input.Number\",\n                        \"placeholder\": \"Quantity\",\n                        \"min\": -5,\n                        \"max\": 5,\n                        \"value\": 1,\n                        \"id\": \"NumVal\"\n                    },\n                    {\n                        \"type\": \"Input.Date\",\n                        \"placeholder\": \"Due Date\",\n                        \"id\": \"DateVal\",\n                        \"value\": \"2017-09-20\"\n                    },\n                    {\n                        \"type\": \"Input.Time\",\n                        \"placeholder\": \"Start time\",\n                        \"id\": \"TimeVal\",\n                        \"value\": \"16:59\"\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"medium\",\n                        \"weight\": \"bolder\",\n                        \"text\": \"Input.ChoiceSet\",\n                        \"horizontalAlignment\": \"center\"\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"What color do you want? (compact)\"\n                    },\n                    {\n                        \"type\": \"Input.ChoiceSet\",\n                        \"id\": \"CompactSelectVal\",\n                        \"style\": \"compact\",\n                        \"value\": \"1\",\n                        \"choices\": [\n                            {\n                                \"title\": \"Red\",\n                                \"value\": \"1\"\n                            },\n                            {\n                                \"title\": \"Green\",\n                                \"value\": \"2\"\n                            },\n                            {\n                                \"title\": \"Blue\",\n                                \"value\": \"3\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"What color do you want? (expanded)\"\n                    },\n                    {\n                        \"type\": \"Input.ChoiceSet\",\n                        \"id\": \"SingleSelectVal\",\n                        \"style\": \"expanded\",\n                        \"value\": \"1\",\n                        \"choices\": [\n                            {\n                                \"title\": \"Red\",\n                                \"value\": \"1\"\n                            },\n                            {\n                                \"title\": \"Green\",\n                                \"value\": \"2\"\n                            },\n                            {\n                                \"title\": \"Blue\",\n                                \"value\": \"3\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"What colors do you want? (multiselect)\"\n                    },\n                    {\n                        \"type\": \"Input.ChoiceSet\",\n                        \"id\": \"MultiSelectVal\",\n                        \"isMultiSelect\": true,\n                        \"value\": \"1,3\",\n                        \"choices\": [\n                            {\n                                \"title\": \"Red\",\n                                \"value\": \"1\"\n                            },\n                            {\n                                \"title\": \"Green\",\n                                \"value\": \"2\"\n                            },\n                            {\n                                \"title\": \"Blue\",\n                                \"value\": \"3\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"medium\",\n                        \"weight\": \"bolder\",\n                        \"text\": \"Input.Toggle\",\n                        \"horizontalAlignment\": \"center\"\n                    },\n                    {\n                        \"type\": \"Input.Toggle\",\n                        \"title\": \"I accept the terms and conditions (True/False)\",\n                        \"valueOn\": \"true\",\n                        \"valueOff\": \"false\",\n                        \"id\": \"AcceptsTerms\"\n                    },\n                    {\n                        \"type\": \"Input.Toggle\",\n                        \"title\": \"Red cars are better than other cars\",\n                        \"valueOn\": \"RedCars\",\n                        \"valueOff\": \"NotRedCars\",\n                        \"id\": \"ColorPreference\"\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.Submit\",\n                        \"title\": \"Submit\",\n                        \"data\": {\n                            \"id\": \"1234567890\"\n                        }\n                    },\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Show Card\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"placeholder\": \"enter comment\",\n                                    \"style\": \"text\",\n                                    \"maxLength\": 0,\n                                    \"id\": \"CommentVal\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\"\n                                }\n                            ]\n                        }\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "https://adaptivecards.io/designer/"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Flight Itinerary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"speak\": \"<s>Flight KL0605 to San Fransisco has been delayed.</s><s>It will not leave until 10:10 AM.</s>\",\n                \"body\": [\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"auto\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"size\": \"Small\",\n                                        \"url\": \"http://adaptivecards.io/content/airplane.png\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"stretch\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Flight Status\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"isSubtle\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"DELAYED\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"spacing\": \"None\",\n                                        \"size\": \"Large\",\n                                        \"color\": \"Attention\"\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"separator\": true,\n                        \"spacing\": \"Medium\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"stretch\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Passengers\",\n                                        \"isSubtle\": true,\n                                        \"weight\": \"Bolder\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Sarah Hum\",\n                                        \"spacing\": \"Small\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Jeremy Goldberg\",\n                                        \"spacing\": \"Small\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Evan Litvak\",\n                                        \"spacing\": \"Small\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"auto\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Seat\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"isSubtle\": true,\n                                        \"weight\": \"Bolder\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"14A\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"spacing\": \"Small\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"14B\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"spacing\": \"Small\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"14C\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"spacing\": \"Small\"\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"spacing\": \"Medium\",\n                        \"separator\": true,\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Flight\",\n                                        \"isSubtle\": true,\n                                        \"weight\": \"Bolder\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"KL0605\",\n                                        \"spacing\": \"Small\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Departs\",\n                                        \"isSubtle\": true,\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"weight\": \"Bolder\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"10:10 AM\",\n                                        \"color\": \"Attention\",\n                                        \"weight\": \"Bolder\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"spacing\": \"Small\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Arrives\",\n                                        \"isSubtle\": true,\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"weight\": \"Bolder\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"12:00 AM\",\n                                        \"color\": \"Attention\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"weight\": \"Bolder\",\n                                        \"spacing\": \"Small\"\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"spacing\": \"Medium\",\n                        \"separator\": true,\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Amsterdam\",\n                                        \"isSubtle\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"AMS\",\n                                        \"size\": \"ExtraLarge\",\n                                        \"color\": \"Accent\",\n                                        \"spacing\": \"None\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"auto\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \" \"\n                                    },\n                                    {\n                                        \"type\": \"Image\",\n                                        \"url\": \"http://adaptivecards.io/content/airplane.png\",\n                                        \"size\": \"Small\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"San Francisco\",\n                                        \"isSubtle\": true,\n                                        \"horizontalAlignment\": \"Right\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"SFO\",\n                                        \"horizontalAlignment\": \"Right\",\n                                        \"size\": \"ExtraLarge\",\n                                        \"color\": \"Accent\",\n                                        \"spacing\": \"None\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "https://adaptivecards.io/designer/"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Activity Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Publish Adaptive Card schema\",\n                        \"weight\": \"Bolder\",\n                        \"size\": \"Medium\"\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"auto\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"url\": \"https://pbs.twimg.com/profile_images/3647943215/d7f12830b3c17a5a9e4afcc370e3a37e_400x400.jpeg\",\n                                        \"size\": \"Small\",\n                                        \"style\": \"Person\"\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"stretch\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Matt Hidinger\",\n                                        \"weight\": \"Bolder\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"Created {{DATE(2017-02-14T06:08:39Z, SHORT)}}\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true\n                                    }\n                                ]\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Now that we have defined the main rules and features of the format, we need to produce a schema and publish it to GitHub. The schema will be the starting point of our reference documentation.\",\n                        \"wrap\": true\n                    },\n                    {\n                        \"type\": \"FactSet\",\n                        \"facts\": [\n                            {\n                                \"title\": \"Board:\",\n                                \"value\": \"Adaptive Card\"\n                            },\n                            {\n                                \"title\": \"List:\",\n                                \"value\": \"Backlog\"\n                            },\n                            {\n                                \"title\": \"Assigned to:\",\n                                \"value\": \"Matt Hidinger\"\n                            },\n                            {\n                                \"title\": \"Due date:\",\n                                \"value\": \"Not set\"\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Set due date\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"Input.Date\",\n                                    \"id\": \"dueDate\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\"\n                                }\n                            ],\n                            \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\"\n                        }\n                    },\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Comment\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"id\": \"comment\",\n                                    \"isMultiline\": true,\n                                    \"placeholder\": \"Enter your comment\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\"\n                                }\n                            ],\n                            \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\"\n                        }\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Food Order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Your registration is almost complete\",\n                        \"size\": \"Medium\",\n                        \"weight\": \"Bolder\"\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"What type of food do you prefer?\",\n                        \"wrap\": true\n                    },\n                    {\n                        \"type\": \"ImageSet\",\n                        \"imageSize\": \"medium\",\n                        \"images\": [\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"http://contososcubademo.azurewebsites.net/assets/steak.jpg\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"http://contososcubademo.azurewebsites.net/assets/chicken.jpg\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"http://contososcubademo.azurewebsites.net/assets/tofu.jpg\",\n                                \"size\": \"Medium\"\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Steak\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"How would you like your steak prepared?\",\n                                    \"size\": \"Medium\",\n                                    \"wrap\": true\n                                },\n                                {\n                                    \"type\": \"Input.ChoiceSet\",\n                                    \"id\": \"SteakTemp\",\n                                    \"style\": \"expanded\",\n                                    \"choices\": [\n                                        {\n                                            \"title\": \"Rare\",\n                                            \"value\": \"rare\"\n                                        },\n                                        {\n                                            \"title\": \"Medium-Rare\",\n                                            \"value\": \"medium-rare\"\n                                        },\n                                        {\n                                            \"title\": \"Well-done\",\n                                            \"value\": \"well-done\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"id\": \"SteakOther\",\n                                    \"isMultiline\": true,\n                                    \"placeholder\": \"Any other preparation requests?\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\",\n                                    \"data\": {\n                                        \"FoodChoice\": \"Steak\"\n                                    }\n                                }\n                            ],\n                            \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\"\n                        }\n                    },\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Chicken\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"Do you have any allergies?\",\n                                    \"size\": \"Medium\",\n                                    \"wrap\": true\n                                },\n                                {\n                                    \"type\": \"Input.ChoiceSet\",\n                                    \"id\": \"ChickenAllergy\",\n                                    \"style\": \"expanded\",\n                                    \"isMultiSelect\": true,\n                                    \"choices\": [\n                                        {\n                                            \"title\": \"I'm allergic to peanuts\",\n                                            \"value\": \"peanut\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"id\": \"ChickenOther\",\n                                    \"isMultiline\": true,\n                                    \"placeholder\": \"Any other preparation requests?\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\",\n                                    \"data\": {\n                                        \"FoodChoice\": \"Chicken\"\n                                    }\n                                }\n                            ],\n                            \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\"\n                        }\n                    },\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Tofu\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"Would you like it prepared vegan?\",\n                                    \"size\": \"Medium\",\n                                    \"wrap\": true\n                                },\n                                {\n                                    \"type\": \"Input.Toggle\",\n                                    \"id\": \"Vegetarian\",\n                                    \"title\": \"Please prepare it vegan\",\n                                    \"valueOn\": \"vegan\",\n                                    \"valueOff\": \"notVegan\",\n                                    \"wrap\": false\n                                },\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"id\": \"VegOther\",\n                                    \"isMultiline\": true,\n                                    \"placeholder\": \"Any other preparation requests?\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"OK\",\n                                    \"data\": {\n                                        \"FoodChoice\": \"Vegetarian\"\n                                    }\n                                }\n                            ]\n                        }\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Image Galery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Here are some cool photos\",\n                        \"size\": \"Large\"\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Sorry some of them are repeats\",\n                        \"size\": \"Medium\",\n                        \"weight\": \"Lighter\"\n                    },\n                    {\n                        \"type\": \"ImageSet\",\n                        \"imageSize\": \"medium\",\n                        \"images\": [\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/200/200?image=100\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=200\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=301\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/200/200?image=400\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=500\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/200/200?image=600\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=700\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=800\",\n                                \"size\": \"Medium\"\n                            },\n                            {\n                                \"type\": \"Image\",\n                                \"url\": \"https://picsum.photos/300/200?image=900\",\n                                \"size\": \"Medium\"\n                            }\n                        ]\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Restaurant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 2,\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"PIZZA\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"Tom's Pie\",\n                                        \"weight\": \"Bolder\",\n                                        \"size\": \"ExtraLarge\",\n                                        \"spacing\": \"None\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"4.2 ★★★☆ (93) · $$\",\n                                        \"isSubtle\": true,\n                                        \"spacing\": \"None\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"**Matt H. said** \\\"I'm compelled to give this place 5 stars due to the number of times I've chosen to eat here this past year!\\\"\",\n                                        \"size\": \"Small\",\n                                        \"wrap\": true\n                                    }\n                                ]\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"width\": 1,\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"url\": \"https://picsum.photos/300?image=882\",\n                                        \"size\": \"auto\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"More Info\",\n                        \"url\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"speak\": \"Microsoft stock is trading at $62.30 a share, which is down .32%\",\n                \"body\": [\n                    {\n                        \"type\": \"Container\",\n                        \"items\": [\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"Microsoft Corp (NASDAQ: MSFT)\",\n                                \"size\": \"Medium\",\n                                \"isSubtle\": true\n                            },\n                            {\n                                \"type\": \"TextBlock\",\n                                \"text\": \"September 19, 4:00 PM EST\",\n                                \"isSubtle\": true\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"Container\",\n                        \"spacing\": \"None\",\n                        \"items\": [\n                            {\n                                \"type\": \"ColumnSet\",\n                                \"columns\": [\n                                    {\n                                        \"type\": \"Column\",\n                                        \"width\": \"stretch\",\n                                        \"items\": [\n                                            {\n                                                \"type\": \"TextBlock\",\n                                                \"text\": \"75.30\",\n                                                \"size\": \"ExtraLarge\"\n                                            },\n                                            {\n                                                \"type\": \"TextBlock\",\n                                                \"text\": \"▼ 0.20 (0.32%)\",\n                                                \"size\": \"Small\",\n                                                \"color\": \"Attention\",\n                                                \"spacing\": \"None\"\n                                            }\n                                        ]\n                                    },\n                                    {\n                                        \"type\": \"Column\",\n                                        \"width\": \"auto\",\n                                        \"items\": [\n                                            {\n                                                \"type\": \"FactSet\",\n                                                \"facts\": [\n                                                    {\n                                                        \"title\": \"Open\",\n                                                        \"value\": \"62.24\"\n                                                    },\n                                                    {\n                                                        \"title\": \"High\",\n                                                        \"value\": \"62.98\"\n                                                    },\n                                                    {\n                                                        \"title\": \"Low\",\n                                                        \"value\": \"62.20\"\n                                                    }\n                                                ]\n                                            }\n                                        ]\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Agenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"body\": [\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"horizontalAlignment\": \"Center\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/LocationGreen_A.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"**Redmond**\"\n                                                    },\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"spacing\": \"None\",\n                                                        \"text\": \"8a - 12:30p\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            }\n                                        ]\n                                    }\n                                ],\n                                \"width\": 1\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"spacing\": \"Large\",\n                                \"separator\": true,\n                                \"items\": [\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/LocationBlue_B.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"**Bellevue**\"\n                                                    },\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"spacing\": \"None\",\n                                                        \"text\": \"12:30p - 3p\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            }\n                                        ]\n                                    }\n                                ],\n                                \"width\": 1\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"spacing\": \"Large\",\n                                \"separator\": true,\n                                \"items\": [\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/LocationRed_C.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"**Seattle**\"\n                                                    },\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"spacing\": \"None\",\n                                                        \"text\": \"8p\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            }\n                                        ]\n                                    }\n                                ],\n                                \"width\": 1\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"horizontalAlignment\": \"Left\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/Conflict.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"spacing\": \"None\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"2:00 PM\"\n                                                    }\n                                                ],\n                                                \"width\": \"stretch\"\n                                            }\n                                        ]\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"1hr\",\n                                        \"isSubtle\": true\n                                    }\n                                ],\n                                \"width\": \"110px\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"backgroundImage\": {\n                                    \"url\": \"http://messagecardplayground.azurewebsites.net/assets/SmallVerticalLineGray.png\",\n                                    \"fillMode\": \"RepeatVertically\",\n                                    \"horizontalAlignment\": \"Center\"\n                                },\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/CircleGreen_coffee.png\"\n                                    }\n                                ],\n                                \"width\": \"auto\",\n                                \"spacing\": \"None\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"**Contoso Campaign Status Meeting**\"\n                                    },\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"spacing\": \"None\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/location_gray.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"Conf Room Bravern-2/9050\"\n                                                    }\n                                                ],\n                                                \"width\": \"stretch\"\n                                            }\n                                        ]\n                                    },\n                                    {\n                                        \"type\": \"ImageSet\",\n                                        \"spacing\": \"Small\",\n                                        \"imageSize\": \"Small\",\n                                        \"images\": [\n                                            {\n                                                \"type\": \"Image\",\n                                                \"url\": \"http://messagecardplayground.azurewebsites.net/assets/person_w1.png\",\n                                                \"size\": \"Small\"\n                                            },\n                                            {\n                                                \"type\": \"Image\",\n                                                \"url\": \"http://messagecardplayground.azurewebsites.net/assets/person_m1.png\",\n                                                \"size\": \"Small\"\n                                            },\n                                            {\n                                                \"type\": \"Image\",\n                                                \"url\": \"http://messagecardplayground.azurewebsites.net/assets/person_w2.png\",\n                                                \"size\": \"Small\"\n                                            }\n                                        ]\n                                    },\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"spacing\": \"Small\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/power_point.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"**Contoso Brand Guidelines** shared by **Susan Metters**\"\n                                                    }\n                                                ],\n                                                \"width\": \"stretch\"\n                                            }\n                                        ]\n                                    }\n                                ],\n                                \"width\": 40\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"spacing\": \"None\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"width\": \"110px\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"backgroundImage\": {\n                                    \"url\": \"http://messagecardplayground.azurewebsites.net/assets/SmallVerticalLineGray.png\",\n                                    \"fillMode\": \"RepeatVertically\",\n                                    \"horizontalAlignment\": \"Center\"\n                                },\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/Gray_Dot.png\"\n                                    }\n                                ],\n                                \"width\": \"auto\",\n                                \"spacing\": \"None\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/car.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"about 45 minutes\",\n                                                        \"isSubtle\": true\n                                                    }\n                                                ],\n                                                \"width\": \"stretch\"\n                                            }\n                                        ]\n                                    }\n                                ],\n                                \"width\": 40\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"spacing\": \"None\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"8:00 PM\"\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"1hr\",\n                                        \"isSubtle\": true\n                                    }\n                                ],\n                                \"width\": \"110px\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"backgroundImage\": {\n                                    \"url\": \"http://messagecardplayground.azurewebsites.net/assets/SmallVerticalLineGray.png\",\n                                    \"fillMode\": \"RepeatVertically\",\n                                    \"horizontalAlignment\": \"Center\"\n                                },\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"horizontalAlignment\": \"Center\",\n                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/CircleBlue_flight.png\"\n                                    }\n                                ],\n                                \"width\": \"auto\",\n                                \"spacing\": \"None\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"text\": \"**Alaska Airlines AS1021 flight to Chicago**\"\n                                    },\n                                    {\n                                        \"type\": \"ColumnSet\",\n                                        \"spacing\": \"None\",\n                                        \"columns\": [\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"Image\",\n                                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/location_gray.png\"\n                                                    }\n                                                ],\n                                                \"width\": \"auto\"\n                                            },\n                                            {\n                                                \"type\": \"Column\",\n                                                \"items\": [\n                                                    {\n                                                        \"type\": \"TextBlock\",\n                                                        \"text\": \"Seattle Tacoma International Airport (17801 International Blvd, Seattle, WA, United States)\",\n                                                        \"wrap\": true\n                                                    }\n                                                ],\n                                                \"width\": \"stretch\"\n                                            }\n                                        ]\n                                    },\n                                    {\n                                        \"type\": \"Image\",\n                                        \"url\": \"http://messagecardplayground.azurewebsites.net/assets/SeaTacMap.png\",\n                                        \"size\": \"Stretch\"\n                                    }\n                                ],\n                                \"width\": 40\n                            }\n                        ]\n                    }\n                ],\n                \"version\": \"1.0\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "Warning: takes about 30 seconds to be processed by Webex\n\nhttps://adaptivecards.io/samples/"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Create a card - Post/Con",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16d66732-f888-4d2d-9255-ccd117c2f26b",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a message: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Create a message: created\"] = true",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a message: cannot retreive identifier\"] = false",
+									"    }",
+									"    else {",
+									"        var messageID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_message\", messageID);",
+									"        tests[\"Create a message: created with id:\" + messageID] = true",
+									"    }",
+									"}",
+									"    ",
+									"    ",
+									"    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Stève at Post/Con](https://www.getpostman.com/post-con-2019/)\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"size\": \"Medium\",\n                        \"weight\": \"Bolder\",\n                        \"text\": \"API Emulators as an emerging Best Practice\"\n                    },\n                    {\n                        \"type\": \"ColumnSet\",\n                        \"columns\": [\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"Image\",\n                                        \"style\": \"Person\",\n                                        \"url\": \"https://www.getpostman.com/img/pages/post-con-2019/_post-con-speakers/steve-sfartz.jpg\",\n                                        \"size\": \"Small\"\n                                    }\n                                ],\n                                \"width\": \"auto\"\n                            },\n                            {\n                                \"type\": \"Column\",\n                                \"items\": [\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"weight\": \"Bolder\",\n                                        \"text\": \"Stève Sfartz\",\n                                        \"wrap\": true\n                                    },\n                                    {\n                                        \"type\": \"TextBlock\",\n                                        \"spacing\": \"None\",\n                                        \"text\": \"API Architect at Cisco DevNet\",\n                                        \"isSubtle\": true,\n                                        \"wrap\": true\n                                    }\n                                ],\n                                \"width\": \"stretch\"\n                            }\n                        ]\n                    },\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Modern applications are highly distributed. We face challenges related to the use of internal and external APIs and how to build APIs with agility in the face of software that can evolve and change at any time. The API industry proposes two common strategies to circumvent these challenges: API Mocking and Service Virtualization. At Cisco, we came up with the idea of API emulators has a third strategy.\\nIn this talk, I'll explain the motivation behind API emulators in the perspective of DevOps, CI/CD, Software Development, and serverless/microservices architectures.\",\n                        \"wrap\": true\n                    },\n                    {\n                        \"type\": \"FactSet\",\n                        \"facts\": [\n                            {\n                                \"title\": \"Track:\",\n                                \"value\": \"Design and Architecture\"\n                            },\n                            {\n                                \"title\": \"When:\",\n                                \"value\": \"Thursday, 11:45AM\"\n                            }\n                        ]\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.ShowCard\",\n                        \"title\": \"Take survey\",\n                        \"card\": {\n                            \"type\": \"AdaptiveCard\",\n                            \"body\": [\n                                {\n                                    \"type\": \"TextBlock\",\n                                    \"text\": \"What are you familiar with?\"\n                                },\n                                {\n                                    \"type\": \"Input.ChoiceSet\",\n                                    \"id\": \"survey\",\n                                    \"isMultiSelect\": true,\n                                    \"value\": \"1\",\n                                    \"choices\": [\n                                        {\n                                            \"title\": \"API Mocks\",\n                                            \"value\": \"1\"\n                                        },\n                                        {\n                                            \"title\": \"API Emulators\",\n                                            \"value\": \"2\"\n                                        },\n                                        {\n                                            \"title\": \"Service Virtualization\",\n                                            \"value\": \"3\"\n                                        }\n                                    ]\n                                },\n\n                                {\n                                    \"type\": \"Input.Text\",\n                                    \"placeholder\": \"enter comment\",\n                                    \"style\": \"text\",\n                                    \"maxLength\": 0,\n                                    \"id\": \"comment\"\n                                }\n                            ],\n                            \"actions\": [\n                                {\n                                    \"type\": \"Action.Submit\",\n                                    \"title\": \"send\",\n                                    \"data\": {\n                                        \"id\": \"POST/CON 2019\"\n                                    }\n                                }\n                            ]\n                        }\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Check jobs\",\n                        \"url\": \"https://jobs.cisco.com/jobs/SearchJobs/DevNet?3_109_3=%5B%22169482%22%5D&3_143_3=%5B%2212229389%22%5D\"\n                    },\n                    {\n                        \"type\": \"Action.OpenUrl\",\n                        \"title\": \"Join DevNet\",\n                        \"url\": \"https://developer.cisco.com/appdev/\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/messages",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"messages"
+							]
+						},
+						"description": "https://adaptivecards.io/samples/"
+					},
+					"response": []
+				},
+				{
+					"name": "[bot] Delete temp room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47711faa-4839-4007-b9d6-68b16fdacd3c",
+								"exec": [
+									"if (responseCode.code != 204) {",
+									"    tests[\"Delete a room: failed\"] = false",
+									"}",
+									"else {",
+									"    tests[\"Delete a room: success\"] = true",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bot_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"rooms",
+								"{{_room}}"
+							]
+						},
+						"description": "Deletes a room, by ID.\r\n\r\nSpecify the room ID in the roomId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-rooms-roomId-delete.html"
+					},
+					"response": []
+				}
+			],
+			"description": "Cards are created by including an adaptive card attachment when posting a new message. Cards can be interactive, soliciting an action from the user, such as submitting a response to a poll; or they may be purely informational, such as displaying current weather conditions.\r\n\r\nTo make cards interactive, include actions. Actions are buttons that users can use to open a URL, show another card, or submit data from an input form within the card. Cards may include up to five actions. If you include an input form, data submitted by a user is encrypted and stored within the Webex platform. You can use webhooks to receive notifications for new form submissions. Just like other API resources that contain encrypted data, the webhook's body will not include the form submission. After you receive the webhook, you will need to retrieve the form data via the Attachment Actions API endpoint. See Handling Requests from Webex Teams in the Webhooks Guide for more information about how to use webhooks with encrypted data.\r\n\r\nhttps://developer.webex.com/docs/api/guides/cards",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f43c0699-5173-45ed-9a14-8a3f4a529326",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d7c4197-e278-4bd4-8034-a6f7b2ca9054",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "46abc27d-2d4b-4ed4-b512-2815c272adf2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "72153035-536a-4032-9953-ef5a9edde7d9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

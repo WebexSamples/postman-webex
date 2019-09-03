@@ -3,8 +3,9 @@
 This repo gathers collections for the **[Webex Teams](https://developer.webex.com/quick-reference.html)**.
 _Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
 
-- **[Webex Teams API v1](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks, AttachmentActions... all Webex Teams resources accessible from an access token, with no admin priviledges
-- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices and Places. These admin related features are accessible only with an access token with admin priviledges
+- [Webex Teams API v1](#teams-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex Teams resources accessible from an access token, with no admin priviledges. Uses an `access_token` environment variable.
+- [Webex Teams Cards](#teams-cards): Messages (with Card attachments), AttachmentActions and Card examples. Uses `access_token` and `bot_token` environment variables.
+- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices and Places. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
 
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
@@ -17,7 +18,7 @@ If you're new to Postman, you're only a few steps away from getting the full ben
 When submitting a new collection, please ensure it leverages a {{access_token}} variable to ease environments sharing among collections. Thank you!** 
 
 
-## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
+## [teams-api](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
 
@@ -44,6 +45,21 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this Node.js code 
 ![generate code](docs/img/generate-nodejs-request-no-postman-header.png)
 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/71CYsEp).
+
+
+## [teams-cards](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/cards-scripted.json)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
+
+This collection lets you experiment [Webex Teams Cards and Actions](https://developer.webex.com/docs/api/guides/cards).
+
+You'll need to create an environment with the following variables:
+   - `access_token`: a Webex Teams user access token
+   - `bot_token`: the token of a Webex Bot account
+
+![Cards for Webex Teams](docs/img/cards-scripted-collection.png)
+
+Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/SVfTPTQ4).
 
 
 ## [admin-api](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/admin-scripted.json)

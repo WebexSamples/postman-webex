@@ -3,6 +3,7 @@
 **2019-09-03**
    - updates to the Webex Teams API (user) collection: support for Cards & AttachmentActions, exported as v2.1 format, various scripts enhancements
    - updates to the Webex Admin API collection: support for Devices & Places, exported as v2.1 format, various scripts enhancements
+   - NEW Webex Cards collection: experiment with Cards with a bot posting cards, and a user submitting data, several card examples
    - removed the 'direct-space' collection (not enough value compared to the maintenance cost)
 
 **2018-05-30**
