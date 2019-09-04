@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Devices",
+			"name": "Devices (EFT)",
 			"item": [
 				{
 					"name": "List Devices",
@@ -158,7 +158,7 @@
 					"response": []
 				}
 			],
-			"description": "Devices represent cloud-registered Webex RoomOS devices, as well as actively-connected Webex soft clients on mobile or desktop. Devices may be associated with Places.\r\n\r\nSearching and viewing details for your devices requires an auth token with the spark:devices_read scope. Updating or deleting your devices requires an auth token with the spark:devices_write scope. Viewing the list of all devices in an organization requires an administrator auth token with the spark-admin:devices_read scope. Adding, updating, or deleting all devices in an organization requires an administrator auth token with the spark-admin:devices_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices",
+			"description": "**This Resource is not generally available, requires to be part of the the Early Field Trial.**\r\n\r\nDevices represent cloud-registered Webex RoomOS devices, as well as actively-connected Webex soft clients on mobile or desktop. Devices may be associated with Places.\r\n\r\nSearching and viewing details for your devices requires an auth token with the spark:devices_read scope. Updating or deleting your devices requires an auth token with the spark:devices_write scope. Viewing the list of all devices in an organization requires an administrator auth token with the spark-admin:devices_read scope. Adding, updating, or deleting all devices in an organization requires an administrator auth token with the spark-admin:devices_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1714,532 +1714,7 @@
 			]
 		},
 		{
-			"name": "Roles",
-			"item": [
-				{
-					"name": "List Roles",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"List roles: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"List roles: success\"] = true;",
-									"    ",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    if (jsonData.items === undefined) {",
-									"        tests[\"List roles: cannot retreive result\"] = false",
-									"    }",
-									"    else {",
-									"        var roleId = jsonData.items[0].id;",
-									"        postman.setEnvironmentVariable(\"_role\", roleId);",
-									"        tests[\"List roles: retreived with id:\" + roleId] = true",
-									"    }",
-									"}"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/roles",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"roles"
-							]
-						},
-						"description": "List all roles.\n\nhttps://developer.webex.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Role Details",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"Get role details: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Get role details: success\"] = true;",
-									"}",
-									"    "
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/roles/{{_role}}",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"roles",
-								"{{_role}}"
-							]
-						},
-						"description": "Shows details for a role, by ID.\n\nSpecify the role ID in the roleId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-roles-roleId-get.html\n\nExample Response:\n``` json\n{\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'displayName' : 'Full Administrator'\n}\n```"
-					},
-					"response": []
-				}
-			],
-			"description": "A persona for an authenticated user, corresponding to a set of privileges within an organization. This roles resource can be accessed only by an admin.\n\nhttps://developer.webex.com/resource-roles.html",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "b9076309-ce8a-4aba-a089-26b2dd7f8818",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "66f81f7f-393b-4b26-af9f-1d4eb20e0e6b",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Place Services",
-			"item": [
-				{
-					"name": "List Place Services",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"List place services: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"List place services: success\"] = true;",
-									"    ",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    if (jsonData.items === undefined) {",
-									"        tests[\"List place services: cannot retreive result\"] = false",
-									"    }",
-									"    else {",
-									"        var placeServiceId = jsonData.items[0].id;",
-									"        postman.setEnvironmentVariable(\"_service\", placeServiceId);",
-									"        tests[\"List place services: retreived one service with id:\" + placeServiceId] = true",
-									"    }",
-									"}",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/place/services",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"place",
-								"services"
-							]
-						},
-						"description": "List place services.\r\nUse query parameters to filter the response.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/list-place-services"
-					},
-					"response": []
-				},
-				{
-					"name": "Get my Person Details (automation)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "74bc245f-0686-4669-ac38-4bad3a1dc927",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"Get person details: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Get person details: success\"] = true;",
-									"    ",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    if (jsonData.id === undefined) {",
-									"        tests[\"Get person details: cannot retreive result\"] = false",
-									"    }",
-									"    else {",
-									"        var orgId = jsonData.orgId;",
-									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
-									"        tests[\"Automation - get organization: retreived with id:\" + orgId] = true",
-									"        ",
-									"        var email = jsonData.emails[0];",
-									"        var parsed = email.match(/\\@(.*)$/);",
-									"        var domain = parsed[1];",
-									"        postman.setEnvironmentVariable(\"_domain\", domain);",
-									"        tests[\"Automation - get organization: retreived domain: \" + domain] = true",
-									"    }",
-									"}",
-									"",
-									"",
-									"    "
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "263d0744-ec80-4b24-a3ad-2e2bc62bca25",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/me",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"people",
-								"me"
-							]
-						},
-						"description": "Fetch orgId and email to automate future requests"
-					},
-					"response": []
-				},
-				{
-					"name": "Create a Place Service",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"Create a place service: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Create a place service: success\"] = true;",
-									"",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    if (jsonData.id === undefined) {",
-									"        tests[\"Create a place service: cannot retreive result\"] = false",
-									"    }",
-									"    else {",
-									"        var serviceId = jsonData.id;",
-									"        postman.setEnvironmentVariable(\"_service\", serviceId);",
-									"        tests[\"Create a place service: created with id:\" + serviceId] = true",
-									"    }",
-									"    ",
-									"}",
-									"    ",
-									"    "
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "894bd491-6424-45ec-8b41-be2bf31c3f4b",
-								"exec": [
-									"var random = Math.round(Math.random()*1000);",
-									"",
-									"postman.setEnvironmentVariable(\"_random\", random);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n\t\"type\" : \"Cisco Spark Calling\",\r\n\t\"orgId\" : \"{{_organization}}\",\r\n\t\"email\" : \"{{_random}}@{{_domain}}\"\r\n}"
-						},
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/place/services",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"place",
-								"services"
-							]
-						},
-						"description": "Create a place service.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/create-a-place-service"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Place Service Details",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"Get place service details: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Get place service details: success\"] = true;",
-									"}",
-									"",
-									"",
-									"    "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"place",
-								"services",
-								"{{_service}}"
-							]
-						},
-						"description": "Shows details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/get-place-service-details"
-					},
-					"response": []
-				},
-				{
-					"name": "Update a Place Service",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
-								"exec": [
-									"if (responseCode.code != 200) {",
-									"    tests[\"Create a place service: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Create a place service: success\"] = true;",
-									"",
-									"    var jsonData = JSON.parse(responseBody);",
-									"    if (jsonData.id === undefined) {",
-									"        tests[\"Create a place service: cannot retreive result\"] = false",
-									"    }",
-									"    else {",
-									"        var serviceId = jsonData.id;",
-									"        postman.setEnvironmentVariable(\"_service\", serviceId);",
-									"        tests[\"Create a place service: created with id:\" + serviceId] = true",
-									"    }",
-									"    ",
-									"}",
-									"    ",
-									"    "
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "894bd491-6424-45ec-8b41-be2bf31c3f4b",
-								"exec": [
-									"var random = Math.round(Math.random()*1000);",
-									"",
-									"postman.setEnvironmentVariable(\"_random\", random);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							},
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n\t\"placeId\" : \"{{_place}}\",\r\n\t\"type\" : \"Cisco Spark Calling\",\r\n\t\"licenseId\" : \"{{_license}}\",\r\n\t\"orgId\" : \"{{_org}}\", \r\n\t\"email\" : \"{{_random}}@{{_domain}}\"\r\n}\r\n"
-						},
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"place",
-								"services",
-								"{{_service}}"
-							]
-						},
-						"description": "Updates details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/update-a-place-service"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Place Service Details",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
-								"exec": [
-									"if (responseCode.code != 204) {",
-									"    tests[\"Delete place service: failed\"] = false;",
-									"}",
-									"else {",
-									"    tests[\"Delete place service: success\"] = true;",
-									"}",
-									"",
-									"",
-									"    "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}"
-							}
-						],
-						"url": {
-							"raw": "https://api.ciscospark.com/v1/place/services/{{_service}}",
-							"protocol": "https",
-							"host": [
-								"api",
-								"ciscospark",
-								"com"
-							],
-							"path": [
-								"v1",
-								"place",
-								"services",
-								"{{_service}}"
-							]
-						},
-						"description": "Shows details for a place service, by ID.\r\nSpecify the place service ID in the serviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services/get-place-service-details"
-					},
-					"response": []
-				}
-			],
-			"description": "Place services represent capabilities and features that are enabled for Places.\r\n\r\nViewing details for place services for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting place services for your places requires an auth token with the spark:places_write scope. Viewing the list of all place services in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all place services in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/place-services"
-		},
-		{
-			"name": "Places",
+			"name": "Places (EFT)",
 			"item": [
 				{
 					"name": "List Places",
@@ -2581,7 +2056,7 @@
 					"response": []
 				}
 			],
-			"description": "Places represent where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with places.\r\n\r\nViewing details for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting your places requires an auth token with the spark:places_write scope. Viewing the list of all places in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all places in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places",
+			"description": "**This Resource is not generally available, requires to be part of the the Early Field Trial.**\r\n\r\nPlaces represent where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with places.\r\n\r\nViewing details for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting your places requires an auth token with the spark:places_write scope. Viewing the list of all places in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all places in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -2597,6 +2072,132 @@
 					"listen": "test",
 					"script": {
 						"id": "d74c7738-c88f-48ba-ba4a-ded1565a8bf4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "List Roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/roles",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"roles"
+							]
+						},
+						"description": "List all roles.\n\nhttps://developer.webex.com/endpoint-roles-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Full Administrator'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get role details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get role details: success\"] = true;",
+									"}",
+									"    "
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/roles/{{_role}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"{{_role}}"
+							]
+						},
+						"description": "Shows details for a role, by ID.\n\nSpecify the role ID in the roleId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-roles-roleId-get.html\n\nExample Response:\n``` json\n{\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'displayName' : 'Full Administrator'\n}\n```"
+					},
+					"response": []
+				}
+			],
+			"description": "A persona for an authenticated user, corresponding to a set of privileges within an organization. This roles resource can be accessed only by an admin.\n\nhttps://developer.webex.com/resource-roles.html",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9076309-ce8a-4aba-a089-26b2dd7f8818",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "66f81f7f-393b-4b26-af9f-1d4eb20e0e6b",
 						"type": "text/javascript",
 						"exec": [
 							""

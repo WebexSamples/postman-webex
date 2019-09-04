@@ -1,5 +1,8 @@
 # Changes
 
+**2019-09-04**
+   - updates to the Webex Admin API collection: removed /place/services, added (EFT) tags
+
 **2019-09-03**
    - updates to the Webex Teams API (user) collection: support for Cards & AttachmentActions, exported as v2.1 format, various scripts enhancements
    - updates to the Webex Admin API collection: support for Devices & Places, exported as v2.1 format, various scripts enhancements

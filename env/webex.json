@@ -1,0 +1,29 @@
+{
+	"id": "591baacf-8a4e-44bb-9142-52354051bec7",
+	"name": "Postman Environment for Webex Cloud",
+	"values": [
+		{
+			"key": "webex_api",
+			"value": "https://api.ciscospark.com/v1",
+			"enabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "A USER TOKEN",
+			"enabled": true
+		},
+		{
+			"key": "bot_token",
+			"value": "A BOT TOKEN",
+			"enabled": true
+		},
+		{
+			"key": "target_url",
+			"value": "https://en712ain34omv.x.pipedream.net/",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-09-03T22:21:55.065Z",
+	"_postman_exported_using": "Postman/7.6.0"
+}
