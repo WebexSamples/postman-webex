@@ -49,7 +49,7 @@ Note that the collection is also rendered in HTML for [quick browsing via Postma
 
 ## [teams-cards](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/cards-scripted.json)
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0b1f13e0bb8cabd8b84c)
 
 This collection lets you experiment [Webex Teams Cards and Actions](https://developer.webex.com/docs/api/guides/cards).
 
