@@ -1,13 +1,247 @@
 {
 	"info": {
 		"_postman_id": "beba6b1c-a834-f8a3-951c-29678666d198",
-		"name": "Webex Teams Admin API",
-		"description": "The Webex Teams API includes administration APIs that allow administrators to programatically perform administration actions such as provisioning a user. By automating administration, user management and provisioning can be centralized in an existing tool, rather than using the Webex Teams Control Hub. For example, a partner selling multiple Collaboration tools to customers can use these APIs to enable Webex Teams provisioning through a centralized portal.\n\nhttps://developer.webex.com/admin-api.html\n\n\n## What's possible with Admin APIs?\n\nCurrently, administration is focused on User Provisioning. Using these APIs, an admin can:\n\n- Create a user\n- Update a user\n- View license usage of an organization\n- View available roles of an organization\n- Manage Hybrid Services licenses and users\n\n\n## Authentication\n\nUse of these APIs requires you to be an administrator of an organization.\n\nIf you are an administrator, you can login here to get a development auth token with necessary scopes.\n\nCreating an Integration that will act on behalf of an administrator can be done by including one or more of the following scopes when requesting an auth token via oAuth.\n\n- spark-admin:people_read  Access to read your user's company directory\n- spark-admin:people_write  Access to write to your user's company directory\n- spark-admin:organizations_read  Access to write to your user's company directory\n- spark-admin:roles_read  Access to read roles available in your user's organization\n- spark-admin:licenses_read  Access to read licenses available in your user's organizations\n",
+		"name": "Webex Admin API",
+		"description": "Cisco Webex includes administration APIs that allow administrators to perform actions such as provisioning a user and managing devices. \n\nBy automating administration, user management and provisioning can be centralized in an existing tool, rather than using the Webex Control Hub. For example, a partner selling multiple Collaboration tools to customers can use these APIs to enable Webex Teams provisioning through a centralized portal.\n\n## What's possible with Admin APIs?\n\nCurrently, administration is focused on User Provisioning. Using these APIs, an admin can:\n\n- Create a user\n- Update a user\n- View license usage of an organization\n- View available roles of an organization\n- Manage Hybrid Services licenses and users\n\nMore information available at:\nhttps://developer.webex.com/docs/api/guides/admin-api\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Devices (EFT)",
+			"name": "Admin Audit Events",
+			"item": [
+				{
+					"name": "List Organizations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List organizations : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List organizations: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List organizations: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var orgId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"List organizations: retreived one with id:\" + orgId] = true",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/organizations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"organizations"
+							]
+						},
+						"description": "List all organizations visible by your account.\n\nhttps://developer.webex.com/endpoint-organizations-get.html\n\nExample Response:\n``` json\n{\n  'items' : [ {\n    'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n    'displayName' : 'Acme, Inc.',\n    'created' : '2015-10-18T14:26:16+00:00'\n  } ]\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "List Admin Audit Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List devices : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List devices: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List devices: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var deviceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
+									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "67190aaf-64ee-4f4e-a637-35497c28ed40",
+								"exec": [
+									"var now = new Date(Date.now());",
+									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
+									"",
+									"var yesterday = now;",
+									"yesterday.setHours(now.getHours()-24);",
+									"postman.setEnvironmentVariable(\"_yesterday\", yesterday.toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"adminAudit",
+								"events"
+							],
+							"query": [
+								{
+									"key": "orgId",
+									"value": "{{_organization}}"
+								},
+								{
+									"key": "from",
+									"value": "{{_yesterday}}"
+								},
+								{
+									"key": "to",
+									"value": "{{_now}}"
+								}
+							]
+						},
+						"description": "List admin audit events in your organization. Several query parameters are available to filter the response.\r\n\r\nLong result sets will be split into pages.\r\n\r\nhttps://developer.webex.com/docs/api/v1/admin-audit-events/list-admin-audit-events"
+					},
+					"response": []
+				},
+				{
+					"name": "List Admin Audit Events (max)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List devices : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List devices: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List devices: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var deviceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
+									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "67190aaf-64ee-4f4e-a637-35497c28ed40",
+								"exec": [
+									"var now = new Date(Date.now());",
+									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
+									"",
+									"var yesterday = now;",
+									"yesterday.setHours(now.getHours()-24);",
+									"postman.setEnvironmentVariable(\"_yesterday\", yesterday.toISOString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "https://api.ciscospark.com/v1/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}&max=5",
+							"protocol": "https",
+							"host": [
+								"api",
+								"ciscospark",
+								"com"
+							],
+							"path": [
+								"v1",
+								"adminAudit",
+								"events"
+							],
+							"query": [
+								{
+									"key": "orgId",
+									"value": "{{_organization}}"
+								},
+								{
+									"key": "from",
+									"value": "{{_yesterday}}"
+								},
+								{
+									"key": "to",
+									"value": "{{_now}}"
+								},
+								{
+									"key": "max",
+									"value": "5"
+								}
+							]
+						},
+						"description": "List admin audit events in your organization. Several query parameters are available to filter the response.\r\n\r\nLong result sets will be split into pages.\r\n\r\nhttps://developer.webex.com/docs/api/v1/admin-audit-events/list-admin-audit-events"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin Audit Events are available to full administrators for certain events performed in Webex Control Hub.\r\n\r\nAdministrators with accounts created before 2019 will need to log into Webex Control Hub before using this API.\r\n\r\nhttps://developer.webex.com/docs/api/v1/admin-audit-events\r\n",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Devices",
 			"item": [
 				{
 					"name": "List Devices",
@@ -158,7 +392,7 @@
 					"response": []
 				}
 			],
-			"description": "**This Resource is not generally available, requires to be part of the the Early Field Trial.**\r\n\r\nDevices represent cloud-registered Webex RoomOS devices, as well as actively-connected Webex soft clients on mobile or desktop. Devices may be associated with Places.\r\n\r\nSearching and viewing details for your devices requires an auth token with the spark:devices_read scope. Updating or deleting your devices requires an auth token with the spark:devices_write scope. Viewing the list of all devices in an organization requires an administrator auth token with the spark-admin:devices_read scope. Adding, updating, or deleting all devices in an organization requires an administrator auth token with the spark-admin:devices_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices",
+			"description": "Devices represent cloud-registered Webex RoomOS devices, as well as actively-connected Webex soft clients on mobile or desktop. Devices may be associated with Places.\r\n\r\nSearching and viewing details for your devices requires an auth token with the spark:devices_read scope. Updating or deleting your devices requires an auth token with the spark:devices_write scope. Viewing the list of all devices in an organization requires an administrator auth token with the spark-admin:devices_read scope. Adding, updating, or deleting all devices in an organization requires an administrator auth token with the spark-admin:devices_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -180,7 +414,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Events",
@@ -1714,7 +1949,7 @@
 			]
 		},
 		{
-			"name": "Places (EFT)",
+			"name": "Places",
 			"item": [
 				{
 					"name": "List Places",
@@ -1819,7 +2054,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n\t\"displayName\" : \"office\",\r\n\t\"type\" : \"room_device\"\r\n}"
+							"raw": "{ \r\n\t\"displayName\" : \"DevNetZone\",\r\n\t\"type\" : \"room_device\"\r\n}"
 						},
 						"url": {
 							"raw": "https://api.ciscospark.com/v1/places",
@@ -2056,7 +2291,7 @@
 					"response": []
 				}
 			],
-			"description": "**This Resource is not generally available, requires to be part of the the Early Field Trial.**\r\n\r\nPlaces represent where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with places.\r\n\r\nViewing details for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting your places requires an auth token with the spark:places_write scope. Viewing the list of all places in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all places in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places",
+			"description": "Places represent where people work, such as conference rooms, meeting spaces, lobbies, and lunch rooms. Devices may be associated with places.\r\n\r\nViewing details for places you have access to requires an auth token with a scope of spark:places_read. Updating or deleting your places requires an auth token with the spark:places_write scope. Viewing the list of all places in an organization requires an administrator auth token with the spark-admin:places_read scope. Adding, updating, or deleting all places in an organization requires an administrator auth token with the spark-admin:places_write scope.\r\n\r\nhttps://developer.webex.com/docs/api/v1/places",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -2078,7 +2313,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Roles",

@@ -1,5 +1,10 @@
 # Changes
 
+**2020-01-27**
+   - new folder for 'Admin Audit Events' 
+   - removed EFT tags for /devices and /places
+   - re-published on Postman API Network
+
 **2019-09-04**
    - updates to the Webex Admin API collection: removed /place/services, added (EFT) tags
 
