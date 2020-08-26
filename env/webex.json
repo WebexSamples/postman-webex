@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "webex_api",
-			"value": "https://api.ciscospark.com/v1",
+			"value": "https://webexapi.com/v1",
 			"enabled": true
 		},
 		{

@@ -1,12 +1,14 @@
-# Postman collections for Webex Teams
+# Postman collections for Webex Messaging and Admin APIs
 
-This repo gathers collections for the **[Webex Teams](https://developer.webex.com/quick-reference.html)**.
-_Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
+This repo gathers collections for **[Webex Messaging and Admin APIs](https://developer.webex.com/quick-reference.html)**.
+- [Webex Messaging API](#webex-messaging-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex resources accessible from an access token, with no admin priviledges. Uses an `access_token` environment variable.
+- [Webex Admin API](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
+- [Webex Cards](#webex-cards): Messages (with Card attachments), AttachmentActions and Card examples. Uses `access_token` and `bot_token` environment variables.
 
-- [Webex Teams API v1](#teams-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex Teams resources accessible from an access token, with no admin priviledges. Uses an `access_token` environment variable.
-- [Webex Teams Cards](#teams-cards): Messages (with Card attachments), AttachmentActions and Card examples. Uses `access_token` and `bot_token` environment variables.
-- [Webex Admin API v1](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices and Places. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
-
+Looking for other postman collections, check:
+- [postman-xapi](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices Cloud  API**._
+- [postman-webex-calling](https://github.com/webex/postman-webex-calling) if looking for collections for **Webex Calling API**._
+- [postman-webex-meeting](https://github.com/webex/postman-webex-meetings) if looking for collections for **Webex Meeting REST API**._
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
 1. [import and configure](docs/ImportAndConfigure.md) a collection 
@@ -18,11 +20,11 @@ If you're new to Postman, you're only a few steps away from getting the full ben
 When submitting a new collection, please ensure it leverages a {{access_token}} variable to ease environments sharing among collections. Thank you!** 
 
 
-## [teams-api](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
+## [Webex Messaging API](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
 
-The collection implements the public(*) resources for the Webex Teams REST API , with direct links to the official API documentation. _(*) use a simple user account, no need admin priviledges_
+The collection implements the public(*) resources for the Webex Messaging REST API , with direct links to the official API documentation. _(*) use a simple user account, no need admin priviledges_
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
@@ -47,17 +49,17 @@ Take the [Generate Code Guide](docs/GenerateCode.md) and have this Node.js code 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/71CYsEp).
 
 
-## [teams-cards](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/cards-scripted.json)
+## [Webex Cards](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/cards-scripted.json)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0b1f13e0bb8cabd8b84c)
 
-This collection lets you experiment [Webex Teams Cards and Actions](https://developer.webex.com/docs/api/guides/cards).
+This collection lets you experiment [Webex Cards and Buttons](https://developer.webex.com/docs/api/guides/cards).
 
 You'll need to create an environment with the following variables:
-   - `access_token`: a Webex Teams user access token
+   - `access_token`: a Webex API access token
    - `bot_token`: the token of a Webex Bot account
 
-![Cards for Webex Teams](docs/img/cards-scripted-collection.png)
+![Webex Cards](docs/img/cards-scripted-collection.png)
 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/SVfTPTQ4).
 

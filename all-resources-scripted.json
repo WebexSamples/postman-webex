@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "fe983448-e2ff-d578-f4c4-8223175c32c2",
-		"name": "Webex Teams API v1",
+		"name": "Webex Messaging API",
 		"description": "Hey there! Thanks for checking out Cisco Webex for Developers. If you've used Cisco Webex Meetings or Cisco Webex Teams (formerly Cisco Spark) you know how easy it is to meet and collaborate with your team members and customers.\r\n\r\nThe Webex for Developers program opens up the power behind the Webex platform to anyone seeking to extend the Webex experience.\r\n\r\nWebex Meetings is a powerful conferencing solution that lets you connect with anyone, anywhere, in real time. By combining video, audio and content sharing, Webex Meetings creates an effective conferencing environment, leading to more productive meetings and increased productivity. Developer information for Webex Meetings will soon be available on this site. In the meantime, to get started with developing for Webex Meetings, please see the Getting Started guides over on Cisco DevNet. Keep reading for information about Webex Teams.\r\n\r\nWebex Teams makes staying in sync with your teammates and customers easy.\r\nConversations in Webex Teams take place in virtual meeting rooms. Some rooms live for a few hours while others become permanent fixtures of your team's workflow with titles like Daily Standup or Build Status. Webex Teams allows conversations to flow seamlessly between messages, video calls, and real-time whiteboarding sessions. No other solution brings together so many facets of collaboration into a single unified platform.\r\n\r\nhttps://developer.webex.com/getting-started.html",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -59,15 +59,11 @@
 							"raw": "{\n    \"title\": \"Testing Cards\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -125,15 +121,11 @@
 							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n        {\n            \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n            \"content\": {\n                \"type\": \"AdaptiveCard\",\n                \"version\": \"1.0\",\n                \"body\": [\n                    {\n                        \"type\": \"TextBlock\",\n                        \"text\": \"Please enter your name:\"\n                    },\n                    {\n                        \"type\": \"Input.Text\",\n                        \"id\": \"name\",\n                        \"title\": \"New Input.Toggle\",\n                        \"placeholder\": \"name\"\n                    }\n                ],\n                \"actions\": [\n                    {\n                        \"type\": \"Action.Submit\",\n                        \"title\": \"Submit\"\n                    }\n                ]\n            }\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -191,15 +183,11 @@
 							"raw": "{\r\n  \"type\": \"submit\",\r\n  \"messageId\": \"{{_message}}\",\r\n  \"inputs\": {\r\n    \"name\": \"John Doe\"\r\n  }\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/attachment/actions",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/attachment/actions",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"attachment",
 								"actions"
 							]
@@ -235,15 +223,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/attachment/actions/{{_action}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/attachment/actions/{{_action}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"attachment",
 								"actions",
 								"{{_action}}"
@@ -259,7 +243,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e3236c06-933d-479c-a9d1-7439c722671f",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a message: failed\"] = false",
@@ -268,7 +252,8 @@
 									"    tests[\"Delete a message: success\"] = true",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -285,15 +270,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages/{{_message}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages/{{_message}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages",
 								"{{_message}}"
 							]
@@ -334,15 +315,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -373,7 +350,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Memberships",
@@ -384,7 +362,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dbeeee3e-793e-4386-8ee8-138e25cec688",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -392,7 +370,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -405,15 +384,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships"
 							]
 						},
@@ -427,7 +402,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9e9c6154-69ca-482b-a5d9-899b1900529d",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a room: failed\"] = false",
@@ -449,7 +424,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -470,15 +446,11 @@
 							"raw": "{\n    \"title\": \"Postman - Testing Memberships\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -492,7 +464,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4a5df943-a1e4-4245-8260-af196293255b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -500,7 +472,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -513,15 +486,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships?roomId={{_room}}&max=100",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships?roomId={{_room}}&max=100",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships"
 							],
 							"query": [
@@ -545,7 +514,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "54faa7ec-3d16-4df5-8119-b8965cbaea03",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a membership: failed\"] = false",
@@ -568,7 +537,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -589,15 +559,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"personEmail\": \"CiscoDevNet@sparkbot.io\",\r\n  \"isModerator\": \"false\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships"
 							]
 						},
@@ -611,7 +577,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "39841213-18e6-4b5d-98ce-0783dcc34732",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get membership details: failed\"] = false;",
@@ -635,7 +601,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -648,15 +615,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships",
 								"{{_membership}}"
 							]
@@ -671,7 +634,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5c07484e-1870-48fd-a7cc-7ebec92359e3",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update a membership: failed\"] = false",
@@ -679,12 +642,13 @@
 									"else {",
 									"    tests[\"Update a membership: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "PUT",
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "Authorization",
@@ -700,15 +664,11 @@
 							"raw": "{\n  \"isModerator\": true\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships",
 								"{{_membership}}"
 							]
@@ -723,7 +683,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "236be525-d7b5-42db-92cd-f77b74e892ed",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a membership: failed\"] = false",
@@ -731,7 +691,8 @@
 									"else {",
 									"    tests[\"Delete a membership: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -748,15 +709,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"memberships",
 								"{{_membership}}"
 							]
@@ -771,7 +728,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "46195348-098e-48af-9d43-0e294c2d35f9",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a room: failed\"] = false",
@@ -779,7 +736,8 @@
 									"else {",
 									"    tests[\"Delete a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -796,12 +754,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/v1/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
 								"v1",
@@ -836,7 +791,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Messages",
@@ -847,7 +803,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5c58b3b8-6c9f-4266-ac4c-95a1df80d76b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a room: failed\"] = false",
@@ -869,7 +825,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -890,15 +847,11 @@
 							"raw": "{\n    \"title\": \"Postman - Testing Messages\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -912,7 +865,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "1650e17e-ced7-435f-835e-cd2bfd247149",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List messages: failed\"] = false;",
@@ -920,7 +873,8 @@
 									"else {",
 									"    tests[\"List messages: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -933,15 +887,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages?roomId={{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages?roomId={{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							],
 							"query": [
@@ -961,7 +911,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "ea30b14c-adb3-4f20-bc6b-bb145826a665",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -983,7 +933,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1004,15 +955,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"hi from Postman\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1026,7 +973,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9e8e0b1f-9c90-4935-8a9d-478bc77520a0",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1048,7 +995,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1076,15 +1024,11 @@
 							]
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1098,7 +1042,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "214c9914-0c11-450b-a359-36d17ab47665",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1120,7 +1064,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1152,15 +1097,11 @@
 							]
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1174,7 +1115,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "bd0a4062-d90a-4bc2-96cc-cd70fd7149d2",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1197,7 +1138,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1218,15 +1160,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"# Message Formatting!\\nWebex Teams clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!\\n\\n## Styling Text\\nMessages are styled using [Markdown](https://daringfireball.net/projects/markdown/syntax) syntax allowing text to be emphasized in **bold**, *italics* on `in-line code`.\\n\\n### Fenced Code Blocks\\nWebex can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)\\n\\n```\\nsource 'https://github.com/CocoaPods/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'TeamsBnB' do\\n  pod 'TeamsSDK', :path => '../'\\n  pod 'Toast-Swift', '~> 1.1.0'\\nend\\n```\\n\\n### Lists\\n\\nLists are a great way to organize information or present options to your audience.\\n\\n###Ordered Lists\\n1. List Item\\n2. List Item\\n3. List Item\\n\\n###Unordered Lists\\n* List Item\\n* List Item\\n* List Item\\n     * Sub Item\\n         * SubSub Item\\n\\n### Block Quotes\\n\\n> Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.\\n\\n\",\r\n  \"text\": \"This text would be displayed by Webex Teams clients that do not support markdown.\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1240,7 +1178,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "83283f04-e45c-446c-a606-a2a16f4d33ee",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1262,7 +1200,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1280,18 +1219,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"Hi <@personEmail:CiscoDevNet@sparkbot.io|CiscoDevNet>, your order has been processed.\"\r\n}"
+							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"Hi <@personEmail:CiscoDevNet@webex.bot|CiscoDevNet>, your order has been processed.\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1305,7 +1240,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3493c6eb-fd20-4cb5-a778-09126b044034",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1327,7 +1262,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1348,15 +1284,11 @@
 							"raw": "{\n  \"roomId\": \"{{_room}}\",\n  \"markdown\": \"ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1370,7 +1302,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e0ef3424-50c1-402b-9e32-9ccf884ccf9f",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1392,7 +1324,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1413,15 +1346,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"markdown\" : \"漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは漢字漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語を漢字で送りますこんにちは日本語\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1435,7 +1364,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "15e05052-ac44-4770-bca9-caf270d1fd00",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1458,7 +1387,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1479,15 +1409,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"html\" : \"<p>Well as you know, HTML is not officially supported! Let's try it though ;-)</p><h1>Message Formatting!</h1><p>Webex Teams clients now render rich text; enabling bots and integrations to communicate business data in a way that's fun to read and easy on the eyes!</p><h2>Styling Text</h2><p>Messages are styled using <a href=\\\"https://daringfireball.net/projects/markdown/syntax\\\" rel=\\\"nofollow\\\">Markdown</a> syntax allowing text to be emphasized in <strong>bold</strong>, <em>italics</em> on <code>in-line code</code>.</p><h3>Fenced Code Blocks</h3><p>Webex Teams clients can now also render fenced code blocks using triple backticks (aka GitHub Flavored Markdown)</p><pre><code>source 'https://github.com/CocoaPods/Specs.git'\\nplatform :ios, '8.0'\\nuse_frameworks!\\n\\npost_install do |installer|\\n  installer.pods_project.targets.each do |target|\\n    target.build_configurations.each do |config|\\n      config.build_settings['ENABLE_BITCODE'] = 'NO'\\n    end\\n  end\\nend\\n\\ntarget 'TeamsBnB' do\\n  pod 'TeamsSDK', :path =&gt; '../'\\n  pod 'Toast-Swift', '~&gt; 1.1.0'\\nend</code></pre><h3>Lists</h3><p>Lists are a great way to organize information or present options to your audience.</p><p>Orderd Lists</p><ol><li>List Item</li><li>List Item</li><li>List Item</li></ol><p>Unordered Lists</p><ul><li>List Item</li><li>List Item</li><li>List Item</li></ul><h3>Block Quotes</h3><blockquote><p>Quoting is a super powerful way for bots to respond to a message that happened a while back in the conversation.</p></blockquote><p><h3>Horizontal Lines</h3>well, as others, it's not officially supported, but pretty handy ;-)<hr></p>\",\r\n  \"text\": \"This text would be displayed by Webex Teams clients that do not support Markdown.\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1501,7 +1427,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "51108586-bd0b-4754-a48b-d9d30221f588",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1523,7 +1449,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1544,15 +1471,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"Learn Webex API with DevNet\",\r\n  \"files\" : [ \"https://cdn-images-1.medium.com/max/1000/1*_Iz0gkpIJ8KxxR5Jk0XJjQ.png\" ]\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1566,7 +1489,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5bd7feea-c410-44d5-ab3c-1596764af3fa",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a message: failed\"] = false",
@@ -1588,7 +1511,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1615,21 +1539,17 @@
 								},
 								{
 									"key": "files",
-									"value": null,
-									"type": "file"
+									"type": "file",
+									"src": []
 								}
 							]
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1687,15 +1607,11 @@
 							"raw": "{\n    \"roomId\": \"{{_room}}\",\n    \"markdown\": \"[Learn more](https://adaptivecards.io) about Adaptive Cards.\",\n    \"attachments\": [\n      {\n        \"contentType\": \"application/vnd.microsoft.card.adaptive\",\n        \"content\": {\n          \"type\": \"AdaptiveCard\",\n          \"version\": \"1.0\",\n          \"backgroundImage\": \"http://messagecardplayground.azurewebsites.net/assets/Mostly%20Cloudy-Background-Dark.jpg\",\n          \"body\": [\n            {\n              \"type\": \"TextBlock\",\n              \"text\": \"Adaptive Cards\",\n              \"size\": \"large\"\n            }\n          ],\n          \"actions\": [\n            {\n              \"type\": \"Action.OpenUrl\",\n              \"url\": \"http://adaptivecards.io\",\n              \"title\": \"Learn More\"\n            }\n          ]\n        }\n      }\n    ]\n  }"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -1709,7 +1625,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "50fc4ae3-e399-4cd6-a048-eb95fc21dc64",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get message details: failed\"] = false;",
@@ -1733,7 +1649,8 @@
 									"}",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1746,15 +1663,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages/{{_message}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages/{{_message}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages",
 								"{{_message}}"
 							]
@@ -1769,7 +1682,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "638f92d9-9c37-4a3d-bb2e-cf78abbf7c20",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a message: failed\"] = false",
@@ -1778,7 +1691,8 @@
 									"    tests[\"Delete a message: success\"] = true",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1795,15 +1709,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages/{{_message}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages/{{_message}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages",
 								"{{_message}}"
 							]
@@ -1818,7 +1728,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "82d52adc-77ef-40b6-bffc-0e52221a80fb",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a room: failed\"] = false",
@@ -1826,7 +1736,8 @@
 									"else {",
 									"    tests[\"Delete a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1843,15 +1754,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -1883,7 +1790,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "People",
@@ -1894,7 +1802,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "df5a1d4b-5cf4-401c-baca-a21bd72a5b30",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List people: failed\"] = false;",
@@ -1902,7 +1810,8 @@
 									"else {",
 									"    tests[\"List people: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1915,15 +1824,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people?displayName=Ste",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people?displayName=Ste",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people"
 							],
 							"query": [
@@ -1943,7 +1848,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "806e8de9-f459-4ec9-9687-d3bcccce0240",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List people: failed\"] = false;",
@@ -1961,7 +1866,8 @@
 									"        tests[\"List people: retreived with id:\" + personID] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1974,15 +1880,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people?email=toEnglish@sparkbot.io",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people?email=toEnglish@sparkbot.io",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people"
 							],
 							"query": [
@@ -2002,7 +1904,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "8009a0be-6fab-47fb-b87e-2db044c4547e",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get person details: failed\"] = false;",
@@ -2026,7 +1928,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2039,15 +1942,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"{{_person}}"
 							]
@@ -2105,15 +2004,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/me",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/me",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"me"
 							]
@@ -2144,7 +2039,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Rooms",
@@ -2155,7 +2051,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "6276bc94-e83d-474b-8d7c-b9cd9f16d600",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -2163,7 +2059,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2176,15 +2073,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -2198,7 +2091,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "d30c52eb-cfb0-4887-b523-f2e63b1bc164",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -2206,7 +2099,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2219,15 +2113,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms?type=direct&sortBy=lastactivity&max=10",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms?type=direct&sortBy=lastactivity&max=10",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							],
 							"query": [
@@ -2255,29 +2145,30 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9fdbbda9-a753-4e28-bde8-99c9cae8112e",
 								"exec": [
 									"if (responseCode.code != 200) {",
-									"    tests[\"Create a room: failed\"] = false",
+									"    tests[\"Create a room: failed\"] = false;",
 									"}",
 									"else {",
-									"    tests[\"Create a room: created\"] = true",
+									"    tests[\"Create a room: created\"] = true;",
 									"",
 									"    var jsonData = JSON.parse(responseBody);",
 									"    if (jsonData.id === undefined) {",
-									"        tests[\"Create a room: cannot retreive room identifier\"] = false",
+									"        tests[\"Create a room: cannot retreive room identifier\"] = false;",
 									"    }",
 									"    else {",
 									"        var roomID = jsonData.id;",
 									"        postman.setEnvironmentVariable(\"_room\", roomID);",
-									"        tests[\"Create a room: created with id:\" + roomID] = true",
+									"        tests[\"Create a room: created with id:\" + roomID] = true;",
 									"    }",
 									"}",
 									"    ",
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2298,15 +2189,11 @@
 							"raw": "{\n    \"title\": \"Postman - Testing Rooms\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -2320,7 +2207,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "6fd57805-7186-46b3-a3db-d5b1f8fa98e0",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get room details: failed\"] = false;",
@@ -2344,7 +2231,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2357,15 +2245,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -2380,7 +2264,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f5cdca85-2944-4d69-933c-46005b38817c",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update a room: failed\"] = false",
@@ -2388,7 +2272,8 @@
 									"else {",
 									"    tests[\"Update a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2409,15 +2294,11 @@
 							"raw": "{\n    \"title\": \"Cisco Live - Let's meet in the DevNet Zone\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -2432,7 +2313,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c82a4b42-3414-455c-a676-679ae020d9e3",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a room: failed\"] = false",
@@ -2440,7 +2321,8 @@
 									"else {",
 									"    tests[\"Delete a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2457,15 +2339,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -2497,7 +2375,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Team Memberships",
@@ -2508,7 +2387,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "c22943d2-1e50-455b-b70f-489da40ec361",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a team: failed\"] = false",
@@ -2530,7 +2409,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2551,15 +2431,11 @@
 							"raw": "{\n    \"name\": \"Tour de France\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams"
 							]
 						},
@@ -2573,7 +2449,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5fb00d22-c8f5-4e08-990a-167a5a77d52b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -2581,7 +2457,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2594,15 +2471,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/team/memberships?teamId={{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/team/memberships?teamId={{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"team",
 								"memberships"
 							],
@@ -2623,7 +2496,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3db46e4d-c4bc-471f-983b-98920c153af4",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a membership: failed\"] = false",
@@ -2646,7 +2519,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2667,15 +2541,11 @@
 							"raw": "{\r\n  \"teamId\" : \"{{_team}}\",\r\n  \"personEmail\": \"steve.sfartz@gmail.com\",\r\n  \"isModerator\": \"false\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/team/memberships",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/team/memberships",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"team",
 								"memberships"
 							]
@@ -2690,7 +2560,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "f80853e3-6445-417a-9102-08c6726b707b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get membership details: failed\"] = false;",
@@ -2714,7 +2584,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2727,15 +2598,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/team/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"team",
 								"memberships",
 								"{{_membership}}"
@@ -2751,7 +2618,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "e30b847e-74b9-435c-a52b-fe338add6ad7",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update a membership: failed\"] = false",
@@ -2759,7 +2626,8 @@
 									"else {",
 									"    tests[\"Update a membership: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2780,15 +2648,11 @@
 							"raw": "{\n  \"isModerator\": true\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/team/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"team",
 								"memberships",
 								"{{_membership}}"
@@ -2804,7 +2668,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "3cac9406-57aa-4107-896f-c950b9f90adf",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a membership: failed\"] = false",
@@ -2812,7 +2676,8 @@
 									"else {",
 									"    tests[\"Delete a membership: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2829,15 +2694,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/team/memberships/{{_membership}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/team/memberships/{{_membership}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"team",
 								"memberships",
 								"{{_membership}}"
@@ -2853,7 +2714,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "00ac787b-a747-412e-b591-aa3011287b88",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a team: failed\"] = false",
@@ -2861,7 +2722,8 @@
 									"else {",
 									"    tests[\"Delete a team: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2878,15 +2740,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams/{{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams/{{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams",
 								"{{_team}}"
 							]
@@ -2918,7 +2776,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Teams",
@@ -2929,7 +2788,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5ddf9967-2826-48e5-8d21-8683a92fa467",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List teams: failed\"] = false;",
@@ -2937,7 +2796,8 @@
 									"else {",
 									"    tests[\"List teams: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2950,15 +2810,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams"
 							]
 						},
@@ -2972,7 +2828,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "612edb74-c4b5-4ea9-adfd-f07f5201b9bc",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a team: failed\"] = false",
@@ -2994,7 +2850,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3015,15 +2872,11 @@
 							"raw": "{\n    \"name\": \"European Football Championship\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams"
 							]
 						},
@@ -3037,7 +2890,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "47427043-d749-4aab-bcb7-5e97c2cab4d3",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get team details: failed\"] = false;",
@@ -3061,7 +2914,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3074,15 +2928,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams/{{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams/{{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams",
 								"{{_team}}"
 							]
@@ -3097,7 +2947,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "acaaa89a-262e-4b00-a4e8-54ad3a63db98",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update a team: failed\"] = false",
@@ -3105,7 +2955,8 @@
 									"else {",
 									"    tests[\"Update a team: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3126,15 +2977,11 @@
 							"raw": "{\n    \"name\": \"European Football Championship 2018\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams/{{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams/{{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams",
 								"{{_team}}"
 							]
@@ -3149,7 +2996,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "5f8b99a4-998b-4ba9-9bee-10258a8175b7",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List rooms: failed\"] = false;",
@@ -3157,7 +3004,8 @@
 									"else {",
 									"    tests[\"List rooms: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3170,15 +3018,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms?teamId={{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms?teamId={{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							],
 							"query": [
@@ -3198,7 +3042,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "cb7ccf27-9f06-476d-9031-9365dd846d4b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a room: failed\"] = false",
@@ -3220,7 +3064,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3241,15 +3086,11 @@
 							"raw": "{\n    \"title\": \"Postman - Testing Teams\",\n    \"teamId\": \"{{_team}}\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -3263,7 +3104,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "32cfe1e0-2298-45fd-b641-85ff618e8902",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get room details: failed\"] = false;",
@@ -3287,7 +3128,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3300,15 +3142,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -3323,7 +3161,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "9efb1fcd-cbec-49a2-ab65-d8376770780f",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update a room: failed\"] = false",
@@ -3331,7 +3169,8 @@
 									"else {",
 									"    tests[\"Update a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3352,15 +3191,11 @@
 							"raw": "{\n    \"title\": \"Cisco Live - Let's meet in the DevNet Zone\", \n    \"isLocked\": false\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -3375,7 +3210,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "21536646-fe17-43bd-b8e5-48c19c40a468",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a room: failed\"] = false",
@@ -3383,7 +3218,8 @@
 									"else {",
 									"    tests[\"Delete a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3400,15 +3236,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -3423,7 +3255,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "065d9a0b-ef88-42f3-a1dc-571866e7d578",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a team: failed\"] = false",
@@ -3431,7 +3263,8 @@
 									"else {",
 									"    tests[\"Delete a team: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3448,15 +3281,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/teams/{{_team}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/teams/{{_team}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"teams",
 								"{{_team}}"
 							]
@@ -3488,7 +3317,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "WebHooks",
@@ -3504,15 +3334,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks"
 							]
 						},
@@ -3566,15 +3392,11 @@
 							"raw": "{\n      \"name\": \"Webhook to Requestb.in (all events, no filter)\",\n      \"resource\": \"all\",\n      \"event\": \"all\",\n      \"targetUrl\": \"https://enuxe3i231jho.x.pipedream.net/\"\n    }"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks"
 							]
 						},
@@ -3588,7 +3410,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "df1929d9-bccf-4654-a760-229b9bff34f3",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get webhook details: failed\"] = false;",
@@ -3612,7 +3434,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3625,15 +3448,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/{{_webhook}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								"{{_webhook}}"
 							]
@@ -3657,15 +3476,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/{{_webhook}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								"{{_webhook}}"
 							]
@@ -3680,7 +3495,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "7f8dcb31-68f7-4f88-b29d-52545e6e002b",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a room: failed\"] = false",
@@ -3702,7 +3517,8 @@
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3723,15 +3539,11 @@
 							"raw": "{\n    \"title\": \"Postman - Testing Webhooks\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms"
 							]
 						},
@@ -3785,15 +3597,11 @@
 							"raw": "{\n      \"name\": \"Postman WebHook Test\",\n      \"resource\": \"messages\",\n      \"event\": \"created\",\n      \"targetUrl\": \"https://enryghfod7afj.x.pipedream.net\",\n      \"filter\": \"roomId={{_room}}\"\n    }"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								""
 							]
@@ -3808,7 +3616,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "21297231-1a80-4d2f-b7ac-fd8289754fee",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get webhook details: failed\"] = false;",
@@ -3832,7 +3640,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3845,15 +3654,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/{{_webhook}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								"{{_webhook}}"
 							]
@@ -3898,15 +3703,11 @@
 							"raw": "{\n    \"name\": \"Postman WebHook Test (renamed)\",\n    \"event\": \"all\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/{{_webhook}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								"{{_webhook}}"
 							]
@@ -3921,14 +3722,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "1c7726a4-2792-4620-8d26-df535b6fb15f",
 								"exec": [
 									"",
 									"    ",
 									"    ",
 									"    ",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -3949,15 +3751,11 @@
 							"raw": "{\r\n  \"roomId\" : \"{{_room}}\",\r\n  \"text\" : \"This is a plain text message to read from the webhook\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/messages",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/messages",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"messages"
 							]
 						},
@@ -3980,15 +3778,11 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/webhooks/{{_webhook}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/webhooks/{{_webhook}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"webhooks",
 								"{{_webhook}}"
 							]
@@ -4003,7 +3797,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "22886eb1-8551-42e6-b11e-f332d0e9acf2",
 								"exec": [
 									"if (responseCode.code != 204) {",
 									"    tests[\"Delete a room: failed\"] = false",
@@ -4011,7 +3805,8 @@
 									"else {",
 									"    tests[\"Delete a room: success\"] = true",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -4028,15 +3823,11 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/rooms/{{_room}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/rooms/{{_room}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"rooms",
 								"{{_room}}"
 							]
@@ -4068,7 +3859,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -4092,5 +3884,13 @@
 				]
 			}
 		}
-	]
+	],
+	"variable": [
+		{
+			"id": "a5d3cf20-ef08-48eb-9293-8d4d22597d6d",
+			"key": "WEBEXAPI",
+			"value": "https://webexapis.com/v1"
+		}
+	],
+	"protocolProfileBehavior": {}
 }

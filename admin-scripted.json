@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Admin Audit Events",
+			"name": "AdminAudit Events",
 			"item": [
 				{
 					"name": "List Organizations",
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "03ef7ae1-9057-42ce-8ff2-e807b1acf159",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List organizations : failed\"] = false;",
@@ -33,7 +33,8 @@
 									"        tests[\"List organizations: retreived one with id:\" + orgId] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -46,15 +47,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/organizations",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/organizations",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"organizations"
 							]
 						},
@@ -116,15 +113,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"adminAudit",
 								"events"
 							],
@@ -201,15 +194,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}&max=5",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/adminAudit/events?orgId={{_organization}}&from={{_yesterday}}&to={{_now}}&max=5",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"adminAudit",
 								"events"
 							],
@@ -238,10 +227,32 @@
 				}
 			],
 			"description": "Admin Audit Events are available to full administrators for certain events performed in Webex Control Hub.\r\n\r\nAdministrators with accounts created before 2019 will need to log into Webex Control Hub before using this API.\r\n\r\nhttps://developer.webex.com/docs/api/v1/admin-audit-events\r\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9a9d749e-1bc2-419c-9048-9879fda6a8fd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "af2980bf-9922-47ed-a092-e594300f5dd4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Devices",
+			"name": "DeviceConfigurations",
 			"item": [
 				{
 					"name": "List Devices",
@@ -249,8 +260,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"id": "176d227b-7a46-4752-b30a-aea11a55e078",
 								"exec": [
+									"",
 									"if (responseCode.code != 200) {",
 									"    tests[\"List devices : failed\"] = false;",
 									"}",
@@ -265,8 +277,89 @@
 									"        var deviceId = jsonData.items[0].id;",
 									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
 									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"",
+									"        visualize(jsonData.items);",
 									"    }",
 									"}",
+									"",
+									"function visualize(devices) {",
+									"    ",
+									"    // Configure the template",
+									"    var template = `",
+									"    <canvas id=\"myChart\" height=\"75\"></canvas>",
+									"",
+									"    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> ",
+									"",
+									"    <script>",
+									"        // Get DOM element to render the chart in",
+									"        var ctx = document.getElementById(\"myChart\");",
+									"",
+									"        // Configure Chart JS here.",
+									"        // You can customize the options passed to this constructor to",
+									"        // make the chart look and behave the way you want",
+									"        var myChart = new Chart(ctx, {",
+									"            type: \"bar\",",
+									"            data: {",
+									"                labels: [], // We will update this later in pm.getData()",
+									"                datasets: [{",
+									"                    data: [], // We will update this later in pm.getData()",
+									"                    ",
+									"                    // Change these colours to customize the chart",
+									"                    backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],",
+									"                }]",
+									"            },",
+									"            options: {",
+									"                legend: { display: false },",
+									"                title: {",
+									"                    display: true,",
+									"                    text: 'Count'",
+									"                },",
+									"                scales: {",
+									"                    xAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Items'",
+									"                        }",
+									"                    }],",
+									"                    yAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Count'",
+									"                        }",
+									"                    }]",
+									"                }",
+									"            }",
+									"",
+									"        });",
+									"",
+									"        // Access the data passed to pm.visualizer.set() from the JavaScript",
+									"        // code of the Visualizer template",
+									"        pm.getData(function (err, value) {",
+									"            myChart.data.datasets[0].data = value.data;",
+									"            myChart.data.labels = value.labels;",
+									"            myChart.update();",
+									"        });",
+									"",
+									"    </script>`;",
+									"",
+									"    // Set the visualizer template",
+									"    pm.visualizer.set(template, { ",
+									"        labels: [ ",
+									"            \"count\", ",
+									"            \"connected\", ",
+									"            \"connected_with_issues\", ",
+									"            \"disconnected\"],",
+									"        data: [ ",
+									"            devices.length, ",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected_with_issues\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"disconnected\") }).length]",
+									"    });",
+									"}",
+									"",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -282,15 +375,381 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/devices",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/devices",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
+								"devices"
+							]
+						},
+						"description": "Lists all active Webex devices associated with the authenticated user, such as devices activated in personal mode, or devices to which the user is actively paired or using. Administrators can list all devices within an organization.\n\nhttps://developer.webex.com/docs/api/v1/devices/list-devices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f4c489f2-1daa-4550-9e86-658da0352dce",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get device details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get device details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/devices/{{_device}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"devices",
+								"{{_device}}"
+							]
+						},
+						"description": "Shows details for a device, by ID.\r\nSpecify the device ID in the deviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices/get-device-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Configurations Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4801557-52db-40da-b000-e12f4b1af230",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get Devices Configurations Details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get Devices Configurations Details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/deviceConfigurations?deviceId={{_device}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"deviceConfigurations"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "{{_device}}"
+								}
+							]
+						},
+						"description": "Lists all device configurations associated with the given device ID. Administrators can list configurations for all devices within an organization.\r\n\r\nhttps://developer.webex.com/docs/api/v1/device-configurations/list-device-configurations-for-device"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Configurations Details (with key)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bdeaaa14-116b-48b2-86a0-a531224183bb",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get Devices Configurations Details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get Devices Configurations Details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/deviceConfigurations?deviceId={{_device}}&key=Audio.Ultrasound.*",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"deviceConfigurations"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "{{_device}}"
+								},
+								{
+									"key": "key",
+									"value": "Audio.Ultrasound.*"
+								}
+							]
+						},
+						"description": "Lists all device configurations associated with the given device ID. Administrators can list configurations for all devices within an organization.\r\n\r\nhttps://developer.webex.com/docs/api/v1/device-configurations/list-device-configurations-for-device"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Device Configurations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "333a7503-0e3b-4a17-a30c-fe5dff927221",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Update Device Configurations: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Update Device Configurations: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\"    : \"replace\",\r\n        \"path\"  : \"Audio.Ultrasound.MaxVolume/sources/configured/value\",\r\n        \"value\" : 70\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WEBEXAPI}}/deviceConfigurations?deviceId={{_device}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"deviceConfigurations"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "{{_device}}"
+								}
+							]
+						},
+						"description": "Update device configurations by device ID. Update requests use [JSON Patch](https://tools.ietf.org/html/rfc6902) syntax.\r\n\r\nhttps://developer.webex.com/docs/api/v1/device-configurations/update-device-configurations"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "76e09291-8dc1-411c-afff-90759a76dbea",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a90ac3cc-801b-4f24-a32e-437a3379c5ed",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Devices",
+			"item": [
+				{
+					"name": "List Devices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7a72b3-768b-47ef-a821-076162ef34c3",
+								"exec": [
+									"",
+									"if (responseCode.code != 200) {",
+									"    tests[\"List devices : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List devices: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List devices: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var deviceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
+									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"",
+									"        visualize(jsonData.items);",
+									"    }",
+									"}",
+									"",
+									"function visualize(devices) {",
+									"    ",
+									"    // Configure the template",
+									"    var template = `",
+									"    <canvas id=\"myChart\" height=\"75\"></canvas>",
+									"",
+									"    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> ",
+									"",
+									"    <script>",
+									"        // Get DOM element to render the chart in",
+									"        var ctx = document.getElementById(\"myChart\");",
+									"",
+									"        // Configure Chart JS here.",
+									"        // You can customize the options passed to this constructor to",
+									"        // make the chart look and behave the way you want",
+									"        var myChart = new Chart(ctx, {",
+									"            type: \"bar\",",
+									"            data: {",
+									"                labels: [], // We will update this later in pm.getData()",
+									"                datasets: [{",
+									"                    data: [], // We will update this later in pm.getData()",
+									"                    ",
+									"                    // Change these colours to customize the chart",
+									"                    backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],",
+									"                }]",
+									"            },",
+									"            options: {",
+									"                legend: { display: false },",
+									"                title: {",
+									"                    display: true,",
+									"                    text: 'Count'",
+									"                },",
+									"                scales: {",
+									"                    xAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Devices'",
+									"                        }",
+									"                    }],",
+									"                    yAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Count'",
+									"                        }",
+									"                    }]",
+									"                }",
+									"            }",
+									"",
+									"        });",
+									"",
+									"        // Access the data passed to pm.visualizer.set() from the JavaScript",
+									"        // code of the Visualizer template",
+									"        pm.getData(function (err, value) {",
+									"            myChart.data.datasets[0].data = value.data;",
+									"            myChart.data.labels = value.labels;",
+									"            myChart.update();",
+									"        });",
+									"",
+									"    </script>`;",
+									"",
+									"    // Set the visualizer template",
+									"    pm.visualizer.set(template, { ",
+									"        labels: [ ",
+									"            \"count\", ",
+									"            \"connected\", ",
+									"            \"connected_with_issues\", ",
+									"            \"disconnected\"],",
+									"        data: [ ",
+									"            devices.length, ",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected_with_issues\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"disconnected\") }).length]",
+									"    });",
+									"}",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/devices",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
 								"devices"
 							]
 						},
@@ -329,15 +788,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/devices/{{_device}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/devices/{{_device}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"devices",
 								"{{_device}}"
 							]
@@ -374,15 +829,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/devices/{{_device}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/devices/{{_device}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"devices",
 								"{{_device}}"
 							]
@@ -426,7 +877,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "395bcbd0-de24-4e34-9bdf-839f203a4a7f",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List events: failed\"] = false;",
@@ -434,7 +885,8 @@
 									"else {",
 									"    tests[\"List events: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -447,15 +899,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/events?max=10",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/events?max=10",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"events"
 							],
 							"query": [
@@ -475,7 +923,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4057ff95-f27c-4174-b376-91faf6802cdf",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List events (new messages): failed\"] = false;",
@@ -483,7 +931,8 @@
 									"else {",
 									"    tests[\"List events (new messages): success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -496,15 +945,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/events?resource=messages&type=created",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/events?resource=messages&type=created",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"events"
 							],
 							"query": [
@@ -528,7 +973,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"type": "text/javascript",
+								"id": "11a52960-9773-49b6-bff6-00cde3614fa7",
 								"exec": [
 									"var now = new Date(Date.now());",
 									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
@@ -542,13 +987,14 @@
 									"",
 									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "a5e0ec03-aa99-469f-9f7a-ad9bec9b315a",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List events (last hour): failed\"] = false;",
@@ -556,7 +1002,8 @@
 									"else {",
 									"    tests[\"List events (last hour): success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -569,15 +1016,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/events?from={{_one_hour_ago}}&to={{_now}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/events?from={{_one_hour_ago}}&to={{_now}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"events"
 							],
 							"query": [
@@ -601,7 +1044,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"type": "text/javascript",
+								"id": "2eb89e7a-3b92-4e43-aa38-e67b12bdd2f0",
 								"exec": [
 									"var now = new Date(Date.now());",
 									"postman.setEnvironmentVariable(\"_now\", now.toISOString());",
@@ -615,13 +1058,14 @@
 									"",
 									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "0a7cf68f-fb8f-4352-a25d-df21fe9e2f04",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List events (new messages last hour): failed\"] = false;",
@@ -639,7 +1083,8 @@
 									"        tests[\"List events (new messages last hour): stored event:\" + pickedEvent.id] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -652,15 +1097,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/events?resource=messages&type=created&from={{_one_hour_ago}}&to={{_now}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/events?resource=messages&type=created&from={{_one_hour_ago}}&to={{_now}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"events"
 							],
 							"query": [
@@ -692,7 +1133,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "4909694c-00ab-46d8-9aef-3a322cb851ef",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get event details: failed\"] = false;",
@@ -700,7 +1141,8 @@
 									"else {",
 									"    tests[\"Get event details: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -713,15 +1155,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/events/{{_event}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/events/{{_event}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"events",
 								"{{_event}}"
 							]
@@ -731,7 +1169,8 @@
 					"response": []
 				}
 			],
-			"description": "Events are generated when actions take place within Cisco Spark, such as when someone creates or deletes a message. Use the Events API to retrieve events related to your account. Compliance Officers may retrieve events for all users within an organization. See the Compliance Guide for more information.\nhttps://developer.ciscospark.com/docs/api/guides/compliance.html\n\nThe resource endpoints such as /rooms, /messages, /memberships, etc. represent the current state of data in Spark. The /events resource represents the log of state changes which led to the current state of these resources; it details when a resource changed and who made the change.\n\nFor example, when a user posts a message in a room, this will result in a new message, available via the /messages resource. It will also result in a new event, available on the /events resource. If the user then deletes their message, this will result in the message no longer being returned on the /messages resource but it will result in a new event for the message deletion on the /events resource.\n\nEvents are available for the following resources when they are created, updated, or deleted:\n- messages\n- memberships\n\nhttps://developer.ciscospark.com/resource-events.html"
+			"description": "Events are generated when actions take place within Cisco Spark, such as when someone creates or deletes a message. Use the Events API to retrieve events related to your account. Compliance Officers may retrieve events for all users within an organization. See the Compliance Guide for more information.\nhttps://developer.ciscospark.com/docs/api/guides/compliance.html\n\nThe resource endpoints such as /rooms, /messages, /memberships, etc. represent the current state of data in Spark. The /events resource represents the log of state changes which led to the current state of these resources; it details when a resource changed and who made the change.\n\nFor example, when a user posts a message in a room, this will result in a new message, available via the /messages resource. It will also result in a new event, available on the /events resource. If the user then deletes their message, this will result in the message no longer being returned on the /messages resource but it will result in a new event for the message deletion on the /events resource.\n\nEvents are available for the following resources when they are created, updated, or deleted:\n- messages\n- memberships\n\nhttps://developer.ciscospark.com/resource-events.html",
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Licenses",
@@ -742,7 +1181,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "dbad80d1-ea20-4b4b-a01c-4c6c52afadd0",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List licenses : failed\"] = false;",
@@ -760,7 +1199,8 @@
 									"        tests[\"List licenses: retreived one with id:\" + licenseId] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -773,15 +1213,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/licenses",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/licenses",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"licenses"
 							]
 						},
@@ -795,7 +1231,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "600884ce-c64f-4776-8fcb-9787eaa1165f",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get license details: failed\"] = false;",
@@ -804,7 +1240,8 @@
 									"    tests[\"Get license details: success\"] = true;",
 									"}",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -817,20 +1254,209 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/licenses/{{_license}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/licenses/{{_license}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"licenses",
 								"{{_license}}"
 							]
 						},
 						"description": "Shows details for a license, by ID.\r\n\r\nSpecify the license ID in the licenseId parameter in the URI.\r\n\r\nhttps://developer.webex.com/endpoint-licenses-licenseId-get.html\r\n\r\nExample Response:\r\n``` json\r\n{\r\n  'id' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'displayName' : 'Spark Calling',\r\n  'totalUnits' : '42',\r\n  'consumedUnits' : \"8'\r\n}\r\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Person (random)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "85612fb5-76aa-4f84-a676-6bf6c11b49e1",
+								"exec": [
+									"var random = Math.round(Math.random()*1000);",
+									"",
+									"postman.setEnvironmentVariable(\"_random\", random);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e589a71e-b11f-432c-92f1-7a8b596d08fc",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Create a person: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Create a person: success\"] = true;",
+									"",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Create a person: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var personID = jsonData.id;",
+									"        postman.setEnvironmentVariable(\"_person\", personID);",
+									"        tests[\"Create a person: retreived with id:\" + personID] = true",
+									"        ",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Create a person: retreived org with id:\" + orgId] = true",
+									"        ",
+									"        var email = jsonData.emails[0];",
+									"        postman.setEnvironmentVariable(\"_email\", email);",
+									"        tests[\"Create a person: retreived email:\" + email] = true",
+									"    }",
+									"    ",
+									"}",
+									"    ",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"emails\": [\r\n    \"{{_random}}@{{_domain}}\"\r\n  ],\r\n  \"firstName\": \"User\",\r\n  \"lastName\": \"FromPostman\"\r\n}"
+						},
+						"url": {
+							"raw": "{{WEBEXAPI}}/people",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"people"
+							]
+						},
+						"description": "Create a new user account for a given organization. Only an admin can create a new user account.\n\nhttps://developer.webex.com/endpoint-people-post.html\n\nExample Request:\n``` json\n{\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\n}\n\nExample Response:\n{\n  'id' : 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mNWIzNjE4Ny1jOGRkLTQ3MjctOGIyZi1mOWM0NDdmMjkwNDY',\n  'emails' : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\n  'displayName' : 'John Andersen',\n  'firstName' : 'John',\n  'lastName' : 'Andersen',\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\n  'created' : '2015-10-18T14:26:16+00:00',\n  'timezone' : 'America/Denver'\n}\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Person Details (fetch displayName & orgId)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7046ca1a-128d-4d14-8619-d3edaeb5bebf",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get person details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get person details: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.id === undefined) {",
+									"        tests[\"Get person details: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        ",
+									"        var orgId = jsonData.orgId;",
+									"        postman.setEnvironmentVariable(\"_organization\", orgId);",
+									"        tests[\"Get person details: retreived org with id:\" + orgId] = true",
+									"",
+									"        var displayName = jsonData.displayName;",
+									"        postman.setEnvironmentVariable(\"_displayName\", displayName);",
+									"        tests[\"Get person details: retreived displayName:\" + displayName] = true",
+									"",
+									"        var email = jsonData.emails[0];",
+									"        postman.setEnvironmentVariable(\"_email\", email);",
+									"        tests[\"Get person details: retreived email:\" + email] = true",
+									"    }",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Shows details for a person, by ID.\nSpecify the person ID in the personId parameter in the URI.\n\nhttps://developer.webex.com/endpoint-people-personId-get.html"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Person (set license)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a48a3ba-8fa8-4232-a798-e9121b1ad631",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Update person: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Update person: success\"] = true;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orgId\" : \"{{_organization}}\",\r\n  \"displayName\" : \"{{_displayName}}\",\r\n  \"licenses\": [ \"{{_license}}\" ]\r\n}\r\n\r\n\r\n  "
+						},
+						"url": {
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"people",
+								"{{_person}}"
+							]
+						},
+						"description": "Update details for a person, by ID.\r\n\r\nSpecify the person ID in the personId parameter in the URI. Only an admin can update a person details.\r\n\r\nhttps://developer.webex.com/endpoint-people-personId-put.html\r\n\r\nExample Request:\r\n``` json\r\n{\r\n  'emails\" : [ 'johnny.chang@foomail.com', 'jchang@barmail.com' ],\r\n  'displayName' : 'John Andersen',\r\n  'firstName' : 'John',\r\n  'lastName' : 'Andersen',\r\n  'avatar' : 'https://1efa7a94ed21783e352-c62266528714497a17239ececf39e9e2.ssl.cf1.rackcdn.com/V1~54c844c89e678e5a7b16a306bc2897b9~wx29yGtlTpilEFlYzqPKag==~1600',\r\n  'orgId' : 'OTZhYmMyYWEtM2RjYy0xMWU1LWExNTItZmUzNDgxOWNkYzlh',\r\n  'roles' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ],\r\n  'licenses' : [ 'Y2lzY29zcGFyazovL3VzL1JPT00vOGNkYzQwYzQtZjA5ZS0zY2JhLThjMjYtZGQwZTcwYWRlY2Iy', 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9mMDZkNzFhNS0wODMzLTRmYTUtYTcyYS1jYzg5YjI1ZWVlMmX' ]\r\n}\r\n```"
 					},
 					"response": []
 				}
@@ -857,7 +1483,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Organizations",
@@ -868,7 +1495,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "05f98352-2cf6-43b7-aa63-854c009aed49",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List organizations : failed\"] = false;",
@@ -886,7 +1513,8 @@
 									"        tests[\"List organizations: retreived one with id:\" + orgId] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -899,15 +1527,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/organizations",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/organizations",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"organizations"
 							]
 						},
@@ -921,7 +1545,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "99746113-4e28-4286-9237-60cfc210abac",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get organization details: failed\"] = false;",
@@ -929,7 +1553,8 @@
 									"else {",
 									"    tests[\"Get organization details: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -942,15 +1567,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/organizations/{{_organization}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/organizations/{{_organization}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"organizations",
 								"{{_organization}}"
 							]
@@ -982,7 +1603,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "People",
@@ -994,7 +1616,6 @@
 							"listen": "test",
 							"script": {
 								"id": "74bc245f-0686-4669-ac38-4bad3a1dc927",
-								"type": "text/javascript",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get person details: failed\"] = false;",
@@ -1017,17 +1638,18 @@
 									"",
 									"",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "263d0744-ec80-4b24-a3ad-2e2bc62bca25",
-								"type": "text/javascript",
 								"exec": [
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1044,15 +1666,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/me",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/me",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"me"
 							]
@@ -1107,15 +1725,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people"
 							]
 						}
@@ -1128,18 +1742,19 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"type": "text/javascript",
+								"id": "74bab97c-c127-4085-9172-f9546d963d96",
 								"exec": [
 									"var random = Math.round(Math.random()*1000);",
 									"",
 									"postman.setEnvironmentVariable(\"_random\", random);"
-								]
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "70b33ad3-d860-45c7-ba45-1d3eead960bd",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Create a person: failed\"] = false;",
@@ -1168,7 +1783,8 @@
 									"}",
 									"    ",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1189,15 +1805,11 @@
 							"raw": "{\r\n  \"emails\": [\r\n    \"{{_random}}@{{_domain}}\"\r\n  ],\r\n  \"firstName\": \"User\",\r\n  \"lastName\": \"FromPostman\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people"
 							]
 						},
@@ -1251,15 +1863,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"{{_person}}"
 							]
@@ -1275,7 +1883,6 @@
 							"listen": "test",
 							"script": {
 								"id": "70aaa3a3-77f3-4630-887e-4a04fa43d55f",
-								"type": "text/javascript",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List people (exact email): failed\"] = false;",
@@ -1285,7 +1892,8 @@
 									"}",
 									"",
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1298,15 +1906,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people?email={{_email}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people?email={{_email}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people"
 							],
 							"query": [
@@ -1326,7 +1930,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "434540e2-b696-4518-8a92-562e5ee8f4a2",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List roles: failed\"] = false;",
@@ -1344,7 +1948,8 @@
 									"        tests[\"List roles: retreived with id:\" + roleId] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1357,15 +1962,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/roles",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/roles",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"roles"
 							]
 						},
@@ -1379,7 +1980,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "797a6d18-77fc-49f1-b019-7703a7cbf5b0",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Update person: failed\"] = false;",
@@ -1387,7 +1988,8 @@
 									"else {",
 									"    tests[\"Update person: success\"] = true;",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1408,15 +2010,11 @@
 							"raw": "{\r\n  \"orgId\":\"{{_organization}}\",\r\n  \"emails\": [\r\n        \"{{_email}}\"\r\n    ],\r\n  \"displayName\": \"User updated\",\r\n  \"roles\": [\"{{_role}}\"]\r\n}\r\n\r\n\r\n  "
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"{{_person}}"
 							]
@@ -1431,7 +2029,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "1130c12d-ebae-4a68-8b82-71ba86cb778a",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get person details: failed\"] = false;",
@@ -1442,7 +2040,8 @@
 									"",
 									"",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -1455,15 +2054,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"{{_person}}"
 							]
@@ -1564,7 +2159,7 @@
 							],
 							"cookie": [
 								{
-									"expires": "Fri Sep 18 2026 14:34:17 GMT+0200 (Romance Daylight Time)",
+									"expires": "Fri Sep 18 2026 14:34:17 GMT+0200 (Central European Summer Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1575,7 +2170,7 @@
 									"key": "optimizelyEndUserId"
 								},
 								{
-									"expires": "Tue Sep 21 2021 17:16:39 GMT+0200 (Romance Daylight Time)",
+									"expires": "Tue Sep 21 2021 17:16:39 GMT+0200 (Central European Summer Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1597,7 +2192,7 @@
 									"key": "AMCVS_5C0A123F5245AEEA0A490D45%40AdobeOrg"
 								},
 								{
-									"expires": "Sat Nov 26 2016 20:09:32 GMT+0100 (Romance Standard Time)",
+									"expires": "Sat Nov 26 2016 20:09:32 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1641,7 +2236,7 @@
 									"key": "TrialFlag"
 								},
 								{
-									"expires": "Tue Nov 09 2021 09:41:52 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Nov 09 2021 09:41:52 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1652,7 +2247,7 @@
 									"key": "spark_lst3"
 								},
 								{
-									"expires": "Thu Nov 09 2017 10:55:00 GMT+0100 (Romance Standard Time)",
+									"expires": "Thu Nov 09 2017 10:55:00 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1663,7 +2258,7 @@
 									"key": "mp_87246332384760c6f27c021cf964be46_mixpanel"
 								},
 								{
-									"expires": "Thu Nov 10 2016 10:55:00 GMT+0100 (Romance Standard Time)",
+									"expires": "Thu Nov 10 2016 10:55:00 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1674,7 +2269,7 @@
 									"key": "mp_mixpanel__c"
 								},
 								{
-									"expires": "Fri Nov 09 2018 13:03:28 GMT+0100 (Romance Standard Time)",
+									"expires": "Fri Nov 09 2018 13:03:28 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1685,7 +2280,7 @@
 									"key": "AMCV_5C0A123F5245AEEA0A490D45%40AdobeOrg"
 								},
 								{
-									"expires": "Fri Dec 09 2016 13:04:21 GMT+0100 (Romance Standard Time)",
+									"expires": "Fri Dec 09 2016 13:04:21 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1696,7 +2291,7 @@
 									"key": "s_nr"
 								},
 								{
-									"expires": "Sat Nov 09 2019 13:04:21 GMT+0100 (Romance Standard Time)",
+									"expires": "Sat Nov 09 2019 13:04:21 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1707,7 +2302,7 @@
 									"key": "s_lv"
 								},
 								{
-									"expires": "Thu Dec 01 2016 00:00:00 GMT+0100 (Romance Standard Time)",
+									"expires": "Thu Dec 01 2016 00:00:00 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1773,7 +2368,7 @@
 									"key": "s_ppv"
 								},
 								{
-									"expires": "Wed Nov 09 2016 14:04:26 GMT+0100 (Romance Standard Time)",
+									"expires": "Wed Nov 09 2016 14:04:26 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1784,7 +2379,7 @@
 									"key": "webexToken"
 								},
 								{
-									"expires": "Tue Feb 07 2017 13:04:27 GMT+0100 (Romance Standard Time)",
+									"expires": "Tue Feb 07 2017 13:04:27 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1795,7 +2390,7 @@
 									"key": "mbox"
 								},
 								{
-									"expires": "Fri Nov 09 2018 13:28:19 GMT+0100 (Romance Standard Time)",
+									"expires": "Fri Nov 09 2018 13:28:19 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1806,7 +2401,7 @@
 									"key": "_ga"
 								},
 								{
-									"expires": "Thu Nov 09 2017 13:28:20 GMT+0100 (Romance Standard Time)",
+									"expires": "Thu Nov 09 2017 13:28:20 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1817,7 +2412,7 @@
 									"key": "_actmu"
 								},
 								{
-									"expires": "Wed Nov 09 2016 13:58:20 GMT+0100 (Romance Standard Time)",
+									"expires": "Wed Nov 09 2016 13:58:20 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1828,7 +2423,7 @@
 									"key": "_actms"
 								},
 								{
-									"expires": "Sat Nov 07 2026 13:32:40 GMT+0100 (Romance Standard Time)",
+									"expires": "Sat Nov 07 2026 13:32:40 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1839,7 +2434,7 @@
 									"key": "optimizelySegments"
 								},
 								{
-									"expires": "Sat Nov 07 2026 13:32:43 GMT+0100 (Romance Standard Time)",
+									"expires": "Sat Nov 07 2026 13:32:43 GMT+0100 (Central European Standard Time)",
 									"hostOnly": false,
 									"httpOnly": false,
 									"domain": ".ciscospark.com",
@@ -1906,15 +2501,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/people/{{_person}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/people/{{_person}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"people",
 								"{{_person}}"
 							]
@@ -1946,7 +2537,8 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Places",
@@ -1990,15 +2582,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/places",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/places",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"places"
 							]
 						},
@@ -2057,15 +2645,11 @@
 							"raw": "{ \r\n\t\"displayName\" : \"DevNetZone\",\r\n\t\"type\" : \"room_device\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/places",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/places",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"places"
 							]
 						},
@@ -2104,15 +2688,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/places/{{_place}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"places",
 								"{{_place}}"
 							]
@@ -2159,15 +2739,11 @@
 							"raw": "{ \r\n\t\"displayName\" : \"home\",\r\n\t\"type\" : \"room_device\"\r\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/places/{{_place}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"places",
 								"{{_place}}"
 							]
@@ -2226,15 +2802,11 @@
 							"raw": "{\n\t\"placeId\" : \"{{_place}}\"\n}"
 						},
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/devices/activationCode",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/devices/activationCode",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"devices",
 								"activationCode"
 							]
@@ -2273,15 +2845,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/places/{{_place}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/places/{{_place}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"places",
 								"{{_place}}"
 							]
@@ -2325,7 +2893,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "8b97bbb6-93e0-4b7f-9216-7c6b71ec8301",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"List roles: failed\"] = false;",
@@ -2343,7 +2911,8 @@
 									"        tests[\"List roles: retreived with id:\" + roleId] = true",
 									"    }",
 									"}"
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2356,15 +2925,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/roles",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/roles",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"roles"
 							]
 						},
@@ -2378,7 +2943,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"type": "text/javascript",
+								"id": "521663b9-91b4-41b3-81b6-e3d7bbc5de6c",
 								"exec": [
 									"if (responseCode.code != 200) {",
 									"    tests[\"Get role details: failed\"] = false;",
@@ -2387,7 +2952,8 @@
 									"    tests[\"Get role details: success\"] = true;",
 									"}",
 									"    "
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -2400,15 +2966,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.ciscospark.com/v1/roles/{{_role}}",
-							"protocol": "https",
+							"raw": "{{WEBEXAPI}}/roles/{{_role}}",
 							"host": [
-								"api",
-								"ciscospark",
-								"com"
+								"{{WEBEXAPI}}"
 							],
 							"path": [
-								"v1",
 								"roles",
 								"{{_role}}"
 							]
@@ -2440,7 +3002,379 @@
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "xAPI",
+			"item": [
+				{
+					"name": "List Devices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad058baa-277b-4889-9294-2e17a825961d",
+								"exec": [
+									"",
+									"if (responseCode.code != 200) {",
+									"    tests[\"List devices : failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List devices: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List devices: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var deviceId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_device\", deviceId);",
+									"        tests[\"List devices: retreived one device with id:\" + deviceId] = true",
+									"",
+									"        visualize(jsonData.items);",
+									"    }",
+									"}",
+									"",
+									"function visualize(devices) {",
+									"    ",
+									"    // Configure the template",
+									"    var template = `",
+									"    <canvas id=\"myChart\" height=\"75\"></canvas>",
+									"",
+									"    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> ",
+									"",
+									"    <script>",
+									"        // Get DOM element to render the chart in",
+									"        var ctx = document.getElementById(\"myChart\");",
+									"",
+									"        // Configure Chart JS here.",
+									"        // You can customize the options passed to this constructor to",
+									"        // make the chart look and behave the way you want",
+									"        var myChart = new Chart(ctx, {",
+									"            type: \"bar\",",
+									"            data: {",
+									"                labels: [], // We will update this later in pm.getData()",
+									"                datasets: [{",
+									"                    data: [], // We will update this later in pm.getData()",
+									"                    ",
+									"                    // Change these colours to customize the chart",
+									"                    backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],",
+									"                }]",
+									"            },",
+									"            options: {",
+									"                legend: { display: false },",
+									"                title: {",
+									"                    display: true,",
+									"                    text: 'Count'",
+									"                },",
+									"                scales: {",
+									"                    xAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Items'",
+									"                        }",
+									"                    }],",
+									"                    yAxes: [{",
+									"                        display: true,",
+									"                        scaleLabel: {",
+									"                            display: true,",
+									"                            labelString: 'Count'",
+									"                        }",
+									"                    }]",
+									"                }",
+									"            }",
+									"",
+									"        });",
+									"",
+									"        // Access the data passed to pm.visualizer.set() from the JavaScript",
+									"        // code of the Visualizer template",
+									"        pm.getData(function (err, value) {",
+									"            myChart.data.datasets[0].data = value.data;",
+									"            myChart.data.labels = value.labels;",
+									"            myChart.update();",
+									"        });",
+									"",
+									"    </script>`;",
+									"",
+									"    // Set the visualizer template",
+									"    pm.visualizer.set(template, { ",
+									"        labels: [ ",
+									"            \"count\", ",
+									"            \"connected\", ",
+									"            \"connected_with_issues\", ",
+									"            \"disconnected\"],",
+									"        data: [ ",
+									"            devices.length, ",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"connected_with_issues\") }).length,",
+									"            devices.filter((device) => { return (device.connectionStatus === \"disconnected\") }).length]",
+									"    });",
+									"}",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/devices",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"devices"
+							]
+						},
+						"description": "Lists all active Webex devices associated with the authenticated user, such as devices activated in personal mode, or devices to which the user is actively paired or using. Administrators can list all devices within an organization.\n\nhttps://developer.webex.com/docs/api/v1/devices/list-devices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac958aca-3823-4460-a6f8-4454b038cdff",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"Get device details: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"Get device details: success\"] = true;",
+									"}",
+									"",
+									"",
+									"    "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/devices/{{_device}}",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"devices",
+								"{{_device}}"
+							]
+						},
+						"description": "Shows details for a device, by ID.\r\nSpecify the device ID in the deviceId parameter in the URI.\r\n\r\nhttps://developer.webex.com/docs/api/v1/devices/get-device-details"
+					},
+					"response": []
+				},
+				{
+					"name": "Query Status (audio.volume)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fff27071-4a37-4a27-ba05-f864cb957117",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{WEBEXAPI}}/xapi/status?deviceId={{_device}}&name=audio.volume",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"xapi",
+								"status"
+							],
+							"query": [
+								{
+									"key": "deviceId",
+									"value": "{{_device}}"
+								},
+								{
+									"key": "name",
+									"value": "audio.volume"
+								}
+							]
+						},
+						"description": "Query the current status of the Webex RoomOS Device.\n\nSpecify the target device in the deviceId parameter in the URI.\n\nThe target device is queried for statuses according to the expression in the name parameter.\n\nSee the xAPI Guide for a description of status expressions.\n\nhttps://developer.webex.com/docs/api/v1/xapi/query-status"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Command (standby.deactivate)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25963f6e-8094-448f-bfcf-fb54d1d7d90e",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deviceId\" : \"{{_device}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WEBEXAPI}}/xapi/command/standby.deactivate",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"xapi",
+								"command",
+								"standby.deactivate"
+							]
+						},
+						"description": "Execute a command on the Webex RoomOS Device.\n\nSpecify the command to execute in the commandName parameter in the URI.\n\nSee the xAPI Guide for a description of command expressions.\n\nhttps://developer.webex.com/docs/api/v1/xapi/execute-command"
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Command (message.alert)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d09dc28-c8af-4894-ac5d-8d2022720f32",
+								"exec": [
+									"if (responseCode.code != 200) {",
+									"    tests[\"List roles: failed\"] = false;",
+									"}",
+									"else {",
+									"    tests[\"List roles: success\"] = true;",
+									"    ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    if (jsonData.items === undefined) {",
+									"        tests[\"List roles: cannot retreive result\"] = false",
+									"    }",
+									"    else {",
+									"        var roleId = jsonData.items[0].id;",
+									"        postman.setEnvironmentVariable(\"_role\", roleId);",
+									"        tests[\"List roles: retreived with id:\" + roleId] = true",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deviceId\": \"{{_device}}\",\r\n    \"arguments\": {\r\n      \"Duration\": 10,\r\n      \"Title\": \"xAPI Cloud Test\",\r\n      \"Text\": \"This is posted from Postman ;-) Change me!\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WEBEXAPI}}/xapi/command/userinterface.message.alert.display",
+							"host": [
+								"{{WEBEXAPI}}"
+							],
+							"path": [
+								"xapi",
+								"command",
+								"userinterface.message.alert.display"
+							]
+						},
+						"description": "Execute a command on the Webex RoomOS Device.\n\nSpecify the command to execute in the commandName parameter in the URI.\n\nSee the xAPI Guide for a description of command expressions.\n\nhttps://developer.webex.com/docs/api/v1/xapi/execute-command"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -2464,5 +3398,13 @@
 				]
 			}
 		}
-	]
+	],
+	"variable": [
+		{
+			"id": "60dc6ff1-e95d-4544-8a01-b87d823cc124",
+			"key": "WEBEXAPI",
+			"value": "https://webexapis.com/v1"
+		}
+	],
+	"protocolProfileBehavior": {}
 }

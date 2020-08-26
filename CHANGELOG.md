@@ -1,5 +1,11 @@
 # Changes
 
+**2020-08-26**
+   - updated domain to https://webaxapi.com
+   - turned static api domain to a collection variable: {{WEBEXAPI}}
+   - updated collection names, prefer Messaging over Teams
+   - updated Webex Admin collection with new Device Configuration API and xAPI 
+
 **2020-01-27**
    - new folder for 'Admin Audit Events' 
    - removed EFT tags for /devices and /places
