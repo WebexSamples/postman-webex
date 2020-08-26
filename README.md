@@ -1,8 +1,8 @@
-# Postman collections for Webex Messaging and Admin APIs
+# Postman for Webex Messaging and Admin APIs
 
-This repo gathers collections for **[Webex Messaging and Admin APIs](https://developer.webex.com/quick-reference.html)**.
+This repo gathers Postman collections for **[Webex Messaging and Admin APIs](https://developer.webex.com/quick-reference.html)**.
 - [Webex Messaging API](#webex-messaging-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex resources accessible from an access token, with no admin priviledges. Uses an `access_token` environment variable.
-- [Webex Admin API](#admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
+- [Webex Admin API](#webex-admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
 - [Webex Cards](#webex-cards): Messages (with Card attachments), AttachmentActions and Card examples. Uses `access_token` and `bot_token` environment variables.
 
 Looking for other postman collections, check:
@@ -24,7 +24,8 @@ When submitting a new collection, please ensure it leverages a {{access_token}} 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1f5e101d8290a5303c90)
 
-The collection implements the public(*) resources for the Webex Messaging REST API , with direct links to the official API documentation. _(*) use a simple user account, no need admin priviledges_
+The collection regroups public resources for the Webex Messaging REST API, with direct links to the official API documentation.
+The collection a simple user account, no need admin priviledges are required.
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
@@ -64,11 +65,11 @@ You'll need to create an environment with the following variables:
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/SVfTPTQ4).
 
 
-## [admin-api](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/admin-scripted.json)
+## [Webex Admin API](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/admin-scripted.json)
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0aa22af74405f82086d4)
 
-The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.webex.com/admin-api.html).
+The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.webex.com/docs/api/guides/admin-api).
 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/2PMC7h).
 
