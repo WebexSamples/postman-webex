@@ -1,14 +1,14 @@
 # Postman for Webex Messaging and Admin APIs
 
 This repo gathers Postman collections for **[Webex Messaging and Admin APIs](https://developer.webex.com/quick-reference.html)**.
-- [Webex Messaging API](#webex-messaging-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex resources accessible from an access token, with no admin priviledges. Uses an `access_token` environment variable.
-- [Webex Admin API](#webex-admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges. Uses an `access_token` environment variable.
-- [Webex Cards](#webex-cards): Messages (with Card attachments), AttachmentActions and Card examples. Uses `access_token` and `bot_token` environment variables.
+- [Webex Messaging API](#webex-messaging-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex resources accessible from an access token, with no admin priviledges.
+- [Webex Admin API](#webex-admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges.
+- [Webex Cards](#webex-cards): Messages (with Card attachments), AttachmentActions and Card examples.
 
 Looking for other postman collections, check:
-- [postman-xapi](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices Cloud  API**._
-- [postman-webex-calling](https://github.com/webex/postman-webex-calling) if looking for collections for **Webex Calling API**._
-- [postman-webex-meeting](https://github.com/webex/postman-webex-meetings) if looking for collections for **Webex Meeting REST API**._
+- [postman-xapi](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices Cloud  API**.
+- [postman-webex-calling](https://github.com/webex/postman-webex-calling) if looking for collections for **Webex Calling API**.
+- [postman-webex-meeting](https://github.com/webex/postman-webex-meetings) if looking for collections for **Webex Meeting REST API**.
 
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
 1. [import and configure](docs/ImportAndConfigure.md) a collection 
