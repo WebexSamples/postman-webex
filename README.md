@@ -3,20 +3,19 @@
 This repo gathers collections for the **[Webex Teams](https://developer.webex.com/quick-reference.html)**.
 _Check the [postman-xapi repo](https://github.com/CiscoDevNet/postman-xapi) if looking for collections for **Webex Devices**._
 
-- **[REST API](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin priviledges
-- [admin REST API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin priviledges
+- **[REST API](#all-resources-scripted)**: Messages, Spaces, Teams, People, Webhooks... everything accessible from an access token, with no admin privileges
+- [admin REST API](#admin-api): Organizations, People creation and updates, Roles, Licenses, and Events. These admin related features are accessible only from an access token with admin privileges
 - [1-1 space](#direct-space): Create a 1-1 space by sending a direct message
 
-
 If you're new to Postman, you're only a few steps away from getting the full benefits of the collections:
+
 1. [import and configure](docs/ImportAndConfigure.md) a collection 
 2. [generate code](docs/GenerateCode.md) for your favorite language
-3. [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the newman command
+3. [run collections as part of your CI/CD process](https://www.getpostman.com/docs/newman_intro) via the `newman` command
 4. [publish documentation via documenter](https://www.getpostman.com/docs/creating_documentation).
 
-**We welcome pull requests for enhancements of existing collections, as well as contributions of collections that proved to be handy for you. 
-When submitting a new collection, please ensure it leverages a {{access_token}} variable to ease environments sharing among collections. Thank you!** 
-
+**We welcome pull requests for enhancements of existing collections, as well as contributions of collections that proved to be handy for you.
+When submitting a new collection, please ensure it leverages a {{access_token}} variable to ease environments sharing among collections. Thank you!**
 
 ## [all-resources-scripted](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/all-resources-scripted.json)
 
@@ -26,14 +25,16 @@ The collection implements the public resources for the Webex Teams REST API , wi
 
 ![public resources](docs/img/scripted-collection-all-resources.png)
 
-Worth mentionning that the collection is scripted so that you can run REST calls in a row for any given resource:
-- as you run REST queries from top to bottom, newly created resource identifiers are automatically retreived and injected into your postman environment as temporary variables,
+Worth mentioning that the collection is scripted so that you can run REST calls in a row for any given resource:
+
+- as you run REST queries from top to bottom, newly created resource identifiers are automatically retrieved and injected into your postman environment as temporary variables,
 - so that the next REST query will look from the postman environment, and execute in the context of the previous query. For example, you'll add a message into the space you just created in the previous step. 
 - at the end of each scenario (embedded in individual collection folders), we've added requests to free newly created resources so that you'll end up in the same state as before running the queries in postman.
 
 Enough talk, let's practice:
+
 - [import the all-resources-scripted collection](docs/ImportAndConfigure.md), 
-- create or select a postman environment that contains a {{access_token}} variable, 
+- create or select a postman environment that contains an {{access_token}} variable as described in [import and configure](docs/ImportAndConfigure.md)
 - now, you're ready to invoke the API: for example, go to the Messages folder, and run the requests from top to bottom.
 
 ![messages](docs/img/scripted-collection-memberships.png)
@@ -59,8 +60,7 @@ Note that the collection is also rendered in HTML for [quick browsing via Postma
 
 The People folder is populated with pre-request and post-request scripts in order to ease the creation of random accounts.
 
-![admin-api](docs/img/admin-scripted-collection-people.png) 
-
+![admin-api](docs/img/admin-scripted-collection-people.png)
 
 ## [direct-space](https://raw.githubusercontent.com/CiscoDevNet/postman-webex/master/direct-space.json)
 

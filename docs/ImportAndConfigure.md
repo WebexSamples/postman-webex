@@ -25,9 +25,9 @@ To pick any collection listed in this repo:
 - paste the link from your browser URL 
 
 
-## Configure your execution environement
+## Configure your execution environment
 
-Postman lets you define [environment variables](https://www.getpostman.com/docs/environments) to easilly abstract your execution contexts.
+Postman lets you define [environment variables](https://www.getpostman.com/docs/environments) to easily abstract your execution contexts.
 
 This is where we'll specify the token used to access the Webex Teams REST API.
 
