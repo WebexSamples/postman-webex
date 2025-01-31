@@ -1,6 +1,6 @@
 # Postman for Webex Messaging and Admin APIs
 
-This repo gathers Postman collections for **[Webex Messaging and Admin APIs](https://developer.webex.com/quick-reference.html)**.
+This repo gathers Postman collections for **Webex Messaging and Admin APIs**.
 - [Webex Messaging API](#webex-messaging-api): Messages, Rooms, Teams, People, Webhooks, AttachmentActions... all Webex resources accessible from an access token, with no admin priviledges.
 - [Webex Admin API](#webex-admin-api): Organizations, People creation and updates, Roles, Licenses, Events, Devices, Places and xAPI. These admin related features are accessible only with an access token with admin priviledges.
 - [Webex Cards](#webex-cards): Messages (with Card attachments), AttachmentActions and Card examples.
@@ -69,7 +69,7 @@ Note that the collection is also rendered in HTML for [quick browsing via Postma
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/0aa22af74405f82086d4)
 
-The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.webex.com/docs/api/guides/admin-api).
+The collection illustrates the REST API **Administration Resources**, with direct link to the [Admin API documentation](https://developer.webex.com/docs/admin-api-guide).
 
 Note that the collection is also rendered in HTML for [quick browsing via Postman Documenter](https://documenter.getpostman.com/view/30210/2PMC7h).
 
